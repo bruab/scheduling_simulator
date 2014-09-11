@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+// Set ordering scheme for critical loop
+// Orders are: 	1 - i, j, k
+// 		2 - i, k, j
+// 		3 - j, i, k
+// 		4 - j, k, i
+// 		5 - k, i, j
+// 		6 - k, j, i
+# define ORDER 1
+
 // Set row/column size
 #define N 1100
 
@@ -27,6 +36,13 @@ int main(int argc, char *argv[])
 	}
 
 	// Multiply A x B
+// Orders are: 	1 - i, j, k
+// 		2 - i, k, j
+// 		3 - j, i, k
+// 		4 - j, k, i
+// 		5 - k, i, j
+// 		6 - k, j, i
+#if ORDER == 1
 	gettimeofday(&t0, NULL);
 	for (i=0; i<N; i++) {
 		for (j=0; j<N; j++) {
@@ -39,6 +55,7 @@ int main(int argc, char *argv[])
 	}
 	gettimeofday(&t1, NULL);
 	elapsedTime = t1.tv_sec - t0.tv_sec;
+#endif
 
 	// Output diagonal sum of C
 	sum = 0;
