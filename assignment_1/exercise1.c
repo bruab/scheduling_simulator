@@ -15,7 +15,7 @@
 
 // Set row/column size
 // 1100 is the magic number on my crappy laptop
-#define N 100
+#define N 1100
 
 // Declare arrays
 int A[N][N];
