@@ -1,4 +1,4 @@
-CFLAGS=-Wall -g -Ofast
+CFLAGS=-Wall -g -O0
 
 all:
 	make exercise1

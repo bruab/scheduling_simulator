@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
 // Multiply A x B
 // 1 - i, j, k
 #if ORDER == 1
+	char ordering[] = {'i', 'j', 'k', '\0'};
 	gettimeofday(&t0, NULL);
 	for (i=0; i<N; i++) {
 		for (j=0; j<N; j++) {
@@ -55,6 +56,7 @@ int main(int argc, char *argv[])
 	
 // 2 - i, k, j
 #elif ORDER == 2
+	char ordering[] = {'i', 'k', 'j', '\0'};
 	gettimeofday(&t0, NULL);
 	for (i=0; i<N; i++) {
 		for (k=0; k<N; k++) {
@@ -68,6 +70,7 @@ int main(int argc, char *argv[])
 
 // 3 - j, i, k
 #elif ORDER == 3
+	char ordering[] = {'j', 'i', 'k', '\0'};
 	gettimeofday(&t0, NULL);
 	for (j=0; j<N; j++) {
 		for (i=0; i<N; i++) {
@@ -81,6 +84,7 @@ int main(int argc, char *argv[])
 
 // 4 - j, k, i
 #elif ORDER == 4
+	char ordering[] = {'j', 'k', 'i', '\0'};
 	gettimeofday(&t0, NULL);
 	for (j=0; j<N; j++) {
 		for (k=0; k<N; k++) {
@@ -94,6 +98,7 @@ int main(int argc, char *argv[])
 
 // 5 - k, i, j
 #elif ORDER == 5
+	char ordering[] = {'k', 'i', 'j', '\0'};
 	gettimeofday(&t0, NULL);
 	for (k=0; k<N; k++) {
 		for (i=0; i<N; i++) {
@@ -107,6 +112,7 @@ int main(int argc, char *argv[])
 
 // 6 - k, j, i
 #elif ORDER == 6
+	char ordering[] = {'k', 'j', 'i', '\0'};
 	gettimeofday(&t0, NULL);
 	for (k=0; k<N; k++) {
 		for (j=0; j<N; j++) {
@@ -125,8 +131,8 @@ int main(int argc, char *argv[])
 		sum = sum + C[i][i];
 	}
 
-	printf("Sum is %d\n", sum);
-	printf("Elapsed time was %f seconds\n", elapsedTime);
+	printf("%d\t%f\t%s\n", sum, elapsedTime, ordering);
+
 	return 0;
 }
 
