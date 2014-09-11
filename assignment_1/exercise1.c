@@ -9,10 +9,11 @@
 // 		4 - j, k, i
 // 		5 - k, i, j
 // 		6 - k, j, i
-# define ORDER 1
+# define ORDER 2
 
 // Set row/column size
-#define N 1100
+// 1100 is the magic number on my crappy laptop
+#define N 100
 
 // Declare arrays
 int A[N][N];
@@ -32,6 +33,7 @@ int main(int argc, char *argv[])
 		for (j=0; j<N; j++) {
 			A[i][j] = rand();
 			B[i][j] = rand();
+			C[i][j] = 0;
 		}
 	}
 
@@ -47,10 +49,19 @@ int main(int argc, char *argv[])
 	for (i=0; i<N; i++) {
 		for (j=0; j<N; j++) {
 			for (k=0; k<N; k++) {
-				sum = sum + (A[i][k] * B[k][j]);
+				C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
 			}
-			C[i][j] = sum;
-			sum = 0;
+		}
+	}
+	gettimeofday(&t1, NULL);
+	elapsedTime = t1.tv_sec - t0.tv_sec;
+#elif ORDER == 2
+	gettimeofday(&t0, NULL);
+	for (i=0; i<N; i++) {
+		for (k=0; k<N; k++) {
+			for (j=0; j<N; j++) {
+				C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
+			}
 		}
 	}
 	gettimeofday(&t1, NULL);
