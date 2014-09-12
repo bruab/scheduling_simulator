@@ -1,3 +1,0 @@
-65sec at -O0, 28 sec at -Ofast
-# TODO use conditional compilation (#ifdef, etc) to run one of 6 versions of critical section
-http://www.cprogramming.com/tutorial/cpreprocessor.html
