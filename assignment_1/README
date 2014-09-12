@@ -1,0 +1,6 @@
+
+
+exercise2 compiled with -O0 runs in 14 seconds.
+exercise1 with ikj loop compiled with -O0 ran in 21 seconds.
+exercise1 with ikj loop compiled with -Ofast ran in 3 seconds.
+exercise2 compiled with -Ofast ran in 4 seconds, slower than ex1 with -Ofast. so no point. all that work for nothing. suxxorz.
