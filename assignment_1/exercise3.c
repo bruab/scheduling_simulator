@@ -15,8 +15,8 @@
 
 // Set row/column size
 // 1100 is the magic number on my crappy laptop
-#define N 8
-#define BLOCK_SIZE 4
+#define N 1100
+#define BLOCK_SIZE 100
 
 // Declare arrays
 int A[N][N];
@@ -25,7 +25,7 @@ int C[N][N];
 
 int main(int argc, char *argv[])
 {
-	int i, j, k, ii, jj, kk, sum, total;
+	int i, j, k, ii, jj, kk, sum;
 	struct timeval t0, t1;
 	double elapsedTime;
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
 // 2 - i, k, j
 #elif ORDER == 2
-	char ordering[] = {'i', 'j', 'k', '\0'};
+	char ordering[] = {'i', 'k', 'j', '\0'};
 	gettimeofday(&t0, NULL);
 
 	for (i=0; i<N/BLOCK_SIZE; i++) {
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 
 // 3 - j, i, k
 #elif ORDER == 3
-	char ordering[] = {'i', 'j', 'k', '\0'};
+	char ordering[] = {'j', 'i', 'k', '\0'};
 	gettimeofday(&t0, NULL);
 
 	for (i=0; i<N/BLOCK_SIZE; i++) {
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
 
 // 4 - j, k, i
 #elif ORDER == 4
-	char ordering[] = {'i', 'j', 'k', '\0'};
+	char ordering[] = {'j', 'k', 'i', '\0'};
 	gettimeofday(&t0, NULL);
 
 	for (i=0; i<N/BLOCK_SIZE; i++) {
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 
 // 5 - k, i, j
 #elif ORDER == 5
-	char ordering[] = {'i', 'j', 'k', '\0'};
+	char ordering[] = {'k', 'i', 'j', '\0'};
 	gettimeofday(&t0, NULL);
 
 	for (i=0; i<N/BLOCK_SIZE; i++) {
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
 
 // 6 - k, j, i
 #elif ORDER == 6
-	char ordering[] = {'i', 'j', 'k', '\0'};
+	char ordering[] = {'k', 'j', 'i', '\0'};
 	gettimeofday(&t0, NULL);
 
 	for (i=0; i<N/BLOCK_SIZE; i++) {
