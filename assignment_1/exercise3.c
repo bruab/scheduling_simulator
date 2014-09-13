@@ -73,8 +73,8 @@ int main(int argc, char *argv[])
 		for (j=0; j<N/BLOCK_SIZE; j++) {
 			for (k=0; k<N/BLOCK_SIZE; k++) {
 				for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
-					for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
-						for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
+					for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
+						for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
 							C[ii][jj] = C[ii][jj] + A[ii][kk]*B[kk][jj];
 						}
 					}
@@ -85,7 +85,6 @@ int main(int argc, char *argv[])
 
 	gettimeofday(&t1, NULL);
 	elapsedTime = t1.tv_sec - t0.tv_sec;
-
 
 // 3 - j, i, k
 #elif ORDER == 3
@@ -95,8 +94,8 @@ int main(int argc, char *argv[])
 	for (i=0; i<N/BLOCK_SIZE; i++) {
 		for (j=0; j<N/BLOCK_SIZE; j++) {
 			for (k=0; k<N/BLOCK_SIZE; k++) {
-				for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
-					for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
+				for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
+					for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
 						for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
 							C[ii][jj] = C[ii][jj] + A[ii][kk]*B[kk][jj];
 						}
@@ -108,8 +107,6 @@ int main(int argc, char *argv[])
 
 	gettimeofday(&t1, NULL);
 	elapsedTime = t1.tv_sec - t0.tv_sec;
-
-
 
 // 4 - j, k, i
 #elif ORDER == 4
@@ -119,9 +116,9 @@ int main(int argc, char *argv[])
 	for (i=0; i<N/BLOCK_SIZE; i++) {
 		for (j=0; j<N/BLOCK_SIZE; j++) {
 			for (k=0; k<N/BLOCK_SIZE; k++) {
-				for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
-					for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
-						for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
+				for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
+					for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
+						for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
 							C[ii][jj] = C[ii][jj] + A[ii][kk]*B[kk][jj];
 						}
 					}
@@ -133,8 +130,6 @@ int main(int argc, char *argv[])
 	gettimeofday(&t1, NULL);
 	elapsedTime = t1.tv_sec - t0.tv_sec;
 
-
-
 // 5 - k, i, j
 #elif ORDER == 5
 	char ordering[] = {'i', 'j', 'k', '\0'};
@@ -143,9 +138,9 @@ int main(int argc, char *argv[])
 	for (i=0; i<N/BLOCK_SIZE; i++) {
 		for (j=0; j<N/BLOCK_SIZE; j++) {
 			for (k=0; k<N/BLOCK_SIZE; k++) {
-				for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
-					for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
-						for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
+				for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
+					for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
+						for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
 							C[ii][jj] = C[ii][jj] + A[ii][kk]*B[kk][jj];
 						}
 					}
@@ -167,9 +162,9 @@ int main(int argc, char *argv[])
 	for (i=0; i<N/BLOCK_SIZE; i++) {
 		for (j=0; j<N/BLOCK_SIZE; j++) {
 			for (k=0; k<N/BLOCK_SIZE; k++) {
-				for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
+				for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
 					for (jj=j*BLOCK_SIZE; jj<(j*BLOCK_SIZE+BLOCK_SIZE); jj++) {
-						for (kk=k*BLOCK_SIZE; kk<(k*BLOCK_SIZE+BLOCK_SIZE); kk++) {
+						for (ii=i*BLOCK_SIZE; ii<(i*BLOCK_SIZE+BLOCK_SIZE); ii++) {
 							C[ii][jj] = C[ii][jj] + A[ii][kk]*B[kk][jj];
 						}
 					}
