@@ -62,6 +62,41 @@ int main(int argc, char *argv[])
 	}
 	gettimeofday(&t1, NULL);
 	elapsedTime = t1.tv_sec - t0.tv_sec;
+
+// 2 - i, k, j
+#elif ORDER == 2
+	char ordering[] = {'i', 'k', 'j', '\0'};
+	gettimeofday(&t0, NULL);
+
+	for(kk=0; kk<N; kk+=BLOCK_SIZE){
+		for(jj=0; jj<N; jj+=BLOCK_SIZE){
+			for(i=0; i<N; i++){
+				for(k = kk; k<((kk+BLOCK_SIZE)>N?N:(kk+BLOCK_SIZE)); k++){  // Hope to understand this line by mid-semester
+					total = 0;
+					for(j = jj; j<((jj+BLOCK_SIZE)>N?N:(jj+BLOCK_SIZE)); j++){
+						total += A[i][k]*B[k][j];
+					}
+					C[i][j] += total;
+				}
+			}
+		}
+	}
+	gettimeofday(&t1, NULL);
+	elapsedTime = t1.tv_sec - t0.tv_sec;
+	/*
+	char ordering[] = {'i', 'k', 'j', '\0'};
+	gettimeofday(&t0, NULL);
+	for (i=0; i<N; i++) {
+		for (k=0; k<N; k++) {
+			for (j=0; j<N; j++) {
+				C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
+			}
+		}
+	}
+	gettimeofday(&t1, NULL);
+	elapsedTime = t1.tv_sec - t0.tv_sec;
+	*/
+
 #endif
 
 	// Output diagonal sum of C
