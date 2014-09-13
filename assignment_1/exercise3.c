@@ -65,15 +65,15 @@ int main(int argc, char *argv[])
 
 // 2 - i, k, j
 #elif ORDER == 2
-	char ordering[] = {'i', 'k', 'j', '\0'};
+	char ordering[] = {'i', 'j', 'k', '\0'};
 	gettimeofday(&t0, NULL);
 
-	for(kk=0; kk<N; kk+=BLOCK_SIZE){
-		for(jj=0; jj<N; jj+=BLOCK_SIZE){
+	for(jj=0; jj<N; jj+=BLOCK_SIZE){
+		for(kk=0; kk<N; kk+= BLOCK_SIZE){
 			for(i=0; i<N; i++){
-				for(k = kk; k<((kk+BLOCK_SIZE)>N?N:(kk+BLOCK_SIZE)); k++){  // Hope to understand this line by mid-semester
+				for(j = jj; j<((jj+BLOCK_SIZE)>N?N:(jj+BLOCK_SIZE)); j++){  // Hope to understand this line by mid-semester
 					total = 0;
-					for(j = jj; j<((jj+BLOCK_SIZE)>N?N:(jj+BLOCK_SIZE)); j++){
+					for(k = kk; k<((kk+BLOCK_SIZE)>N?N:(kk+BLOCK_SIZE)); k++){
 						total += A[i][k]*B[k][j];
 					}
 					C[i][j] += total;
@@ -83,19 +83,97 @@ int main(int argc, char *argv[])
 	}
 	gettimeofday(&t1, NULL);
 	elapsedTime = t1.tv_sec - t0.tv_sec;
-	/*
-	char ordering[] = {'i', 'k', 'j', '\0'};
+
+
+// 3 - j, i, k
+#elif ORDER == 3
+	char ordering[] = {'i', 'j', 'k', '\0'};
 	gettimeofday(&t0, NULL);
-	for (i=0; i<N; i++) {
-		for (k=0; k<N; k++) {
-			for (j=0; j<N; j++) {
-				C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
+
+	for(jj=0; jj<N; jj+=BLOCK_SIZE){
+		for(kk=0; kk<N; kk+= BLOCK_SIZE){
+			for(i=0; i<N; i++){
+				for(j = jj; j<((jj+BLOCK_SIZE)>N?N:(jj+BLOCK_SIZE)); j++){  // Hope to understand this line by mid-semester
+					total = 0;
+					for(k = kk; k<((kk+BLOCK_SIZE)>N?N:(kk+BLOCK_SIZE)); k++){
+						total += A[i][k]*B[k][j];
+					}
+					C[i][j] += total;
+				}
 			}
 		}
 	}
 	gettimeofday(&t1, NULL);
 	elapsedTime = t1.tv_sec - t0.tv_sec;
-	*/
+
+
+
+// 4 - j, k, i
+#elif ORDER == 4
+	char ordering[] = {'i', 'j', 'k', '\0'};
+	gettimeofday(&t0, NULL);
+
+	for(jj=0; jj<N; jj+=BLOCK_SIZE){
+		for(kk=0; kk<N; kk+= BLOCK_SIZE){
+			for(i=0; i<N; i++){
+				for(j = jj; j<((jj+BLOCK_SIZE)>N?N:(jj+BLOCK_SIZE)); j++){  // Hope to understand this line by mid-semester
+					total = 0;
+					for(k = kk; k<((kk+BLOCK_SIZE)>N?N:(kk+BLOCK_SIZE)); k++){
+						total += A[i][k]*B[k][j];
+					}
+					C[i][j] += total;
+				}
+			}
+		}
+	}
+	gettimeofday(&t1, NULL);
+	elapsedTime = t1.tv_sec - t0.tv_sec;
+
+
+
+// 5 - k, i, j
+#elif ORDER == 5
+	char ordering[] = {'i', 'j', 'k', '\0'};
+	gettimeofday(&t0, NULL);
+
+	for(jj=0; jj<N; jj+=BLOCK_SIZE){
+		for(kk=0; kk<N; kk+= BLOCK_SIZE){
+			for(i=0; i<N; i++){
+				for(j = jj; j<((jj+BLOCK_SIZE)>N?N:(jj+BLOCK_SIZE)); j++){  // Hope to understand this line by mid-semester
+					total = 0;
+					for(k = kk; k<((kk+BLOCK_SIZE)>N?N:(kk+BLOCK_SIZE)); k++){
+						total += A[i][k]*B[k][j];
+					}
+					C[i][j] += total;
+				}
+			}
+		}
+	}
+	gettimeofday(&t1, NULL);
+	elapsedTime = t1.tv_sec - t0.tv_sec;
+
+
+
+// 6 - k, j, i
+#elif ORDER == 6
+	char ordering[] = {'i', 'j', 'k', '\0'};
+	gettimeofday(&t0, NULL);
+
+	for(jj=0; jj<N; jj+=BLOCK_SIZE){
+		for(kk=0; kk<N; kk+= BLOCK_SIZE){
+			for(i=0; i<N; i++){
+				for(j = jj; j<((jj+BLOCK_SIZE)>N?N:(jj+BLOCK_SIZE)); j++){  // Hope to understand this line by mid-semester
+					total = 0;
+					for(k = kk; k<((kk+BLOCK_SIZE)>N?N:(kk+BLOCK_SIZE)); k++){
+						total += A[i][k]*B[k][j];
+					}
+					C[i][j] += total;
+				}
+			}
+		}
+	}
+	gettimeofday(&t1, NULL);
+	elapsedTime = t1.tv_sec - t0.tv_sec;
 
 #endif
 
