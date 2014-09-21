@@ -11,7 +11,7 @@
 
 // Set row/column size
 // 1100 is the magic number on my crappy laptop
-#define N 8
+#define N 100
 
 // Declare arrays
 int A[N][N];
@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 	char parallel_loop = 'i';
 	gettimeofday(&t0, NULL);
 	for (i=0; i<N; i++) {
+//#pragma omp parallel for private(j,k)
 		for (k=0; k<N; k++) {
 			for (j=0; j<N; j++) {
 				C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
@@ -54,6 +55,7 @@ int main(int argc, char *argv[])
 	char parallel_loop = 'k';
 	gettimeofday(&t0, NULL);
 	for (i=0; i<N; i++) {
+//#pragma omp parallel for private(j)
 		for (k=0; k<N; k++) {
 			for (j=0; j<N; j++) {
 				C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
