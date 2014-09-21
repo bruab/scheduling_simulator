@@ -26,4 +26,6 @@ Also, I reduced N from 1100 (used in Assignment 1) to 500 for this exercise, bec
 
 Exercise 2:
 
-1) 
+1) This program can't be parallelized with a simple pragma for the i or j loop because for each iteration, each value in the matrix depends on the current values of its neighbors to above, below, to the left and to the right. This means that if each process is given its own 'i', it will require values from the 'i-1' process and the 'i+1' process for each step it wishes to take. The same holds true if each process is given its own 'j'.
+
+2) 
