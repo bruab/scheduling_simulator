@@ -1,4 +1,4 @@
-CFLAGS=-Wall -Ofast
+CFLAGS=-Wall -Ofast -fopenmp
 
 all:
 	make exercise1
