@@ -55,13 +55,12 @@ int main(int argc, char *argv[])
 	char parallel_loop = 'k';
 	gettimeofday(&t0, NULL);
 	for (i=0; i<N; i++) {
-		#pragma omp parallel for
+		#pragma omp parallel for private(j)
 		for (k=0; k<N; k++) {
-			int jj;
-			for (jj=0; jj<N; jj++) {
+			for (j=0; j<N; j++) {
 				#pragma omp critical
 				{
-					C[i][jj] = C[i][jj] + (A[i][k] * B[k][jj]);
+					C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
 				}
 			}
 		}
