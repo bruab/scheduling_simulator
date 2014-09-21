@@ -4,3 +4,18 @@ Compiler: gcc 4.8.2
 
 ***********************************************************
 
+Exercise 1:
+
+1) Only the inner loop can be parallelized without fear of race conditions. Doing the same for the middle or outer loop requires using the 'private' keyword because otherwise, each OpenMP process has access to the same inner index pointer(s) and can modify them while another process is accessing them.
+
+2) Here are the average wall clock times for ten runs of each loop parallelization (with N=500):
+
+loop	avg wall time
+----	-------------
+i	10.7 
+k	11.3
+j	1.5
+
+Clearly, parallelizing the innermost loop is the best option. This scheme allows the benefits of parallelization without the overhead of critical sections and private variables. I'm not sure why the parallelizing the middle loop should be slower than doing so with the outer loop. I'm guessing they're similar because they have similar restrictions, but the parallel 'i' loop does more work per OpenMP process, so it's slightly more worthwhile to invest in the overhead.
+
+3) 

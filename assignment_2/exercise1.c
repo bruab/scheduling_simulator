@@ -10,8 +10,8 @@
 #endif
 
 // Set row/column size
-// 1100 is the magic number on my crappy laptop
-#define N 100
+// 500 is the magic number on my crappy laptop
+#define N 500
 
 // Declare arrays
 int A[N][N];
