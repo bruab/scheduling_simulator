@@ -16,6 +16,14 @@ i	10.7
 k	11.3
 j	1.5
 
-Clearly, parallelizing the innermost loop is the best option. This scheme allows the benefits of parallelization without the overhead of critical sections and private variables. I'm not sure why the parallelizing the middle loop should be slower than doing so with the outer loop. I'm guessing they're similar because they have similar restrictions, but the parallel 'i' loop does more work per OpenMP process, so it's slightly more worthwhile to invest in the overhead.
+Clearly, parallelizing the innermost loop is the best option. This scheme allows the benefits of parallelization without the overhead of critical siections and private variables. I'm not sure why the parallelizing the middle loop should be slower than doing so with the outer loop. I'm guessing they're similar because they have similar restrictions, but the parallel 'i' loop does more work per OpenMP process, so it's slightly more worthwhile to invest in the overhead.
 
-3) 
+Also, I reduced N from 1100 (used in Assignment 1) to 500 for this exercise, because the two slower versions of the program were taking forever. The code was already fairly slow in the previous assignment, but the greater N is, the more processes there are, which means the more processes there are to wait for when accessing a critical section.
+
+3) Ten runs without using OpenMP averaged 3.5 seconds per run with N=1100, while the fastest parallel version took an average of 1.5 seconds. This is a speedup of 2.33. Since I ran the parallel version on two processors, the parallel efficiency is 2.33 / 2 = 1.167 = 116%. This seems impossible, actually, but those are the numbers...
+
+***********************************************************
+
+Exercise 2:
+
+1) 

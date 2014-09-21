@@ -10,8 +10,8 @@
 #endif
 
 // Set row/column size
-// 500 is the magic number on my crappy laptop
-#define N 500
+// 1100 is the magic number on my crappy laptop
+#define N 1100
 
 // Declare arrays
 int A[N][N];
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 	gettimeofday(&t0, NULL);
 	for (i=0; i<N; i++) {
 		for (k=0; k<N; k++) {
-			#pragma omp parallel for
+			//#pragma omp parallel for
 			for (j=0; j<N; j++) {
 				C[i][j] = C[i][j] + (A[i][k] * B[k][j]);
 			}
