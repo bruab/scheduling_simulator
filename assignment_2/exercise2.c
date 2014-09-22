@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
   int num_iterations;
 
   int iter;
-  int i,j;
+  int i,j,x;
   struct timeval start, end;
 
   if (argc != 3) {
@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
   // Start timer
   gettimeofday(&start,NULL);
 
+  /*
   // Loop for num_iterations iterations
   for (iter = 0; iter < num_iterations; iter++) {
     fprintf(stderr,"."); fflush(stderr);
@@ -52,6 +53,21 @@ int main(int argc, char **argv) {
         A[i][j] = (3*A[i-1][j] + A[i+1][j] + 3*A[i][j-1] + A[i][j+1])/4;
       }
     }
+  }
+  */
+
+  for (iter = 0; iter < num_iterations; iter++) {
+	  fprintf(stderr, "."); fflush(stderr);
+
+	  for (x = 1; x < 2*N+1; x++) {
+		  i = 1;
+		  for (j = x; j > 0; j--) {
+			if (j <= N && i <= N) {
+          			A[i][j] = (3*A[i-1][j] + A[i+1][j] + 3*A[i][j-1] + A[i][j+1])/4;
+			}
+			i++;
+		  }
+	  }
   }
 
   gettimeofday(&end,NULL);

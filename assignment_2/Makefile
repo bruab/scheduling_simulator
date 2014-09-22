@@ -4,7 +4,6 @@ all:
 	make exercise1
 	make exercise2
 	make exercise2_startingpoint
-	make exercise3
 
 clean:
-	rm exercise1 exercise2 exercise2_startingpoint exercise3 
+	rm exercise1 exercise2 exercise2_startingpoint 
