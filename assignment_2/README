@@ -26,6 +26,66 @@ Also, I reduced N from 1100 (used in Assignment 1) to 500 for this exercise, bec
 
 Exercise 2:
 
-1) This program can't be parallelized with a simple pragma for the i or j loop because for each iteration, each value in the matrix depends on the current values of its neighbors to above, below, to the left and to the right. This means that if each thread is given its own 'i', it will require values from the 'i-1' thread and the 'i+1' thread for each step it wishes to take. The same holds true if each thread is given its own 'j'.
+1) This program can't be parallelized with a simple pragma for the i or j loop because for each iteration, each value in the matrix depends on the current values of its neighbors above, below, to the left and to the right. This means that if each thread is given its own 'i', it will require values from the 'i-1' thread and the 'i+1' thread for each step it wishes to take. The same holds true if each thread is given its own 'j'.
 
-2) 
+2) Wow, this one was hard. I managed to find a couple of ways to iterate over the matrix, one of which was even correct but not parallelizable. My final approach is to first process the element at A[1][1], then to process the elements which depend on its updated value (A[1][2] and A[2][1]), then to process the elements that depend on THOSE updated values, and so on. For N=3, the procedure ends up looking something like this (with '_' representing uncalculated values and 'O' representing calculated values):
+
+XXXXX
+X___X
+X___X
+X___X
+XXXXX
+
+XXXXX
+XO__X
+X___X
+X___X
+XXXXX
+
+XXXXX
+XOO_X
+XO__X
+X___X
+XXXXX
+
+XXXXX
+XOOOX
+XOO_X
+XO__X
+XXXXX
+
+XXXXX
+XOOOX
+XOOOX
+XOO_X
+XXXXX
+
+XXXXX
+XOOOX
+XOOOX
+XOOOX
+XXXXX
+
+
+3) Here are the stats for running the program with 2 threads and 13 iterations:
+
+version		avg. runtime (seconds)
+-------		----------------------
+original	10.24
+new(sequential)	305.01
+new(parallel)	239.52
+
+Clearly this is no improvement. I'm assuming that excessive memory accesses are the reason for the degraded performance. We are all over the matrix at once, so it's impossible to hold all of the values we need in cache for very long, if it's possible to hold them at all.
+
+4) 
+
+5) 
+
+
+Exercise 3:
+
+1) To do a parallel merge, use a recursive, divide-and-conquer approach. Given arrays A and B with target array T, find the median element A[m] of A. Then use binary search to find the first element B[k] of B that is greater than that median element.
+
+We know how many elements in A are less than A[m], and we also know how many elements of B are less than A[m]. So the sum of those two numbers gives us A[m]'s position in the target array T. This leaves us with four arrays which we sort as two pairs: A[1..m-1] and B[1..k-1]; also A[m+1...] and B[k...]. We pass these two pairs of arrays to two new threads, who carry out the same algorithm (including spawning threads of their own). When the arrays are of size 1, they are sorted.
+
+2) Finding the median element of A is O(1); the binary search on B is O(log m). So the overall complexity is O(log m) so far. These steps must be carried out log(n) + 1 times, so the overall complexity is O(log n).
