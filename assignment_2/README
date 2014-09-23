@@ -67,16 +67,24 @@ XOOOX
 XXXXX
 
 
-3) Here are the stats for running the program with 2 threads and 13 iterations:
+3) Here are the stats for running the *sequential* version of the new program (by "original" I mean "exercise2_startingpoint"):
+
+version 	avg. runtime (seconds)
+------- 	----------------------
+original 	10.24
+new 		
+
+
+Here are the stats for running the program in parallel:
 
 version		num_threads	avg. runtime (seconds)
 -------		-----------	----------------------
 original	1		10.24
-new		1		305.01
-new		2		239.52
-new		4		152.17
+new		1		122.11
+new		2		156.88
+new		4		170.10
 
-Clearly this is no improvement. While more threads do speed things up, we're still an order of magnitude slower than the original version. I'm assuming that excessive memory accesses and the sheer number of threads required to be created are the reason for the degraded performance. We are all over the matrix at once, so it's impossible to hold all of the values we need in cache for very long, if it's possible to hold them at all. Furthermore, and I suspect more importantly, if the inner for loop is parallelized, that means a different thread executes the calculation of each cell in a diagonal. The longest such diagonal is N=12,000 cells long. Maybe blocking would help.
+Clearly this version is no improvement, and more threads actually slow things down. I'm assuming that excessive memory accesses and the sheer number of threads required to be created are the reason for the degraded performance. We are all over the matrix at once, so it's impossible to hold all of the values we need in cache for very long, if it's possible to hold them at all. Furthermore, and I suspect more importantly, if the inner for loop is parallelized, that means a different thread executes the calculation of each cell in a diagonal. The longest such diagonal is N=12,000 cells long. Maybe blocking would help. Though I'm skeptical ...
 
 4) 
 
