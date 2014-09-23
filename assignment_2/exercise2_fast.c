@@ -6,7 +6,7 @@
 #include <signal.h>
 
 #define N 12000
-#define BLOCK_SIZE 12000
+#define BLOCK_SIZE 6000
 
 int A[N+2][N+2];
 
