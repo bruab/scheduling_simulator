@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
 	  fprintf(stderr, "."); fflush(stderr);
 
 	  for (x = 1; x < 2*N+1; x++) {
-		  //#pragma omp parallel for private(j)
+		  #pragma omp parallel for private(j)
 		  for (j = x; j > 0; j--) {
 			  int k = x + 1 - j;
 			if (j <= N && k <= N) {
