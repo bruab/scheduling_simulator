@@ -43,29 +43,17 @@ int main(int argc, char **argv) {
   // Start timer
   gettimeofday(&start,NULL);
 
-  /*
-  // Loop for num_iterations iterations
-  for (iter = 0; iter < num_iterations; iter++) {
-    fprintf(stderr,"."); fflush(stderr);
-
-    for (i = 1; i < N+1; i++) {
-      for (j = 1; j < N+1; j++) {
-        A[i][j] = (3*A[i-1][j] + A[i+1][j] + 3*A[i][j-1] + A[i][j+1])/4;
-      }
-    }
-  }
-  */
-
   for (iter = 0; iter < num_iterations; iter++) {
 	  fprintf(stderr, "."); fflush(stderr);
 
 	  for (x = 1; x < 2*N+1; x++) {
-		  i = 1;
+		  #pragma omp parallel for private(j)
 		  for (j = x; j > 0; j--) {
-			if (j <= N && i <= N) {
-          			A[i][j] = (3*A[i-1][j] + A[i+1][j] + 3*A[i][j-1] + A[i][j+1])/4;
+			  int k = x + 1 - j;
+			if (j <= N && k <= N) {
+          			A[k][j] = (3*A[k-1][j] + A[k+1][j] + 3*A[k][j-1] + A[k][j+1])/4;
 			}
-			i++;
+			k++;
 		  }
 	  }
   }
