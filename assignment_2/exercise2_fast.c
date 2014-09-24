@@ -6,7 +6,9 @@
 #include <signal.h>
 
 #define N 12000
-#define BLOCK_SIZE 6000
+#ifndef BLOCK_SIZE 
+# define BLOCK_SIZE 12000
+#endif
 
 int A[N+2][N+2];
 
@@ -80,6 +82,7 @@ int main(int argc, char **argv) {
       sum += A[i][j];
     }
   }
+  printf("num threads: %d. block size: %d\n", num_threads, BLOCK_SIZE);
   fprintf(stderr,"sum = %d\n",sum);
 
   exit(0);

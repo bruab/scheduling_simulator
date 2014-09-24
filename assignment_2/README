@@ -72,7 +72,7 @@ XXXXX
 version 	avg. runtime (seconds)
 ------- 	----------------------
 original 	10.24
-new 		
+new 		393.77
 
 
 Here are the stats for running the program in parallel:
@@ -86,9 +86,28 @@ new		4		170.10
 
 Clearly this version is no improvement, and more threads actually slow things down. I'm assuming that excessive memory accesses and the sheer number of threads required to be created are the reason for the degraded performance. We are all over the matrix at once, so it's impossible to hold all of the values we need in cache for very long, if it's possible to hold them at all. Furthermore, and I suspect more importantly, if the inner for loop is parallelized, that means a different thread executes the calculation of each cell in a diagonal. The longest such diagonal is N=12,000 cells long. Maybe blocking would help. Though I'm skeptical ...
 
-4) 
+4) Here the results of my attempt to find an optimal block size:
 
-5) 
+num_threads 	block_size 	run time
+----------- 	---------- 	--------
+1 		12000 		159.92
+1 		6000 		195.04
+1 		3000 		302.99
+1 		1500 		518.99
+1 		750 		908.47
+1 		375 		1673.79
+4 		12000 		154.39
+4 		6000 		190.36
+4 		3000 		297.28
+4 		1500 		510.43
+4 		750 		902.19
+4 		375 		1666.21
+
+From this I can only guess that I've done something wrong (?). I believe I can still answer the question, though. A block size of N or greater means that each thread is simply updating an entire diagonal of the matrix; the calculation hasn't actually been broken into blocks at all. A block size of 1 means that each thread does a single calculation, and the overhead of managing these threads will be more than it's worth. Somewhere inbetween, there should be a balance where threads have a small enough amount of work to do so that they are memory-efficient, but there aren't so many threads that the OS spends all its time creating and maintaining them.
+
+5) Again, though my numbers are suspect, I'll attempt to answer the question. When executed with 4 threads, the program consistently outperforms the 1-thread version ... by a few seconds. Taking the fastest case as our benchmark, the parallel speedup is 159.92 / 154.39 = 1.036. Which is pretty poor. Parallel efficiency = 1.036 / 2 = 0.518, which is certainly no prize. 
+
+Compared with the original, sequential program, the parallel speedup is less than one. It's a parallel slowdown. Again, I'm not sure if I've done something horribly wrong (most likely) or if this is meant to be a lesson in parallelizaton-resistent algorithms (fingers crossed :). Here are the numbers, anyway: parallel speedup = 10.24 / 154.39 = 0.066. Parallel efficiency = 0.0066 / 2 = 0.0033. Atrocious.
 
 
 Exercise 3:
