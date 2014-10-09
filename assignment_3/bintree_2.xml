@@ -1,0 +1,12 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
+<platform version="3">
+<AS id="AS0" routing="Full">
+  <host id="host-0.hawaii.edu" power="1"/>
+  <link id="link-0-1" latency="20us" bandwidth="10Gbps"/>
+  <host id="host-1.hawaii.edu" power="1"/>
+  <route src="host-1.hawaii.edu" dst="host-0.hawaii.edu">
+	<link_ctn id="link-0-1"/>
+  </route>
+</AS>
+</platform>
