@@ -7,6 +7,11 @@
 
 #define NUM_BYTES   100000000
 
+#ifndef VERSION
+#define VERSION default
+#endif
+
+
 ///////////////////////////////////////////////////////
 //// program_abort() and print_usage() functions //////
 ///////////////////////////////////////////////////////
@@ -122,8 +127,23 @@ int main(int argc, char *argv[])
   //////////////////////////// TO IMPLEMENT: BEGIN ////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
   
+#if VERSION == default
   //MPI_Bcast(void* data, int count, MPI_Datatype datatype, int root, MPI_Comm communicator)
   MPI_Bcast(buffer, NUM_BYTES, MPI_CHAR, 0, MPI_COMM_WORLD);
+
+#elif VERSION == naive
+  if (rank == 0) {
+	  for (int n=1; n<num_procs; n++) {
+		  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, n, MPI_ANY_TAG, MPI_COMM_WORLD);
+	  }
+
+  } else {
+	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, 0, MPI_ANY_TAG, MPI_COMM_WORLD);
+  }
+
+#elif VERSION == ring
+
+#endif
 
   
   /////////////////////////////////////////////////////////////////////////////
