@@ -1,0 +1,10 @@
+question1 results with NUM_BYTES=10000000 (10^7):
+default
+2.532
+naive
+2.200
+ring
+0.956
+
+# weird, b/c assignment says that ring should hardly improve over bcast_naive. so idk, but gotta press on.
+

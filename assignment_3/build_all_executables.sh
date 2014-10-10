@@ -1,15 +1,27 @@
 #!/bin/bash
 
 # Remove any executables that might be hanging around
-if [[ -f question1 ]]
+if [[ -f bcast_default ]]
 then
-	rm question1
+	rm bcast_default
 fi
 
-if [[ -f question1_naive ]]
+if [[ -f bcast_naive ]]
 then
-	rm question1_naive
+	rm bcast_naive
 fi
 
-smpicc question1.c -DVERSION=0 -o question1
-smpicc question1.c -DVERSION=1 -o question1_naive
+if [[ -f bcast_ring ]]
+then
+	rm bcast_ring
+fi
+
+if [[ -f bcast_ring_pipelined ]]
+then
+	rm bcast_ring_pipelined
+fi
+
+smpicc bcast.c -DVERSION=0 -o bcast_default
+smpicc bcast.c -DVERSION=1 -o bcast_naive
+smpicc bcast.c -DVERSION=2 -o bcast_ring
+smpicc bcast.c -DVERSION=3 -o bcast_ring_pipelined

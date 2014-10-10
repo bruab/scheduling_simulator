@@ -5,8 +5,7 @@
 
 #define RAND_SEED 842270
 
-// Should be 100000000 for analysis, set to 1000 for debugging
-#define NUM_BYTES   1000
+#define NUM_BYTES   10000000
 
 #ifndef VERSION
 #define VERSION 1
@@ -144,6 +143,14 @@ int main(int argc, char *argv[])
   }
 
 #elif VERSION == 2
+  if (rank != 0) {
+	  // Receive first
+	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+  }
+  if (rank < num_procs-1) {
+	  // Everyone but the last process sends
+	  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, rank+1, MPI_ANY_TAG, MPI_COMM_WORLD);
+  }
 
 #endif
 
