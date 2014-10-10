@@ -5,10 +5,11 @@
 
 #define RAND_SEED 842270
 
-#define NUM_BYTES   100000000
+// Should be 100000000 for analysis, set to 1000 for debugging
+#define NUM_BYTES   1000
 
 #ifndef VERSION
-#define VERSION default
+#define VERSION 1
 #endif
 
 
@@ -127,21 +128,22 @@ int main(int argc, char *argv[])
   //////////////////////////// TO IMPLEMENT: BEGIN ////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
   
-#if VERSION == default
+#if VERSION == 0
   //MPI_Bcast(void* data, int count, MPI_Datatype datatype, int root, MPI_Comm communicator)
   MPI_Bcast(buffer, NUM_BYTES, MPI_CHAR, 0, MPI_COMM_WORLD);
 
-#elif VERSION == naive
+#elif VERSION == 1
   if (rank == 0) {
-	  for (int n=1; n<num_procs; n++) {
+	  int n;
+	for (n=1; n<num_procs; n++) {
 		  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, n, MPI_ANY_TAG, MPI_COMM_WORLD);
-	  }
+	   }
 
   } else {
-	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, 0, MPI_ANY_TAG, MPI_COMM_WORLD);
+	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, 0, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
   }
 
-#elif VERSION == ring
+#elif VERSION == 2
 
 #endif
 

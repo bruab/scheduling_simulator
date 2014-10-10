@@ -11,5 +11,5 @@ then
 	rm question1_naive
 fi
 
-smpicc question1.c -DVERSION=default -o question1
-smpicc question1.c -DVERSION=naive -o question1_naive
+smpicc question1.c -DVERSION=0 -o question1
+smpicc question1.c -DVERSION=1 -o question1_naive
