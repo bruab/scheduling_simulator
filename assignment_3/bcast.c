@@ -127,11 +127,11 @@ int main(int argc, char *argv[])
   //////////////////////////// TO IMPLEMENT: BEGIN ////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
   
-#if VERSION == 0
+#if VERSION == 0 //bcast_default
   //MPI_Bcast(void* data, int count, MPI_Datatype datatype, int root, MPI_Comm communicator)
   MPI_Bcast(buffer, NUM_BYTES, MPI_CHAR, 0, MPI_COMM_WORLD);
 
-#elif VERSION == 1
+#elif VERSION == 1 //bcast_naive
   if (rank == 0) {
 	  int n;
 	for (n=1; n<num_procs; n++) {
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, 0, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
   }
 
-#elif VERSION == 2
+#elif VERSION == 2 //bcast_ring
   if (rank != 0) {
 	  // Receive first
 	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -150,6 +150,29 @@ int main(int argc, char *argv[])
   if (rank < num_procs-1) {
 	  // Everyone but the last process sends
 	  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, rank+1, MPI_ANY_TAG, MPI_COMM_WORLD);
+  }
+
+#elif VERSION == 3 //bcast_ring_pipelined
+  int num_chunks, chunk_index, current_address, remainder;
+  num_chunks = NUM_BYTES / chunk_size;
+  remainder = NUM_BYTES % chunk_size;
+  //printf("num_chunks is %d, remainder is %d\n", num_chunks, remainder);
+  for (chunk_index=0; chunk_index<num_chunks; chunk_index++) {
+	  if (chunk_index == num_chunks-1) {
+		  //printf("foo: chunk index is %d\n", chunk_index);
+	  }
+	  
+	  if (rank != 0) {
+		  // Receive first
+		  MPI_Recv(&buffer[current_address], chunk_size, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+		  //printf("process %d receiving from process %d\n", rank, rank-1);
+	  }
+	  if (rank < num_procs-1) {
+		  // Everyone but the last process sends
+			  // send next chunk
+			  current_address = chunk_index*chunk_size;
+			  MPI_Send(&buffer[current_address], chunk_size, MPI_CHAR, rank+1, MPI_ANY_TAG, MPI_COMM_WORLD);
+		  }
   }
 
 #endif
