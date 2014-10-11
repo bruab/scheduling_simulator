@@ -29,3 +29,8 @@
 *exercise3
 tarballs/*
 henri_solutions/*
+bcast_default
+bcast_naive
+bcast_ring
+bcast_ring_pipelined
+bcast_ring_pipelined_isend
