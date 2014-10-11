@@ -158,7 +158,10 @@ int main(int argc, char *argv[])
   remainder = NUM_BYTES % chunk_size;
   //printf("num_chunks is %d, remainder is %d\n", num_chunks, remainder);
   for (chunk_index=0; chunk_index<num_chunks; chunk_index++) {
-	  if (chunk_index == num_chunks-1) {
+	  current_address = chunk_index*chunk_size;
+	  if (chunk_index == num_chunks-1 && remainder != 0) {
+		  chunk_size = remainder;
+		  printf("foo");
 		  //printf("foo: chunk index is %d\n", chunk_index);
 	  }
 	  
@@ -170,7 +173,6 @@ int main(int argc, char *argv[])
 	  if (rank < num_procs-1) {
 		  // Everyone but the last process sends
 			  // send next chunk
-			  current_address = chunk_index*chunk_size;
 			  MPI_Send(&buffer[current_address], chunk_size, MPI_CHAR, rank+1, MPI_ANY_TAG, MPI_COMM_WORLD);
 		  }
   }
