@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <mpi.h>
+#include <math.h>
 
 #define RAND_SEED 842270
 
@@ -154,21 +155,21 @@ int main(int argc, char *argv[])
 
 #elif VERSION == 3 //bcast_ring_pipelined
   int num_chunks, chunk_index, current_address, remainder;
-  num_chunks = NUM_BYTES / chunk_size;
   remainder = NUM_BYTES % chunk_size;
-  //printf("num_chunks is %d, remainder is %d\n", num_chunks, remainder);
+  if (remainder == 0) {
+	  num_chunks = NUM_BYTES / chunk_size;
+  } else {
+	  num_chunks = NUM_BYTES / chunk_size + 1;
+  }
   for (chunk_index=0; chunk_index<num_chunks; chunk_index++) {
 	  current_address = chunk_index*chunk_size;
 	  if (chunk_index == num_chunks-1 && remainder != 0) {
 		  chunk_size = remainder;
-		  printf("foo");
-		  //printf("foo: chunk index is %d\n", chunk_index);
 	  }
 	  
 	  if (rank != 0) {
 		  // Receive first
 		  MPI_Recv(&buffer[current_address], chunk_size, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-		  //printf("process %d receiving from process %d\n", rank, rank-1);
 	  }
 	  if (rank < num_procs-1) {
 		  // Everyone but the last process sends
