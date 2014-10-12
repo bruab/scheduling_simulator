@@ -1,29 +1,10 @@
 #!/bin/bash
 
 # Remove any executables that might be hanging around
-if [[ -f bcast_default ]]
+ls | grep bcast_ >> /dev/null
+if [[ $? -eq 0 ]]
 then
-	rm bcast_default
-fi
-
-if [[ -f bcast_naive ]]
-then
-	rm bcast_naive
-fi
-
-if [[ -f bcast_ring ]]
-then
-	rm bcast_ring
-fi
-
-if [[ -f bcast_ring_pipelined ]]
-then
-	rm bcast_ring_pipelined
-fi
-
-if [[ -f bcast_ring_pipelined_isend ]]
-then
-	rm bcast_ring_pipelined_isend
+	rm bcast_*
 fi
 
 smpicc bcast.c -DVERSION=0 -o bcast_default
