@@ -12,3 +12,4 @@ smpicc bcast.c -DVERSION=1 -o bcast_naive
 smpicc bcast.c -DVERSION=2 -o bcast_ring
 smpicc bcast.c -DVERSION=3 -o bcast_ring_pipelined
 smpicc bcast.c -DVERSION=4 -o bcast_ring_pipelined_isend
+smpicc bcast.c -DVERSION=5 -o bcast_bintree_pipelined_isend
