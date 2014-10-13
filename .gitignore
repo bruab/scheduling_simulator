@@ -34,3 +34,4 @@ bcast_naive
 bcast_ring
 bcast_ring_pipelined
 bcast_ring_pipelined_isend
+bcast_bintree_pipelined_isend

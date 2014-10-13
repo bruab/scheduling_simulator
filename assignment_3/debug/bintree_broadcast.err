@@ -1,0 +1,110 @@
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'surf/precision' to '1e-9'
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'network/model' to 'SMPI'
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'network/TCP_gamma' to '4194304'
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/bcast' to 'mpich'
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/running_power' to '1'
+[0.000000] [surf_config/INFO] Switching workstation model to compound since you changed the network and/or cpu model(s)
+[0.464120] /home/brian/simgrid/src/simix/smx_global.c:458: [simix_kernel/CRITICAL] Oops ! Deadlock or code not perfectly clean.
+[0.464120] [simix_kernel/INFO] 100 processes are still running, waiting for something.
+[0.464120] [simix_kernel/INFO] Legend of the following listing: "Process <pid> (<name>@<host>): <status>"
+[0.464120] [simix_kernel/INFO] Process 1 (0@host-0.hawaii.edu): waiting for communication action 0x1d0b4c0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 2 (1@host-1.hawaii.edu): waiting for communication action 0x1d10290 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 3 (2@host-2.hawaii.edu): waiting for communication action 0x1d0ca50 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 4 (3@host-3.hawaii.edu): waiting for communication action 0x1d07500 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 5 (4@host-4.hawaii.edu): waiting for communication action 0x1d0d680 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 6 (5@host-5.hawaii.edu): waiting for communication action 0x1d0fb10 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 7 (6@host-6.hawaii.edu): waiting for communication action 0x1d0ed00 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 8 (7@host-7.hawaii.edu): waiting for communication action 0x1d0ce10 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 9 (8@host-8.hawaii.edu): waiting for communication action 0x1d09f30 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 10 (9@host-9.hawaii.edu): waiting for communication action 0x1d0fde0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 11 (10@host-10.hawaii.edu): waiting for communication action 0x1d0e2b0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 12 (11@host-11.hawaii.edu): waiting for communication action 0x1d09e40 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 13 (12@host-12.hawaii.edu): waiting for communication action 0x1d09990 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 14 (13@host-13.hawaii.edu): waiting for communication action 0x1d066f0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 15 (14@host-14.hawaii.edu): waiting for communication action 0x1d08220 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 16 (15@host-15.hawaii.edu): waiting for communication action 0x1d0cb40 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 17 (16@host-16.hawaii.edu): waiting for communication action 0x1d0e1c0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 18 (17@host-17.hawaii.edu): waiting for communication action 0x1d07410 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 19 (18@host-18.hawaii.edu): waiting for communication action 0x1d0f1b0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 20 (19@host-19.hawaii.edu): waiting for communication action 0x1d0d0e0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 21 (20@host-20.hawaii.edu): waiting for communication action 0x1d0c000 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 22 (21@host-21.hawaii.edu): waiting for communication action 0x1d08e50 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 23 (22@host-22.hawaii.edu): waiting for communication action 0x1d0bd30 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 24 (23@host-23.hawaii.edu): waiting for communication action 0x1d07b90 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 25 (24@host-24.hawaii.edu)
+[0.464120] [simix_kernel/INFO] Process 26 (25@host-25.hawaii.edu): waiting for communication action 0x1d0d770 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 27 (26@host-26.hawaii.edu): waiting for communication action 0x1d06ab0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 28 (27@host-27.hawaii.edu): waiting for communication action 0x1d088b0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 29 (28@host-28.hawaii.edu): waiting for communication action 0x1d087c0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 30 (29@host-29.hawaii.edu): waiting for communication action 0x1d06d80 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 31 (30@host-30.hawaii.edu): waiting for communication action 0x1d0bc40 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 32 (31@host-31.hawaii.edu): waiting for communication action 0x1d0dfe0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 33 (32@host-32.hawaii.edu): waiting for communication action 0x1d076e0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 34 (33@host-33.hawaii.edu): waiting for communication action 0x1d0a5c0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 35 (34@host-34.hawaii.edu): waiting for communication action 0x1d0cff0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 36 (35@host-35.hawaii.edu): waiting for communication action 0x1d0c870 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 37 (36@host-36.hawaii.edu): waiting for communication action 0x1d0dc20 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 38 (37@host-37.hawaii.edu): waiting for communication action 0x1d0a020 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 39 (38@host-38.hawaii.edu): waiting for communication action 0x1d0c5a0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 40 (39@host-39.hawaii.edu): waiting for communication action 0x1d095d0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 41 (40@host-40.hawaii.edu): waiting for communication action 0x1d0b6a0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 42 (41@host-41.hawaii.edu): waiting for communication action 0x1d0cc30 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 43 (42@host-42.hawaii.edu): waiting for communication action 0x1d06330 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 44 (43@host-43.hawaii.edu): waiting for communication action 0x1d0c1e0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 45 (44@host-44.hawaii.edu): waiting for communication action 0x1d08400 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 46 (45@host-45.hawaii.edu): waiting for communication action 0x1d0c690 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 47 (46@host-46.hawaii.edu): waiting for communication action 0x1d09120 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 48 (47@host-47.hawaii.edu): waiting for communication action 0x1d0a6b0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 49 (48@host-48.hawaii.edu): waiting for communication action 0x1d07d70 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 50 (49@host-49.hawaii.edu): waiting for communication action 0x1d07050 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 51 (50@host-50.hawaii.edu): waiting for communication action 0x1d0fed0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 52 (51@host-51.hawaii.edu): waiting for communication action 0x1d0d1d0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 53 (52@host-52.hawaii.edu): waiting for communication action 0x1d068d0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 54 (53@host-53.hawaii.edu): waiting for communication action 0x1d07140 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 55 (54@host-54.hawaii.edu): waiting for communication action 0x1d08a90 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 56 (55@host-55.hawaii.edu): waiting for communication action 0x1d08c70 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 57 (56@host-56.hawaii.edu): waiting for communication action 0x1d0d4a0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 58 (57@host-57.hawaii.edu): waiting for communication action 0x1d0eb20 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 59 (58@host-58.hawaii.edu): waiting for communication action 0x1d0bb50 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 60 (59@host-59.hawaii.edu): waiting for communication action 0x1d0c960 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 61 (60@host-60.hawaii.edu): waiting for communication action 0x1d0c780 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 62 (61@host-61.hawaii.edu): waiting for communication action 0x1d06e70 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 63 (62@host-62.hawaii.edu): waiting for communication action 0x1d09030 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 64 (63@host-63.hawaii.edu): waiting for communication action 0x1d0d860 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 65 (64@host-64.hawaii.edu): waiting for communication action 0x1d0edf0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 66 (65@host-65.hawaii.edu): waiting for communication action 0x1d06ba0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 67 (66@host-66.hawaii.edu): waiting for communication action 0x1d084f0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 68 (67@host-67.hawaii.edu): waiting for communication action 0x1d0efd0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 69 (68@host-68.hawaii.edu): waiting for communication action 0x1d07c80 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 70 (69@host-69.hawaii.edu): waiting for communication action 0x1d0d950 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 71 (70@host-70.hawaii.edu): waiting for communication action 0x1d089a0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 72 (71@host-71.hawaii.edu): waiting for communication action 0x1d0f390 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 73 (72@host-72.hawaii.edu): waiting for communication action 0x1d0e580 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 74 (73@host-73.hawaii.edu): waiting for communication action 0x1d0ea30 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 75 (74@host-74.hawaii.edu): waiting for communication action 0x1d0a3e0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 76 (75@host-75.hawaii.edu): waiting for communication action 0x1d0f2a0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 77 (76@host-76.hawaii.edu): waiting for communication action 0x1d097b0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 78 (77@host-77.hawaii.edu): waiting for communication action 0x1d0de00 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 79 (78@host-78.hawaii.edu): waiting for communication action 0x1d0ac50 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 80 (79@host-79.hawaii.edu): waiting for communication action 0x1d0a4d0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 81 (80@host-80.hawaii.edu): waiting for communication action 0x1d0a980 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 82 (81@host-81.hawaii.edu): waiting for communication action 0x1d0a200 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 83 (82@host-82.hawaii.edu): waiting for communication action 0x1d0f660 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 84 (83@host-83.hawaii.edu): waiting for communication action 0x1d0fc00 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 85 (84@host-84.hawaii.edu): waiting for communication action 0x1d0af20 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 86 (85@host-85.hawaii.edu): waiting for communication action 0x1d0c4b0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 87 (86@host-86.hawaii.edu): waiting for communication action 0x1d0b970 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 88 (87@host-87.hawaii.edu): waiting for communication action 0x1d0e3a0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 89 (88@host-88.hawaii.edu): waiting for communication action 0x1d075f0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 90 (89@host-89.hawaii.edu): waiting for communication action 0x1d085e0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 91 (90@host-90.hawaii.edu): waiting for communication action 0x1d0cf00 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 92 (91@host-91.hawaii.edu): waiting for communication action 0x1d08130 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 93 (92@host-92.hawaii.edu): waiting for communication action 0x1d09300 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 94 (93@host-93.hawaii.edu): waiting for communication action 0x1d0a890 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 95 (94@host-94.hawaii.edu): waiting for communication action 0x1d09210 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 96 (95@host-95.hawaii.edu): waiting for communication action 0x1d0ad40 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 97 (96@host-96.hawaii.edu): waiting for communication action 0x1d10380 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 98 (97@host-97.hawaii.edu): waiting for communication action 0x1d0b5b0 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 99 (98@host-98.hawaii.edu): waiting for communication action 0x1d0bf10 ((null)) in state 0 to finish
+[0.464120] [simix_kernel/INFO] Process 100 (99@host-99.hawaii.edu): waiting for communication action 0x1d0ab60 ((null)) in state 0 to finish
+Aborted (core dumped)
