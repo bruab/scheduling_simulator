@@ -205,18 +205,20 @@ int main(int argc, char *argv[])
 
 	  // RECEIVE
 	  if (rank != 0) {
-		  // Receive and wait TODO not sure why this works
 		  MPI_Recv(&buffer[current_address], chunk_size, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 	  }
+
 	  if (rank < num_procs-1) {
 	 	  MPI_Wait(&request, &status);
 	  }
+	  previous_address = current_address;
 
   }
 
 #elif VERSION == 5 //bcast_bintree_pipelined_isend
-  // just doing non-pipelined, blocking-send bintree broadcast for debugging
-
+  MPI_Request request;
+  MPI_Status status;
+  int num_chunks, chunk_index, current_address, previous_address, remainder;
   int left_child_rank, right_child_rank, parent_rank;
   left_child_rank = 2*rank+1;
   right_child_rank = 2*rank+2;
@@ -226,21 +228,54 @@ int main(int argc, char *argv[])
 	  parent_rank = (rank - 1) / 2;
   }
 
-  // Receive, everybody but root
-  if (rank != 0) {
-	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, parent_rank, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+  remainder = NUM_BYTES % chunk_size;
+  if (remainder == 0) {
+	  num_chunks = NUM_BYTES / chunk_size;
+  } else {
+	  num_chunks = NUM_BYTES / chunk_size + 1;
   }
-  
-  // Send to left child if you have one
-  if (left_child_rank < num_procs) {
-	  //MPI_Isend(&buffer[current_address], chunk_size, MPI_CHAR, left_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &leftRequest);
-	  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, left_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD);
+
+  for (chunk_index=0; chunk_index<num_chunks; chunk_index++) {
+	  current_address = chunk_index*chunk_size;
+	  if (chunk_index == num_chunks-1 && remainder != 0) {
+		  chunk_size = remainder;
+	  }
+	  // Receive, everybody but root
+	  if (rank != 0) {
+		  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, parent_rank, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	  }
+	  
+	  // Send to left child if you have one
+	  if (left_child_rank < num_procs) {
+		  //MPI_Isend(&buffer[current_address], chunk_size, MPI_CHAR, left_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &leftRequest);
+		  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, left_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD);
+	  }
+	  // Send to right child if you have one
+	  if (right_child_rank < num_procs) {
+		  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, right_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD);
+		  //MPI_Isend(&buffer[current_address], chunk_size, MPI_CHAR, right_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &rightRequest);
+	  }
+	  
+	  // OLD
+	  // SEND
+	  if (rank < num_procs-1) {
+		  // Everyone but the last process sends
+		  // send next chunk
+		  MPI_Isend(&buffer[previous_address], chunk_size, MPI_CHAR, rank+1, MPI_ANY_TAG, MPI_COMM_WORLD, &request);
+		  }
+
+	  // RECEIVE
+	  if (rank != 0) {
+		  // Receive and wait TODO not sure why this works
+		  MPI_Recv(&buffer[current_address], chunk_size, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	  }
+	  if (rank < num_procs-1) {
+	 	  MPI_Wait(&request, &status);
+	  }
+
   }
-  // Send to right child if you have one
-  if (right_child_rank < num_procs) {
-	  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, right_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD);
-	  //MPI_Isend(&buffer[current_address], chunk_size, MPI_CHAR, right_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &rightRequest);
-  }
+
+
 
 
 #endif
