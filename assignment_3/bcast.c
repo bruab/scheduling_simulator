@@ -209,7 +209,6 @@ int main(int argc, char *argv[])
 
 #elif VERSION == 5 //bcast_bintree_pipelined_isend
   // just doing non-pipelined, blocking-send bintree broadcast for debugging
-  printf("process %d starting..\n", rank);
 
   int left_child_rank, right_child_rank, parent_rank;
   left_child_rank = 2*rank+1;
@@ -222,27 +221,20 @@ int main(int argc, char *argv[])
 
   // Receive, everybody but root
   if (rank != 0) {
-	  printf("%d calling receive from %d\n", rank, parent_rank);
 	  MPI_Recv(buffer, NUM_BYTES, MPI_CHAR, parent_rank, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-	  printf("%d just received from %d\n", rank, parent_rank);
   }
   
   // Send to left child if you have one
-  if (left_child_rank < num_procs-1) {
+  if (left_child_rank < num_procs) {
 	  //MPI_Isend(&buffer[current_address], chunk_size, MPI_CHAR, left_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &leftRequest);
-	  printf("%d calling send to %d\n", rank, left_child_rank);
 	  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, left_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD);
-	  printf("%d sent to %d\n", rank, left_child_rank);
   }
   // Send to right child if you have one
-  if (right_child_rank < num_procs-1) {
-	  printf("%d calling send to %d\n", rank, right_child_rank);
+  if (right_child_rank < num_procs) {
 	  MPI_Send(buffer, NUM_BYTES, MPI_CHAR, right_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD);
-	  printf("%d sent to %d\n", rank, right_child_rank);
 	  //MPI_Isend(&buffer[current_address], chunk_size, MPI_CHAR, right_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &rightRequest);
   }
 
-  printf("process %d ending..\n", rank);
 
 #endif
 
