@@ -183,6 +183,7 @@ int main(int argc, char *argv[])
   MPI_Request request;
   MPI_Status status;
   int num_chunks, chunk_index, current_address, previous_address, remainder;
+  previous_address = 0;
   remainder = NUM_BYTES % chunk_size;
   if (remainder == 0) {
 	  num_chunks = NUM_BYTES / chunk_size;
