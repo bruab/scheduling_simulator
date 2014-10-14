@@ -1,8 +1,30 @@
-executable is bcast_default, time is 1.669
+executable is bcast_default, time is 1.672
 **********************************************************
-executable is bcast_ring_pipelined_isend, chunk size is 100000, time is 3.485
+executable is bcast_ring_pipelined_isend, chunk size is 100000, time is 3.487
 **********************************************************
-executable is bcast_bintree_pipelined_isend, chunk size is 100000, time is **********************************************************
-executable is bcast_ring_pipelined_isend, chunk size is 200000, time is 2.249
+executable is bcast_bintree_pipelined_isend, chunk size is 100000, time is 0.741
 **********************************************************
-executable is bcast_bintree_pipelined_isend, chunk size is 200000, time is 
+executable is bcast_ring_pipelined_isend, chunk size is 200000, time is 2.259
+**********************************************************
+executable is bcast_bintree_pipelined_isend, chunk size is 200000, time is 0.625
+**********************************************************
+executable is bcast_ring_pipelined_isend, chunk size is 500000, time is 1.695
+**********************************************************
+executable is bcast_bintree_pipelined_isend, chunk size is 500000, time is 0.556
+**********************************************************
+executable is bcast_ring_pipelined_isend, chunk size is 1000000, time is 1.606
+**********************************************************
+executable is bcast_bintree_pipelined_isend, chunk size is 1000000, time is 0.533
+**********************************************************
+executable is bcast_ring_pipelined_isend, chunk size is 2000000, time is 1.628
+**********************************************************
+executable is bcast_bintree_pipelined_isend, chunk size is 2000000, time is 0.525
+**********************************************************
+executable is bcast_ring_pipelined_isend, chunk size is 10000000, time is 2.297
+**********************************************************
+executable is bcast_bintree_pipelined_isend, chunk size is 10000000, time is 0.547
+**********************************************************
+executable is bcast_ring_pipelined_isend, chunk size is 100000000, time is 8.934
+**********************************************************
+executable is bcast_bintree_pipelined_isend, chunk size is 100000000, time is 0.927
+**********************************************************

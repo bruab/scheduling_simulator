@@ -1,0 +1,60 @@
+executable is bcast_default, network is fattree, time is 0.695
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is fattree, chunk size is 100000, time is 2.389
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is fattree, chunk size is 100000, time is 2.537
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is fattree, chunk size is 200000, time is 1.463
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is fattree, chunk size is 200000, time is 2.011
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is fattree, chunk size is 500000, time is 0.920
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is fattree, chunk size is 500000, time is 1.532
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is fattree, chunk size is 1000000, time is 0.761
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is fattree, chunk size is 1000000, time is 1.523
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is fattree, chunk size is 2000000, time is 0.720
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is fattree, chunk size is 2000000, time is 1.472
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is fattree, chunk size is 10000000, time is 1.068
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is fattree, chunk size is 10000000, time is 1.492
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is fattree, chunk size is 100000000, time is 5.796
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is fattree, chunk size is 100000000, time is 2.296
+**********************************************************
+executable is bcast_default, network is cluster, time is 0.607
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is cluster, chunk size is 100000, time is 0.989
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is cluster, chunk size is 100000, time is 1.035
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is cluster, chunk size is 200000, time is 0.761
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is cluster, chunk size is 200000, time is 0.803
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is cluster, chunk size is 500000, time is 0.637
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is cluster, chunk size is 500000, time is 0.665
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is cluster, chunk size is 1000000, time is 0.616
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is cluster, chunk size is 1000000, time is 0.621
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is cluster, chunk size is 2000000, time is 0.646
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is cluster, chunk size is 2000000, time is 0.605
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is cluster, chunk size is 10000000, time is 1.049
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is cluster, chunk size is 10000000, time is 0.642
+**********************************************************
+executable is bcast_ring_pipelined_isend, network is cluster, chunk size is 100000000, time is 5.790
+**********************************************************
+executable is bcast_bintree_pipelined_isend, network is cluster, chunk size is 100000000, time is 1.291
+**********************************************************
