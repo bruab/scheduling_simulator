@@ -200,12 +200,13 @@ int main(int argc, char *argv[])
 	  // SEND
 	  if (rank < num_procs-1 && current_address != 0) {
 		  // Everyone but the last process sends
-		  // send next chunk
+		  // Don't send anything on the first chunk
 		  MPI_Isend(&buffer[previous_address], chunk_size, MPI_CHAR, rank+1, MPI_ANY_TAG, MPI_COMM_WORLD, &request);
 		  }
 
 	  // RECEIVE
 	  if (rank != 0 && chunk_index != num_chunks) {
+		  // First process doesn't receive; nobody receives after the last chunk comes in
 		  MPI_Recv(&buffer[current_address], chunk_size, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 	  }
 
@@ -237,30 +238,33 @@ int main(int argc, char *argv[])
   }
 
   previous_address = 0;
-  for (chunk_index=0; chunk_index<num_chunks; chunk_index++) {
+  for (chunk_index=0; chunk_index<=num_chunks; chunk_index++) {
 	  current_address = chunk_index*chunk_size;
 	  if (chunk_index == num_chunks-1 && remainder != 0) {
 		  chunk_size = remainder;
 	  }
-	  // Receive, everybody but root
-	  if (rank != 0) {
-		  MPI_Recv(&buffer[current_address], NUM_BYTES, MPI_CHAR, parent_rank, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-	  }
-	  
 	  // Send to left child if you have one
-	  if (left_child_rank < num_procs) {
+	  // and if it's not the very first chunk
+	  if (left_child_rank < num_procs && current_address != 0) {
 		  MPI_Isend(&buffer[previous_address], chunk_size, MPI_CHAR, left_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &leftRequest);
 	  }
 	  // Send to right child if you have one
-	  if (right_child_rank < num_procs) {
+	  // and if it's not the very first chunk
+	  if (right_child_rank < num_procs && current_address != 0) {
 		  MPI_Isend(&buffer[previous_address], chunk_size, MPI_CHAR, right_child_rank, MPI_ANY_TAG, MPI_COMM_WORLD, &rightRequest);
 	  }
 
-	  if (left_child_rank < num_procs) {
+	  // Receive, everybody but root
+	  // and don't receive once the last chunk is in
+	  if (rank != 0 && chunk_index != num_chunks) {
+		  MPI_Recv(&buffer[current_address], NUM_BYTES, MPI_CHAR, parent_rank, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	  }
+	  
+	  if (left_child_rank < num_procs && current_address != 0) {
 	 	  MPI_Wait(&leftRequest, &status);
 	  }
 
-	  if (right_child_rank < num_procs) {
+	  if (right_child_rank < num_procs && current_address != 0) {
 	 	  MPI_Wait(&rightRequest, &status);
 	  }
 

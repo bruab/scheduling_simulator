@@ -13,7 +13,7 @@ do
 	for version in bcast_ring_pipelined_isend bcast_bintree_pipelined_isend
 	do
 		echo -n "executable is $version, chunk size is $chunk_size, time is "
-		scripts/ring.run.100.sh $version -c $chunk_size
+		scripts/bintree.run.100.sh $version -c $chunk_size
 		echo "**********************************************************"
 	done
 done
