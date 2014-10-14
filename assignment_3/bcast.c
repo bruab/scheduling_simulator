@@ -7,7 +7,7 @@
 #define RAND_SEED 842270
 
 // 10^7 for testing, 10^8 for analysis
-#define NUM_BYTES   10000000
+#define NUM_BYTES   100000000
 
 #ifndef VERSION
 #define VERSION 1
