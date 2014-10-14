@@ -191,25 +191,25 @@ int main(int argc, char *argv[])
 	  num_chunks = NUM_BYTES / chunk_size + 1;
   }
 
-  for (chunk_index=0; chunk_index<num_chunks; chunk_index++) {
+  for (chunk_index=0; chunk_index<=num_chunks; chunk_index++) {
 	  current_address = chunk_index*chunk_size;
 	  if (chunk_index == num_chunks-1 && remainder != 0) {
 		  chunk_size = remainder;
 	  }
 	  
 	  // SEND
-	  if (rank < num_procs-1) {
+	  if (rank < num_procs-1 && current_address != 0) {
 		  // Everyone but the last process sends
 		  // send next chunk
 		  MPI_Isend(&buffer[previous_address], chunk_size, MPI_CHAR, rank+1, MPI_ANY_TAG, MPI_COMM_WORLD, &request);
 		  }
 
 	  // RECEIVE
-	  if (rank != 0) {
+	  if (rank != 0 && chunk_index != num_chunks) {
 		  MPI_Recv(&buffer[current_address], chunk_size, MPI_CHAR, rank-1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 	  }
 
-	  if (rank < num_procs-1) {
+	  if (rank < num_procs-1 && current_address != 0) {
 	 	  MPI_Wait(&request, &status);
 	  }
 	  previous_address = current_address;

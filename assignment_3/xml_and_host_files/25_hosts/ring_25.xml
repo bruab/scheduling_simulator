@@ -1,0 +1,3256 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
+<platform version="3">
+<AS id="AS0" routing="Full">
+  <host id="host-0.hawaii.edu" power="1"/>
+  <host id="host-1.hawaii.edu" power="1"/>
+  <host id="host-2.hawaii.edu" power="1"/>
+  <host id="host-3.hawaii.edu" power="1"/>
+  <host id="host-4.hawaii.edu" power="1"/>
+  <host id="host-5.hawaii.edu" power="1"/>
+  <host id="host-6.hawaii.edu" power="1"/>
+  <host id="host-7.hawaii.edu" power="1"/>
+  <host id="host-8.hawaii.edu" power="1"/>
+  <host id="host-9.hawaii.edu" power="1"/>
+  <host id="host-10.hawaii.edu" power="1"/>
+  <host id="host-11.hawaii.edu" power="1"/>
+  <host id="host-12.hawaii.edu" power="1"/>
+  <host id="host-13.hawaii.edu" power="1"/>
+  <host id="host-14.hawaii.edu" power="1"/>
+  <host id="host-15.hawaii.edu" power="1"/>
+  <host id="host-16.hawaii.edu" power="1"/>
+  <host id="host-17.hawaii.edu" power="1"/>
+  <host id="host-18.hawaii.edu" power="1"/>
+  <host id="host-19.hawaii.edu" power="1"/>
+  <host id="host-20.hawaii.edu" power="1"/>
+  <host id="host-21.hawaii.edu" power="1"/>
+  <host id="host-22.hawaii.edu" power="1"/>
+  <host id="host-23.hawaii.edu" power="1"/>
+  <host id="host-24.hawaii.edu" power="1"/>
+  <link id="link-0" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-1" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-2" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-3" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-4" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-5" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-6" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-7" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-8" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-9" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-10" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-11" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-12" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-13" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-14" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-15" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-16" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-17" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-18" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-19" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-20" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-21" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-22" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-23" latency="20us" bandwidth="10Gbps"/>
+  <link id="link-24" latency="20us" bandwidth="10Gbps"/>
+  <route src="host-0.hawaii.edu" dst="host-1.hawaii.edu">
+	<link_ctn id="link-0"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-2.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-3.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-0"/>
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-2.hawaii.edu">
+	<link_ctn id="link-1"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-3.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-1"/>
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-3.hawaii.edu">
+	<link_ctn id="link-2"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-2"/>
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link-3"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-3"/>
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link-4"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-4"/>
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link-5"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-5"/>
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link-6"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-6"/>
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link-7"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-7"/>
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link-8"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-8"/>
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-10.hawaii.edu">
+	<link_ctn id="link-9"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-9.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-9"/>
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-11.hawaii.edu">
+	<link_ctn id="link-10"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-10.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-10"/>
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-12.hawaii.edu">
+	<link_ctn id="link-11"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-11.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-11"/>
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-13.hawaii.edu">
+	<link_ctn id="link-12"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-12.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-12"/>
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-14.hawaii.edu">
+	<link_ctn id="link-13"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-13.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-13"/>
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-15.hawaii.edu">
+	<link_ctn id="link-14"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-14.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-14"/>
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-16.hawaii.edu">
+	<link_ctn id="link-15"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-15.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-15"/>
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-17.hawaii.edu">
+	<link_ctn id="link-16"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-16.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-16"/>
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-17.hawaii.edu" dst="host-18.hawaii.edu">
+	<link_ctn id="link-17"/>
+  </route>
+  <route src="host-17.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-17.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-17.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-17.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-17.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-17.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-17"/>
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-18.hawaii.edu" dst="host-19.hawaii.edu">
+	<link_ctn id="link-18"/>
+  </route>
+  <route src="host-18.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-18.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-18.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-18.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-18.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-18"/>
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-19.hawaii.edu" dst="host-20.hawaii.edu">
+	<link_ctn id="link-19"/>
+  </route>
+  <route src="host-19.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-19.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-19.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-19.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-19"/>
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-20.hawaii.edu" dst="host-21.hawaii.edu">
+	<link_ctn id="link-20"/>
+  </route>
+  <route src="host-20.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-20.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-20.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-20"/>
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-21.hawaii.edu" dst="host-22.hawaii.edu">
+	<link_ctn id="link-21"/>
+  </route>
+  <route src="host-21.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-21.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-21"/>
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-22.hawaii.edu" dst="host-23.hawaii.edu">
+	<link_ctn id="link-22"/>
+  </route>
+  <route src="host-22.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-22"/>
+	<link_ctn id="link-23"/>
+  </route>
+  <route src="host-23.hawaii.edu" dst="host-24.hawaii.edu">
+	<link_ctn id="link-23"/>
+  </route>
+</AS>
+</platform>
