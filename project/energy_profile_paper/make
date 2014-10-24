@@ -1,0 +1,2021 @@
+
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testf low/
+
+
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[10pt, conference, compsocconf]{IEEEtran}
+% Add the compsocconf option for Computer Society conferences.
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[conference]{../sty/IEEEtran}
+
+
+
+%%%%%
+%TRY FIXING BY REMOVING PACKAGES INDIVIDUALLY UNTIL IT WORKS???
+%%%%%
+\usepackage{caption,amsmath,graphicx,amssymb,latexsym,epsfig,tabularx,setspace,multirow,threeparttable,longtable,pdflscape,tabu,comment,todonotes,subfigure,breqn} 
+\usepackage[noend]{algpseudocode}
+\usepackage{algorithm}  
+\usepackage{xspace}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{xspace}
+
+\usepackage{algorithmicx}
+
+\algnewcommand\algorithmicabort{\textbf{abort}}
+\algnewcommand\Abort{\algorithmicabort}
+
+\newcommand{\HC}[2][inline]{\todo[color=green!50,#1]{\sf \textbf{HC:} #2}\xspace}
+\newcommand{\MG}[2][inline]{\todo[color=red!50,#1]{\sf \textbf{MG:} #2}\xspace}
+
+
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\def\gpuFSG{\textsc{SearchSpatial}\xspace}
+\def\gpuS{\textsc{GPUSpatial}\xspace}
+
+\def\gputemporal{\textsc{SearchTemporal}\xspace}
+\def\gpuT{\textsc{GPUTemporal}\xspace}
+
+\def\gpuspatiotemporal{\textsc{SearchSpaceTemp}\xspace}
+\def\gpuST{\textsc{GPUSpatioTemporal}\xspace}
+
+
+\def\cpu{\textsc{CPU-RTree}\xspace}
+
+\def\random{\textit{Random}\xspace}
+\def\merger{\textit{Merger}\xspace}
+\def\dense{\textit{Random-dense}\xspace}
+
+
+
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Indexing of Spatiotemporal Trajectories for Efficient\\Distance Threshold Similarity Searches on the GPU}
+
+
+% author names and affiliations
+% use a multiple column layout for up to two different
+% affiliations
+
+\author{\IEEEauthorblockN{Michael Gowanlock\hspace*{0.4in}  Henri Casanova}
+\IEEEauthorblockA{Information and Computer Sciences Department\\
+University of Hawai`i at M\=anoa, Honolulu, HI, U.S.A.\\
+$[$gowanloc,henric$]$@hawaii.edu}
+%\and
+%\IEEEauthorblockN{Authors Name/s per 2nd Affiliation (Author)}
+%\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
+%line 2: name of organization, acronyms acceptable\\
+%line 3: City, Country\\
+%line 4: Email: name@xyz.com}
+}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+Applications in many domains require processing moving object trajectories.
+In this work, we focus on a trajectory similarity search that finds all
+trajectories within a given distance of a query trajectory over a time
+interval, which we call the distance threshold similarity search.  We
+develop three indexing strategies with spatial, temporal and spatiotemporal
+selectivity for the GPU that differ significantly from indexes suitable for
+the CPU, and show the conditions under which each index achieves good
+performance.  Furthermore, we show that the GPU implementations outperform
+multithreaded CPU implementations in a range of experimental scenarios,
+making the GPU an attractive technology for processing moving object
+trajectories.  We test our implementations on two synthetic and one
+real-world astrophysics dataset.
+\end{abstract}
+
+\begin{IEEEkeywords}
+component; formatting; style; styling;
+
+\end{IEEEkeywords}
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+
+
+\section{Introduction}
+Trajectory data is generated in a wide range of application domains, such
+as the motions of people or objects captured by global positioning systems
+(GPS), the movement of objects in scientific applications, such as stars in
+astrophysical simulations, vehicles in traffic studies, animals in
+zoological studies and a range of applications of geographical information
+systems (GIS).  We study historical continuous spatiotemporal trajectories~\cite{Forlizzi2000}, where a database of trajectories is given as input and
+is searched to gain domain-specific insight.  In particular,  we study the
+\emph{distance threshold search}: Find all trajectories within a distance
+$d$ of a given query trajectory over a time interval
+[$t_{start}$,$t_{end}$].  The motivating application for this work is in
+the area of astrophysics/astrobiology~\cite{2011AsBio..11..855G}.
+Astrobiology is the study the evolution, distribution and future of life in
+the universe.  The past decade of exoplanet searches implies that the Milky
+Way hosts many rocky, low-mass planets that may be capable of supporting
+complex life. However, some regions of the Milky Way may be inhospitable
+due to transient radiation events, such as supernovae explosions or close
+encounters with flyby stars that can gravitationally perturb planetary
+systems. Studying habitability thus entails solving the following two types
+of \emph{distance threshold searches} on the trajectories of stars orbiting
+the Milky Way: (i)~Find all stars within a distance $d$ of a supernova
+explosion; and (ii)~Find the stars, and corresponding time periods, that
+host a habitable planet and are within a distance $d$ of all other stellar
+trajectories.
+
+
+Although a large literature exists in the database community on the
+indexing of spatiotemporal trajectories, most previous work focuses on
+on-disk databases and on sequential query processing. In this work instead
+we focus on in-memory databases.  With relatively large memories available
+in modern workstations, sizable in-memory databases have become feasible.
+Furthermore, with the proliferation of multicore and manycore
+architectures, parallel in-memory implementations can provide significant
+performance improvements over sequential out-of-core implementations. In
+instances where memory capacity on a single host is insufficient,
+spatiotemporal trajectory datasets can trivially be partitioned and queried
+in-memory across multiple hosts in parallel, e.g., in a cluster with
+GPU-equipped compute nodes.  With the above rationale, and because distance
+threshold searches require large numbers of polylines comparisons, we study
+focus on the efficient processing of these searches using General Purpose
+Computing on Graphics Processing Units (GPGPU). More specifically, we make
+the following contributions:
+
+\begin{itemize}
+\item We develop three indexing schemes that are suitable for distances threshold searches on the GPU.
+\item For each scheme we implement a GPU kernel that minimizes thread divergence to achieve good parallel efficiency.
+%\item We compare our GPU implementation to a previously developed CPU-only implementation that uses an in-memory R-tree index
+%
+%\item We find that when using large datasets, in contrast to smaller
+%datasets previously used in the literature, efficient trajectory splitting
+%strategies for an R-tree index, at least for the in-memory case, provides
+%limited or no performance improvements.
+
+\item We evaluate our GPU kernels and a CPU-only implementation  with a real-world astrophysics dataset and two synthetic datasets.
+\end{itemize}     
+Section~\ref{sec:related_work} discusses related work.
+Section~\ref{sec:problem_def} formally defines the problem.
+Section~\ref{sec:index} describes our indexing schemes and search
+algorithms.  Section~\ref{sec:exp_eval} presents our experimental results.
+Finally, Section~\ref{sec:conclusions} summarizes our findings and
+discusses future research directions.
+
+
+\section{Related Work}\label{sec:related_work}
+
+
+% Background
+%A key question in database research is the efficient retrieval of data. In
+%the most general context, database management systems provide information
+%about database content and support arbitrary queries. However, in specific
+%domains it is possible to achieve more efficient retrieval if there are
+%structures and constraints on the data stored in the database and/or if
+%particular types of queries are expected.  Such a domain is that of spatial
+%and spatiotemporal databases that store the trajectories of moving objects.
+
+A spatiotemporal trajectory is a collection of points associated with the
+positions of an object over time, where the points are connected by
+polylines (line segments).  Such data presents both opportunities and
+challenges that are studied in the spatiotemporal database community. The
+main goal is to perform \emph{trajectory similarity searches}, i.e.,
+finding trajectories within a database that exhibit similarity in terms of
+spatial and/or temporal proximity or
+features~\cite{Giannotti:2007,Jeung:2008:DCT:1453856.1453971,
+Vieira:2009:ODF:1653771.1653812, Li:2010:MMM:1807167.1807319}.
+A trajectory similarity
+search used in many application areas is the $k$NN ($k$ Nearest Neighbors)
+search~\cite{Frentzos2007,Gao2007,Guting2010}.
+
+The typical similarity search approach is in two phases: (i)~search an
+on-disk index to obtain a candidate result set; (ii)~use refinement to
+produce the final result set.  Several index-trees have been proposed
+%(R-tree~\cite{Guttman-R_tree}, TB-trees~\cite{Pfoser2000},
+%STR-trees~\cite{Pfoser2000}, 3DR-trees~\cite{Theodoridis-1996},
+%SETI~\cite{Chakka2003}) 
+and implemented in systems such as
+TrajStore~\cite{Cudre-Mauroux2010} and SECONDO~\cite{Guting2010}.  The
+search phase focuses on \emph{pruning} tree traversal so as to minimize the
+number of tree node disk accesses.  Index-trees have been used extensively
+for $k$NN searches.
+
+
+% Distance Threshold queries
+Distance threshold searches can be viewed as $k$NN searches with an unknown
+value of $k$ and thus unknown result set size. With unbounded $k$ the
+aforementioned index-trees are not effective because index pruning methods
+cannot be used.  Distance-threshold queries, although relevant to several
+application domains, have not received a lot of attention in the
+literature.  Our previous work in~\cite{Gowanlock2014} studies in-memory
+sequential distance threshold searches, using an R-tree~\cite{Guttman-R_tree} to index
+trajectories inside hyperrectangular minimum bounding boxes (MBBs). The
+main contribution therein is an indexing method that achieves a desirable
+trade-off between the index overlap, the number of entries in the index,
+and the overhead of processing candidate trajectory segments.  The work
+in~\cite{Arumugam2006} solves a similar problem but a key difference with
+the work in~\cite{Gowanlock2014} is that part of the database resides on
+disk.
+
+%Other trajectory similarity
+%searches rely on metrics of similarity at coarse grained
+%resolutions~\cite{Giannotti:2007}. 
+%Instead, the similarity search we study in this work necessitates precise
+%comparisons between individual polylines, to find the exact time
+%intervals when trajectories are within the threshold distance.
+%The large number of such comparisons is a motivation for using the GPU.
+
+
+
+%A role for HPC?- 
+%Interestingly, the field of high performance computing (HPC) has an application-oriented component, which intersects with the other fields that have attempted to solve problems using sequential implementations, that demand increased computational resources.  
+% Queries on the GPU
+In the context of in-memory moving object trajectory databases several
+authors have explored the use of multicore and manycore architectures.
+Spatial and spatiotemporal indexing methods have been advanced for use on
+the
+GPU~\cite{Zhang2014,Zhang:2012:USH:2390226.2390229,You:2013:PSQ:2534921.2534949,Luo2012}.
+Indexes for the GPU are less sophisticated than typical index-trees in part
+because branches in the instruction flow, e.g., for tree traversals, cause
+thread serialization and thus poor parallel
+efficiency~\cite{Han:2011:RBD:1964179.1964184}.  The $k$NN query (not on
+trajectories) has been studied in the context of the
+GPU~\cite{Pan:2011:FGL:2093973.2094002,CPE:CPE1718} and on hybrid CPU-GPU
+environments~\cite{Krulis2012}.  In this work we focus on distance
+threshold similarity searches for the GPU, which to our knowledge has only
+been explored in our previous work~\cite{Gowanlock2014c}.  That previous
+work focuses on a scenario in which the query set cannot fit entirely on
+the GPU due to memory constraints, thereby requiring back-and-forth
+communication between the host and the GPU.  in this work, we assume that
+the query set fits on the GPU, which makes it possible to explore a
+different range of indexing schemes (while still considering several memory
+constraints).
+
+
+\section{Problem Statement}\label{sec:problem_def}
+
+%\subsection{Problem Definition}
+
+Let $D$ be a spatiotemporal database that contains $n$ 4-dimensional (3
+spatial dimensions, 1 temporal dimension) \emph{entry line segments}. A
+line segment $l_i$, $i=1,\ldots,|D|$, is defined by a spatiotemporal start
+point ($x_i^{start}$, $y_i^{start}$, $z_i^{start}$, $t_i^{start}$), an end
+point ($x_i^{end}$, $y_i^{end}$, $z_i^{end}$, $t_i^{end}$), a segment id
+and a trajectory id.  
+We call
+$t_i^{end}-t_i^{start}$ the \emph{temporal extent} of $l_i$.
+The distance threshold search searches for entry segments within a distance
+$d$ of a query set $Q$, where $Q$ is a set of \emph{query line segments},
+$q_k, k = 1, \ldots, |Q|$.  We call a comparison between an entry segment
+and a query segment an \emph{interaction}. The search is continuous, i.e.,
+the result set contains query/entry pairs annotated by the time interval
+during which the two segments are within a distance $d$ of each other. For
+example, a search may return ($q_1$,$l_1$,[0.1,0.3]) and
+($q_1$,$l_2$,[0.5,0.95]), for a query segment $q_1$ with temporal extent
+[0,1].
+
+We consider a platform that consists of a host, with RAM and CPUs, and a
+GPU with its own memory and Streaming Multi-Processors (SMPs) connected to
+the CPU via a (PCI Express) bus. We consider an \emph{in-memory database},
+meaning that $D$ is stored once and for all in global memory on the GPU.
+The objective is to minimize the response time for processing the query set
+$Q$, which is initially stored on the host but can fit entirely in GPU
+memory. Our intended use case is when $D$ is partitioned across multiple
+GPU-equipped compute nodes in a cluster so that the aggregate GPU memory is
+large. This assumption does not solve all memory management issues.
+ The candidate result set (i.e., the entry segments
+returned by the index that may overlap the query segment) and of the 
+final result set have non-deterministic sizes that
+depend on the spatiotemporal characteristics of $D$ and $Q$. Since dynamic
+memory allocation is not possible on the GPU one must statically allocate
+buffers and handle cases when these buffers overflow. This issue is
+compounded by the fact that on the GPU many threads produce candidate entry
+segments, thus requiring larger buffer space. These issues are typically
+not problematic on the CPU (larger memory, dynamic memory allocations,
+fewer threads) but are challenging on the GPU.
+
+
+%\subsection{Memory Management on the GPU}
+%\label{sec:memmanagement}
+%
+%% On the CPU everything's fine in spite of dynamic memory thingies
+%Previous works on indexing trajectories for the purpose of distance
+%threshold similarity searches have targeted multi-core CPU
+%implementations~\cite{Gowanlock2014,Gowanlock2014b, Arumugam2006} and GPU
+%implementations~\cite{Gowanlock2014c}.  CPU implementations rely on
+%(in-memory) index trees that have been used traditionally for out-of-core
+%implementations, such as the R-tree~\cite{Guttman-R_tree}. Each thread
+%traverses the tree and creates a candidate segment set to be further
+%processed to create the final result set. Although many candidate segments
+%are not within distance $d$ of the query segments due to the ``wasted
+%space'' in the index (an unavoidable consequence of using
+%MBBs)~\cite{Gowanlock2014}, memory must still be allocated to store these
+%candidate segments. Furthermore, the size of the final result set is
+%non-deterministic as it depends on the spatiotemporal nature of the data.
+%Consequently, memory allocation for the result set must be conservative and overestimate
+%the memory required (this overestimation grows linearly with $|Q|$).
+%On the CPU these memory management issues are typically not problematic in practice
+%since the number of threads is limited (e.g., set to the number of physical
+%cores) and the memory is large.
+%
+%% On the GPU it's a problem: 
+%
+%On the GPU, even though we assume that both $D$ and $Q$ fit in memory, the
+%same memory management issues are problematic.  This is because we have a
+%large number of threads that each need memory to store candidate segments,
+%in addition to the memory needed to store the final result set.  To address
+%this issue of non-deterministic storage requirements, on the GPU one must
+%define a fixed size for a statically allocated memory buffer for each
+%thread. If the memory requirements exceed this buffer then it is necessary
+%to perform a series of kernel invocations so as to ``batch'' the generation
+%of the candidate sets and the final result set.
+%
+%
+\section{Indexing and Searching Trajectories }\label{sec:index}
+
+In this section we outline three trajectory indexing and searching
+approaches for the GPU.  Although our GPU implementations use OpenCL we use
+the the more common CUDA terminology (GPU as opposed to device, kernel as
+opposed to program, thread as opposed to work-item, etc.).
+
+%While
+%the comparison of the efficiency of the indexes in different niches is the
+%focus of our work, we also suggest methods to overcome memory management
+%problems that arise.
+
+
+\subsection{Spatial Indexing}
+
+\HC{We don't really talk about augmenting MBBs by the query distance anywhere....}
+
+Previous work has proposed flatly structured grids (FSGs) to index 2-D
+spatial trajectory data on the GPU~\cite{Zhang:2012:USH:2390226.2390229}.
+An interesting question is whether FSGs are effective even when the data
+has a temporal dimension. In what follows we describe, \gpuS, an FSG-based
+approach for spatiotemporal distance threshold searches on the GPU.
+
+
+
+\subsubsection{Trajectory Indexing}
+
+ %The
+ %identifier of each grid cell is denoted as $C_{x,y,z}$, which specifies
+ %the 3-dimensional coordinates of the cell.  This identifier can easily be
+ %converted to a 1-dimensional address, which we define as $C_w$.
+% Furthermore, we index each grid cell that has entry segments in a grid
+% lookup array, $G$, that stores the 1-dimensional ($C_w$) addresses of grid
+% cells that contain entry line segments, $l_i$.
+
+\begin{figure}[t]
+\centering
+%  \input{images/mbb_grid_ex.tex}  
+  \input{images/mbb_grid_ex_TIKZ.tex}  
+    \caption{2-D example rasterization of two line segment MBBs (green) to grid cells (blue) in 
+    a $5\times 5$ FSG.}
+   \label{fig:mbb_grid_ex}
+\end{figure}
+
+A FSG is a 3-D rectangular box partitioned into 3-D cells.  Each entry
+segment $l_i \in D$ is contained in a spatial MBB, and assigned to the FSG
+by rasterizing this MBB to grid cells.  Figure~\ref{fig:mbb_grid_ex} shows
+a 2-D example for two line segments and a $5\times 5$ FSG. An entry segment
+may occupy more than one grid cell, and some grid cells can remain empty.
+We store the FSG as an array of \emph{non-empty} cells, $G$. Each cell is
+denoted as $C_h$, $h=1,\ldots,|G|$, where $h$ is a linear coordinate
+computed from the cell's $x$, $y$, and $z$ coordinates using row-major
+order.  Cell $C_h$ is described by an index range $[A_h^{min}, A_h^{max}]$
+in an integer ``lookup'' array, $A$.  If $l_i$'s MBB overlaps $C_h$, then
+$i \in \{A[A_h^{min}],\ldots,A[A_h^{max}]\}$.  Since $l_i$'s MBB can
+overlap multiple grid cells, $i$ can occur multiple times in array $A$.
+This scheme is depicted in Figure~\ref{fig:spatial_database_layout}.
+The main objective of this scheme is to reduce the memory footprint
+of the index. We only index non-empty grid cells, and do not store
+cell spatial coordinates but instead recompute them from $h$ whenever
+needed. Also, because we use an indirection via $A$, $G$ consists of
+same-size elements (as opposed to picking an element size large enough to
+accommodate the cell with the largest number of entry segments, thereby
+wasting memory space).  $D$, $A$, and $G$ are stored in GPU memory before
+query processing begins.
+
+
+
+
+%Each cell in the grid, $C_h$, is only defined by [$A_{min}$,$A_{max}$], which is an index range of a companion lookup array, $A$.  $A$ is a packed array, pointed to by each $C_h$, which contains the indices of each line segment $l_i$ in $D$ which fall within the grid cell.   
+%While there is a maximum number of $n$ line segments in $D$, the lookup array $A$ may contain more segments, as indices are duplicated when a given line segment $l_i$ is assiged to multiple grid cells.    
+%
+
+%%%%Moreover, we define an array $G$, which contains an list of each grid cell... 
+
+
+\begin{figure*}[t]
+\centering
+  \input{images/database_TIKZ.tex}  
+    \caption{\gpuS example: grid array ($G$), lookup array ($A$) and database of entry segments ($D$).}
+   \label{fig:spatial_database_layout}
+\end{figure*}
+
+
+\subsubsection{Search Algorithm}
+We do not sort the query segments in $Q$ by any spatial/or temporal
+dimension. Temporal sorting would not make sense with a spatial index, and
+sorting by a single spatial dimension is not effective unless $D$ and/or
+$Q$ have idiosyncratic characteristics.  Each query segment $q_k$ is
+assigned to a GPU thread.  The kernel first calculates the FSG cells that
+overlap $q_k$'s MBB. For each such cell, the kernel uses a binary search to
+find in $O(\log |Q|)$ time whether the cell is in array $G$.  For each such
+cell, the indices of the entry segments it contains are obtained as
+$A[A_h^{min}],\ldots,A[A_h^{max}]$ and appended to a buffer $U_k$.  With a
+spatial indexing scheme there is no good approach for storing index entry
+segments in a contiguous manner (since one would have to arbitrarily pick
+one of the spatial dimensions). This is why we must resort to using buffer
+$U_k$ as opposed to, for instance, a 2-integer index range in a contiguous
+array of entry segments.  Each entry in $U_k$ is then compared to $q_k$ to
+see if it is within the threshold distance. While the segments are expected
+to be relatively nearby each other spatially (given their FSG overlap),
+they may not overlap temporally.
+Consider the example in Figure~\ref{fig:spatial_database_layout}.  Consider
+a query $q_1$ (not shown in the figure), which overlaps grid cells $C_0$,
+$C_1$, and $C_7$. Cell $C_1$ is not in $G$, meaning that it contains no
+entry segments. Therefore, the only two cells to consider are $C_0$ and
+$C_7$, which have [$A^h_{min}$,$A^h_{max}$] values of [0,2] and [25,90],
+respectively.  In lookup array $A$, we find that [0,2] corresponds to
+entries 2, 100, and 22, while [25,90] corresponds to entry indices 100,
+867, $\ldots$, 400.  These indices are copied from $A$ into buffer $U_k$.
+Note that in this step the search algorithm does not remove duplicate
+indices (such as entry index 100 in this example) and thus may perform some
+redundant entry segment processing.
+%Removing duplicates would amount to sorting buffer $U_k$, as done for
+%instance in~\cite{Zhang:2012:USH:2390226.2390229} (our experiments
+%show that the additional computational cost offset the benefits of removing
+%redundant segment processing). 
+
+
+  %Parenthetically, we attempted performing the lookup of the entry segments for each $q_k$ on the host, to be sent to the GPU for processing; however, given the rather extensive procedure outlined above, this had a non-negligible response time on the host, and benefitted from the parallelism of each GPU thread performing its own search on the GPU. 
+
+Since the number of entry segments that overlap $q_k$'s MBB can be
+arbitrary large, the use of buffer $U_k$ creates memory pressure.  A
+similar issue has been encountered in previous work when using a parallel
+R-tree index on the GPU~\cite{Luo2012}.  We define an overall buffer size,
+$s$, that is split equally among all queries ($|U_k| = s/|Q|$).  If the
+capacity of $U_k$ exceeded then the thread terminates and the host
+re-invokes the kernel to process query seggments that could not complete
+due to memory pressure. For each re-invocation memory pressure is lower
+because fewer queries are executed (i.e., $|U_k|$ is larger).
+
+%This method implicitly has
+%the effect that threads with similar (large) amounts of work to execute
+%together, resulting in improved load-balancing.
+
+%While we could explore
+%such optimizations, other indexing methods proposed in upcoming sections
+%have inherently better scaling properties for processing spatiotemporal
+%data (which we explain both qualitatively and quantitatively). As a result,
+%there is little hope that the FSG approach, even if optimized, could be
+%competitive, at least for large databases.
+
+\newcommand{\LINEIF}[2]{%
+    \State\algorithmicif\ {{#1}}\ {{#2}} %
+}
+
+\begin{algorithm}
+\caption{\gpuS kernel.}
+\label{alg:GPU_spatial}
+\begin{algorithmic}[1]
+
+\begin{small}
+\Procedure{\gpuFSG}{ $G$, $A$, $D$, $\mathbf{Q}$, {\bf queryIDs}, $U$, $d$, 
+{\bf redo}, {\bf resultSet}}
+
+\State {gid} $\leftarrow$ getGlobalId()\label{alglineFSG.pre_start}
+%\If {{gid}$\geq${$|$queryIDs$|$}}
+%\State \Abort
+%\EndIf\label{alglineFSG.pre_end}
+\LINEIF{{queryIDs} $= \emptyset$ {\bf and} {gid}$\geq${$|$Q$|$}}{\Abort}\label{alglineFSG.abort1}
+\LINEIF{{queryIDs} $\neq \emptyset$ {\bf and} {gid}$\geq${$|$queryIDs$|$}}{\Abort}\label{alglineFSG.abort2}
+
+%\State {resultSet} $\leftarrow$ $\emptyset$\label{algline.init}
+%\If {!reattemptFlag} \label{alglineFSG.reattempt}
+%\State {queryID} $\leftarrow$ {gid}
+%\State {querySegment} $\leftarrow$ $Q$[gid] \label{alglineFSG.queryseg_into_private_memory}
+%\Else
+%\State {queryID}$\leftarrow$ inOverflow[gid] \label{alglineFSG.reattempt_queryid}
+%\State {querySegment} $\leftarrow$ $Q$[queryID] \label{alglineFSG.reattempt_queryseg_into_private_memory}
+%\EndIf
+
+\If {{queryIDs}  $= \emptyset$}
+\State {query} $\leftarrow$ {$Q$[gid]} \label{alglineFSG.getquery}
+\Else
+\State {query} $\leftarrow$ {$Q$[queryIDs[gid]]} \label{alglineFSG.getqueryReattempt}
+\EndIf
+\State ({overflow} , {candidateSet}) $\leftarrow$ getCandidates($G$, $A$, $D$, {query}, {$U$}, {d}) \label{alglineFSG.calcoverlap_entries}
+\If {overflow} \label{alglineFSG.overflow}
+\State {\bf atomic:} redo $\leftarrow$ redo $\cup$ \{ queryIDs[gid] \} 
+\State \Return (resultSet, redo) \label{alglineFSG.overflow_return}
+\EndIf
+\ForAll {entry $\in$ candidateSet}\label{alglineFSG.loop}
+\State result $\leftarrow$ compare(entry,query)\label{alglineFSG.compare}
+\If {result $\neq$ $\emptyset$}
+\State {\bf atomic:} {resultSet} $\leftarrow$ {resultSet} $\cup$ result\label{alglineFSG.found}
+\EndIf
+\EndFor
+
+\State \Return ({resultSet},{redo})\label{alglineFSG.return}
+\EndProcedure
+
+\end{small}
+\end{algorithmic}
+\end{algorithm}
+
+The pseudo-code of the search algorithm is shown in
+Algorithm~\ref{alg:GPU_spatial}.  The algorithm takes the following
+arguments: (i)~the FSG array ($G$); (ii)~the lookup array ($A$); (iii)~the
+database ($D$); (iv)~the set of queries ($Q$); (v)~an array that contains
+the ids of the queries to be processed (\emph{queryIDs}), which is empty
+upon the first kernel invocation; (vi)~buffer space
+($U$); (vii)~the query distance ($d$); (viii)~an output array in which the
+kernel stores the ids of the queries that ran out of buffer space and
+should thus be re-executed (\emph{redo}); and (ix)~the memory space to
+store the result set (\emph{resultSet}). Arguments that lead to arrays
+being transferred betwen the host and the GPU, either as input or output,
+are shown in boldface.  Other arguments are either pointers to
+pre-allocated zones of the (global) GPU memory or integers.  The algorithm
+begins by checking the global thread id and aborts if it is greater than
+$Q$ or $|$queryIDs$|$, depending on whether this is a first invocation or
+a re-invocation (lines~\ref{alglineFSG.abort1}-\ref{alglineFSG.abort2}).
+The query assigned to the GPU thread is then acquired from $Q$ or
+using an indirection via the \emph{queryIDs} (lines~\ref{alglineFSG.getquery}-\ref{alglineFSG.getqueryReattempt}).  Next, the set of candidate
+entry segment ids are retrieved by calling the \emph{getCandidates}
+function, which returns a boolean that indicates whether buffer space was
+exceeded and the (possibly empty) set of candidate line segments
+(line~\ref{alglineFSG.calcoverlap_entries}).  If buffer space was exceeded,
+then the query id is atomically added to the \emph{redo} array and the
+thread terminates
+(line~\ref{alglineFSG.overflow}-\ref{alglineFSG.overflow_return}).  The
+algorithm then loops over all entry segments in the candidate set
+(line~\ref{alglineFSG.loop}), compares each entry segment spatially and
+temporally to the query (line~\ref{alglineFSG.compare}) and atomatically
+adds a query result, if any, to the result set
+(line~\ref{alglineFSG.found}).  Once all GPU threads have completed, the
+result set is returned to the host (line~\ref{alglineFSG.return}).  If
+$|$redo$|$ is non-zero, then the kernel is re-invoked, passing \emph{redo}
+as \emph{queryIDs}.  Duplicates in the result set are filter out on the
+host.
+
+
+\subsection{Temporal Indexing}\label{sec:temporal_indexing}
+
+In this section we propose \gpuT,  a purely temporal partitioning strategy.
+The indexing scheme is similar to that used in our previous
+work~\cite{Gowanlock2014c} while the search algorithm is different due to
+the different memory constraint assumptions.
+
+\subsubsection{Trajectory Indexing}
+We sort the entries in $D$ by ascending $t_{start}$ values.
+The temporal extent of $D$ is [$t_{min},t_{max}$] where $t_{min}
+=\min_{l_i \in D} t_i^{start}$ and $t_{max} = \max_{l_i \in D} t_i^{end}$.
+We partition $D$'s temporal extent into $m$ logical bins of
+fixed length $b =(t_{max} - t_{min}) / m$.  We assign each entry segment
+$l_i$ to bin $B_j$ if $\lfloor t_i^{start} / b \rfloor = j$.  There can be
+temporal overlap between the line segments in adjacent bins.  For each bin
+$B_j$ we defined its start times as $B_{j}^{start} = j\times b$ and its end
+time as $B_j^{end} = \max((j+1)\times b, \max_{l_i \in B_j} t_i^{end})$.
+The temporal extent of bin $B_j$ is defined as
+[$B_{j}^{start},B_{j}^{end}$], and $D = \bigcup_{j}
+[B_{j}^{start},B_{j}^{end}]$.  We define $B_j^{first} = \arg\min_{i | l_i
+\in B_j} t_i^{start}$ and $B_j^{last} = \arg\max_{i | l_i \in B_j}
+t_i^{start}$, i.e., the ids of the first and last entry segments in bin
+$B_j$, respectively.  [$B_{j}^{first},B_{j}^{last}$] forms the index range
+of the entry segments in $B_j$.  Each bin $B_j$ is thus fully described as
+($B_{j}^{start}$,$B_{j}^{end}$, $B_{j}^{first},B_{j}^{last}$) and together
+the bins are the database index.
+
+
+%\begin{figure*}[t]
+%\centering
+%  \input{images/example_index.tex}  
+%    \caption{An example assignment of entry line segments to temporal bins in the \gpuT approach.}
+%   \label{fig:example_index}
+%\end{figure*}
+
+%Figure~\ref{fig:example_index} shows an example of how line segments may be
+%assigned to a set of temporal bins. In this example, 15 entry segments
+%are assigned to 4 temporal bins over a database temporal extent of 12
+%time units (spatial dimensions are ignored, and thus line segments are
+%simply represented as horizontal lines in the figures).  The
+%$B_{}^{start}$,$B_{}^{end}$, $B_{}^{first}$ and $B_{}^{last}$ values are
+%shown for each bin.  For instance, three entry segments are assigned to bin
+%$B_2$: $l_9$, $l_{10}$, and $l_{11}$.  Thus, $B_{2}^{first} = 9 $ and
+%$B_{2}^{last} = 11$. $B_{2}^{start}=2\times(12/4) = 6$ and $B_{2}^{end} =
+%t_{11}^{end}$.
+
+
+
+\subsubsection{Search Algorithm}
+
+
+\begin{algorithm}
+\caption{\gpuT kernel.}
+\label{alg:GPU_temporal}
+\begin{algorithmic}[1]
+
+\begin{small}
+\Procedure{\gputemporal}{$D$, {$\mathbf{Q}$}, {$\mathbf{S}$}, $d$, {\bf resultSet}}
+
+\State {gid} $\leftarrow$ getGlobalId()\label{algline.pre_start}
+%\If {{gid}$\geq${$|Q|$}}
+%\State \Abort
+%\EndIf\label{algline.pre_end}
+\LINEIF{{gid}$\geq${$|Q|$}}{\Abort}\label{algline.abort}
+
+\State {query} $\leftarrow$ $Q$[gid] \label{algline.queryseg_into_private_memory}
+
+
+\State {entryMin} $\leftarrow$ $S$[gid].EntryMin\label{algline.entryidmin_into_private_memory}
+\State {entryMax} $\leftarrow$ $S$[gid].EntryMax\label{algline.entryidmax_into_private_memory}
+
+
+\For{i = entryMin, \ldots, entryMax}\label{algline.loop}
+%\State {entry} $\leftarrow$ $D$[i] \label{algline.entryseg_from_global_memory}
+
+%\State ({entry'}, {query'})  $\leftarrow$ temporalIntersection($D$[i], {query})\label{algline.interpolate}
+
+%\State {annotatedTimeInterval}  $\leftarrow$ calcTimeInterval({entry'},{query'},$d$) \label{algline.time}
+%
+%\If {{annotatedTimeInterval} $\neq$ $\emptyset$}
+%\State atomic: {resultSet} $\leftarrow$ {resultsSet} $\cup$ {$\{$annotatedTimeInterval$\}$}\label{algline.found}
+%\EndIf
+%\EndFor \label{algline.endloop}
+%%\EndFor
+%
+%\ForAll {entry $\in$ candidateSet}\label{alglineFSG.loop}
+\State result $\leftarrow$ compare(entry,query)\label{algline.compare}
+\If {result $\neq$ $\emptyset$}
+\State {\bf atomic:} {resultSet} $\leftarrow$ {resultSet} $\cup$ result\label{algline.found}
+\EndIf
+\EndFor\label{algline.endloop}
+\State \Return {resultSet}\label{algline.return}
+\EndProcedure
+
+\end{small}
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+Given that we focus on the case in which both $Q$ and $D$ fit on the GPU,
+our search algorithm is different from that in our previous
+work~\cite{Gowanlock2014c}, even though the indexing scheme is similar.
+Before performing the actual search, the following pre-processing steps
+must be performed.  First, query segments in $Q$ are sorted by
+non-decreasing $t_{start}$ values, in $O(|Q| \log |Q|)$ time. For each
+query segment $q_k$, we calculate the index range of the contiguous bins
+that it overlaps temporally. A binary search can be used to do this
+calculation in logarithmic time. In practice, however, there are many
+temporally contiguous query segments, each overlaping only a few bins, so
+that the search can be done incrementally in near-constant time.  Let
+$\mathcal{B}_k$ denote the set of contiguous bins that temporally overlap
+query segment $q_k$.  In constant time we can compute the index range of
+the candidate entry segments that may overlap $q_k$: $E_k = [\min_{B\in
+\mathcal{B}} B_{j}^{first}, \max_{B\in \mathcal{B}} B_{j}^{last}]$.  We
+term the mapping between $q_k$ and $E_k$ a \emph{schedule}, $S$. Each GPU
+thread compares a single query $q_k$ to the segments in $D$ whose indices
+are in the $E_k$ range.  Assuming that $|Q|$ is moderately large then all
+GPU cores can be utilized.  In our implementation the above computation of
+$S$ is performed on the host. In an initial implementations we performed
+this computation on the GPU without any performance gain. This is because
+the near-constant time incremental search for temporally overlaping bins
+would require arbitrary thread synchronization and communication, which
+cannot be performed across thread blocks.  Furthermore, the time to compute
+$S$ on the CPU is a negligible portion of the overall query response time.
+
+
+The pseudo-code of the search algorithm is shown in
+Algorithm~\ref{alg:GPU_temporal}.  The algorithm takes the following
+arguments: (i)~the database ($D$); (ii)~the query set ($Q$); (iii)~the
+schedule ($S$); (iv)~the query distance ($d$); and (v)~the memory space to
+store the result set (\emph{resultSet}).  As in
+Algorithm~\ref{alg:GPU_spatial}, arguments that lead to arrays being
+transferred between the host and the GPU are shown in boldface.  The
+algorithm begins by checking the global thread id and aborts if it is
+greater than $|Q|$ (line~\ref{algline.abort}).  The query assigned to the
+thread is acquired from $Q$
+(line~\ref{algline.queryseg_into_private_memory}).  Next, the algorithm
+retrieves the minimum and maximum entry segment indices from the schedule
+(lines~\ref{algline.entryidmin_into_private_memory}-\ref{algline.entryidmax_into_private_memory}).
+The algorithm then operates then as Algorithm~\ref{alg:GPU_spatial}
+(lines~\ref{algline.loop}-\ref{algline.return}).
+
+%The algorithm then loops over all the entries on line~\ref{algline.loop} to
+%determine query hits.  The body of the loop is similar to that in
+%Algorithm~\ref{alg:GPU_spatial}.  Query and entry segments are modified so
+%that they have the same temporal extent (line~\ref{algline.interpolate}). A
+%moving distance calculation is then performed to determine the (possibly
+%empty) time interval during which the query and the entry are within
+%distance $d$ of each other, annotated with the query and entry ids
+%(line~\ref{algline.time}).  If this time interval is non-empty, then it is
+%atomically added to the result set (line~\ref{algline.found}).  Once all of
+%the GPU threads have completed, the result set is returned to the host
+%(line~\ref{algline.return}).
+
+
+
+\subsection{Spatiotemporal Indexing}
+\label{sec:spatiotemporal_indexing}
+
+In the two previous sections we have proposed a purely spatial and a purely
+temporal indexing scheme. Expectedly, the former has poor temporal
+selectivity, and the latter has poor spatial selectivity, leading in both
+cases to wasteful comparisons of query and line segments. Drawbacks of
+\gpuS is that it requires buffer space, that it uses more indirections,
+and that the entry segments cannot be sorted in a meaningful way (since
+there are 3 spatial dimensions).  In this section we propose a
+spatiotemporal scheme, \gpuST, that attempts to achieve both spatial and
+temporal selectivity without the drawbacks of \gpuS.
+
+\subsubsection{Trajectory Indexing}
+\gpuST uses a temporal index and subdivides each temporal bin into spatial
+subbins to achieve both temporal and spatial selectivity.  Entry segments
+are assigned to $m$ temporal bins exactly as in \gpuT.  We compute the
+minimum and maximum spatial coordinates overall all entry segments in $D$
+in each dimension (e.g. $x_{min}  = \min_{l_i \in
+D}(\min(x^i_{start},x^i_{end}))$ and $x_{max} = \max_{l_i \in
+D}(\max(x^i_{start},x^i_{end}))$ in the $x$ dimension) We then compute the
+maximum spatial extent of the etnry segments in each dimension (e.g.,
+$\max_{l_i \in D} |x^i_{start} - x^i_{end}|$ for the $x$ dimension).  For
+each temporal bin, we create $v$ spatial subbins along each dimension, with
+the constraint that these subbins are larger than the maximum spatial
+extent of the entry segments.  For instance, in the $x$ dimension, this
+constraint is expressed as $v \leq (x_{max} - x_{min}) / \max_{l_i \in D}
+|x^i_{start} - x^i_{end}|$.  This use of this constraint is explained
+in the description of the search algorithms hereafter. 
+In total we have $m\times v$ subbins. We denote
+each subbin as $\hat{B}_{i,j}$, $i=1,\ldots,m$, $j=1,\ldots,v$.
+
+\begin{figure*}[t]
+\centering
+  \input{images/temporal_subbins.tex}
+    \caption{\gpuST example for 10 entry segments. $X$, $Y$ and $Z$ arrays, as stored in GPU memory, are shown at the bottom.}
+   \label{fig:spatiotemporal_indexing}
+\end{figure*}
+
+
+The indexing scheme is illustrated on an example in
+Figure~\ref{fig:spatiotemporal_indexing}.  The part of the figure  above
+the dashed line shows an example of how entry line segments are logically
+assigned to bins and subbins.  The very top of the figure shows $m=3$
+temporal bins, $B_0$ to $B_2$. Each temporal bin contains contains the
+segments with ids in the range $[B_j^{first},B_j^{last}]$.  For instance,
+$B_1^{first} = 4$ and $B_1^{last} = 7$.  Each entry segment is described by
+an id and 2 spatial $(x,y,z)$ extremities.  For instance, segment $l_6$ is
+in temporal bin $B_1$ and its spatial extremities are $(8,9,10)$ and
+$(10,9,8)$.  Temporal dimensions are omitted in the figure.  Below the
+temporal bins, we depict 9 temporal spatial subbins, $\hat{B}_{0,0}$ to
+$\hat{B}_{2,2}$, with indicated spatial ranges in the $x$, $y$, and $z$
+dimension.  For each subbin and each dimension, we show the overlapping
+entry segment ids. For instance, subbin $\hat{B}_{0,1}$ is overlapped in
+the $x$ dimension by $l_0$, $l_2$ and $l_3$, in the $y$ dimension by $l_3$,
+and in the $z$ dimension by $l_1$ and $l_3$.  The part of the figure  below
+the dashed line shows how the logical assignment of segments to spatial
+subbins is implemented physically in memory.  We create three integer
+arrays, $X$, $Y$, and $Z$, depicted at the bottom of the figure.  Each
+array stores the ids of the line segments that overlap the subbins in one
+spatial dimension. The ids for a subbin are stored contiguously, for the
+subbins $\hat{B}_{i,j}$'s sorted by $(j,i)$ lexicographical order.  This is
+illustrated using colors in the figure and amounts to storing contiguously
+all ids in the first subbins of the temporal bins, then all ids in the
+second subbins of the temporal bins, etc. For instance, for the $y$
+dimension, the $Y$ array in our example consists of $v=3$ chunks. The first
+chunk corresponds to the ids in subbins $\hat{B}_{0,0}$
+($l_0$,$l_1$,$l_3$), $\hat{B}_{1,0}$ ($l_4$, $l_5$, $l_8$), and
+$\hat{B}_{2,0}$ ($l_9$), the second chunk corresponds to the ids in subbins
+$\hat{B}_{0,1}$ ($l_3$), $\hat{B}_{1,1}$ ($l_5$, $l_7$), and
+$\hat{B}_{2,1}$ ($l_8$), and the third chunk corresponds to the ids in
+subbins $\hat{B}_{0,2}$ (none), $\hat{B}_{1,2}$ ($l_6$), and
+$\hat{B}_{2,2}$ ($l_8$).  The reason for storing the ids in this manner is
+because, given the above constraints on spatial subbin sizes, most queries
+will not overlap multiple subbins in all three dimensions. Identifying
+potential overlapping entry segments then amounts to examining the $i$-th
+subbin of contiguous temporal bins, for some $0 \leq i \leq v$. In other
+words, for the example in Figure~\ref{fig:spatiotemporal_indexing}, this
+amounts to examining sequences of same-color subbins.
+
+Given the $X$, $Y$, and $Z$ array, each spatial subbin is then described
+with the index range of the entries in those arrays, i.e., 6 integers.  In
+our example, $\hat{B}_{0,1}$'s description is index range $5-7$ in the $x$
+dimension (i.e., it overlaps with segments $l_{X[5]}$ to $l_{X[7]}$ in the
+$x$ dimension), index range $7-7$ in the $y$ dimension (i.e., it overlaps
+with segment $l_{X[7]}$ in the $y$ dimension), and index range $4-5$ in the
+$z$ dimension (i.e., it overlaps with segment $l_{X[4]}$ $l_{X[5]}$ in the
+$z$ dimension). Using this indirection, the encoding of each spatial subbin
+is of fixed size.  When compared to \gpuT, \gpuST only requires additional
+space in GPU memory for the $X$, $Y$, and $Z$ integer arrays, i.e.,
+$\gtrsim 3|D| \times 4$ bytes.
+
+
+
+\subsubsection{Search Algorithm}
+As in \gpuT we first sort $Q$ on the host and calculate the temporally
+overlapping entries from the temporal bins.  We also compute the set of
+spatially overlapping subbins in each dimension.  Computing the exact set
+of entry segments that belong to these subbins turns out to be inefficient
+because we would then have to send a list of entry segment indices to the
+GPU. Instead, we opt for sending only a fixed set of indices to the GPU at
+the cost of poorer spatial selectivity.  Among the three spatial dimensions
+we pick the one in which the number of entry segments that overlap the
+query segment is the smallest. We then simply send an index range, 2
+integers, in the $X$, $Y$, or $Z$ array, depending on the dimension that
+was picked.  Experiments show that the induced wasteful computation on the
+GPU (i.e., evaluation of entry segments that do not overlap with the query
+segment in one of the other two spatial dimensions) is worth the savings in
+amount of data sent to the GPU. This approach exploits the structure of the
+$X$, $Y$, and $Z$ arrays.  For the example in
+Figure~\ref{fig:spatiotemporal_indexing}, consider a query segment that
+overlaps temporal bins 0 and 1, and overlaps spatially with subbins
+$\hat{B}_{0,0}$ and $\hat{B}_{1,0}$ in the $x$ dimension (entries 1,3,4,5),
+with subbins $\hat{B}_{0,1}$ and $\hat{B}_{1,2}$ in the $y$ dimension
+(entries 3,5,7), and with subbins $\hat{B}_{0,0}$ and $\hat{B}_{1,0}$ in
+the $z$ dimension (entries 0,1,4,5).  Because only 3 entries are overlapped
+in the $y$ dimension we compare compare the queries with entries 3, 5, and
+7.  These entry indices are stored \emph{contiguously} in array $Y$, at
+indices 7, 8, and 9. So we simply compare the query to the entry segments
+stored in array $Y$ from index 7 to index 9, which is encoded in constant
+space. We perform a wasteful comparison with entry segment 7 due to our
+non-perfect spatial selectivity of entry segments.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%giving 3
+%sets of indices to X, Y, Z which are those entry segments that temporally
+%overlap the entries and spatially overlap the entries in each of the 3
+%dimensions:  $[^{sub}B^{first}_{x},{}^{sub}B^{last}_{x}]$,
+%$[^{sub}B^{first}_{y},{}^{sub}B^{last}_{y}]$, and
+%$[^{sub}B^{first}_{z},{}^{sub}B^{last}_{z}]$.  
+%The set of potentially
+%spatially overlapping segments within the temporal extent of a query is
+%given by $[^{sub}B^{first}_{x},{}^{sub}B^{last}_{x}] \cap
+%[^{sub}B^{first}_{y},{}^{sub}B^{last}_{y}] \cap
+%[^{sub}B^{first}_{z},{}^{sub}B^{last}_{z}]$. However, we do not send the
+%information of each overlapping entry segment to the GPU, or the overhead
+%to send the query data would be prohibitive.  Instead, we use one of the X,
+%Y, Z lookup arrays that has the smallest range of overlapping entries, or
+%$[^{sub}B^{first},{}^{sub}B^{last}]=\min(|^{sub}B^{first}_{x}-{}^{sub}B^{last}_{x}|,|^{sub}B^{first}_{y}-{}^{sub}B^{last}_{y}|,|^{sub}B^{first}_{z}-{}^{sub}B^{last}_{z}|)$.
+%Therefore, for each of $q_k$, we select the range of entries which results
+%in the fewest number of comparisons to the entries. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% We compute a schedule
+On the host, we generate a schedule $S$, which contains for each query
+segment $q_k$ a specification of which lookup array to use (0 for $X$, 1
+for $Y$, or 2 for $Z$) and an index range into that array, which we encode
+using 4 integers (which preserves alignment).  \gpuST requires only 1 extra
+indirection in comparison to \gpuT, and avoids storing the overlapping
+entry indices in a buffer like in \gpuS.  We then sort $S$ based on the
+lookup array specification so as to reduce thread divergence.  Calculating
+$S$ on the host takes negligible time.  Recall that we enforce a minimum
+size for the spatial subbins. This is for two reasons.  First, with small
+subbins each entry segment would overlap many subbins with high
+probability.  As a result, the query id would occur many times in arrays
+$X$,$Y$, and/or $Z$, thereby wasting memory space on the GPU and causing
+redundant calculations. Second, a query that overlaps multiple subbins
+along all three spatial dimensions may lead to duplicates in the result
+set.  To avoid duplicates, we default to the \gpuT scheme whenever
+duplicates would occur. While this behavior wastes computation due to loss
+of spatial selectivity, the relatively large subbin sizes ensure that it
+occurs with low probability.
+
+
+\begin{algorithm}
+\caption{\gpuST kernel.}
+\label{alg:GPU_spatiotemporal}
+\begin{algorithmic}[1]
+
+\begin{small}
+\Procedure{\gpuspatiotemporal}{$X$,$Y$,$Z$,$D$,{$\mathbf{Q}$},{$\mathbf{S}$},$d$, {\bf resultSet}}
+
+\State {gid} $\leftarrow$ getGlobalId()\label{alglineST.pre_start}
+\LINEIF{{gid}$\geq${$|Q|$}}{\Abort}\label{alglineST.abort}
+\State {query} $\leftarrow$ $Q$[gid] \label{alglineST.queryseg_into_private_memory}
+
+
+\State {arraySelector} $\leftarrow$ $\{X, Y, Z\}$\label{alglineST.selector}
+
+\If {{$S$[gid].arrayXYZ $\neq$ -1}}\label{alglineST.spatiotemporal_begin}
+  \State {arrayXYZ} $\leftarrow$ {arraySelector}[$S$[gid].arrayXYZ]\label{alglineST.XYZ}
+  \State {entryMin} $\leftarrow$ $S$[gid].entryMin\label{alglineST.entryidmin_into_private_memory}
+  \State {entryMax} $\leftarrow$ $S$[gid].entryMax\label{alglineST.entryidmax_into_private_memory}
+%
+  \For{$i=${entryMin}, $\ldots$, {entryMax}}\label{alglineST.loop}
+
+  \State result $\leftarrow$ compare($D$[{arrayXYZ}[$i$]],query)\label{alglineST.compare}
+  \If {result $\neq$ $\emptyset$}
+  \State {\bf atomic:} {resultSet} $\leftarrow$ {resultSet} $\cup$ result\label{alglineST.found}
+  \EndIf
+  \EndFor \label{alglineST.spatiotemporal_end}
+\Else \label{alglineST.temporal_begin}
+  \State {lines~\ref{algline.entryidmin_into_private_memory}-\ref{algline.endloop} in Algorithm~\ref{alg:GPU_temporal}.} 
+\EndIf \label{alglineST.temporal_end}
+%\EndFor
+
+\State \Return {resultSet}\label{alglineST.return}
+\EndProcedure
+
+\end{small}
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+% Algorithm description
+The pseudo-code of the search algorithm is shown in
+in Algorithm~\ref{alg:GPU_spatiotemporal}.
+The algorithm takes the following arguments: 
+(i)~the $X$, $Y$, and $Z$ arrays;
+(ii)~the database ($D$);
+(iii)~the query set ($Q$); 
+(iv)~the schedule ($S$); 
+(v)~the query distance ($d$);
+and (vi)~the memory space to store the result set (\emph{resultSet}).
+As in Algorithm~\ref{alg:GPU_temporal},
+arguments that lead to arrays being transferred between the host and the GPU
+are shown in boldface.  
+The algorithm begins by checking the global thread id and aborts if it is
+greater than $|Q|$ (line~\ref{alglineST.abort}).
+The query assigned
+to the thread is acquired from $Q$
+(line~\ref{alglineST.queryseg_into_private_memory}).
+A helper array is constructed that holds pointers to the $X$, $Y$,
+and $Z$ arrays (line~\ref{alglineST.selector}).
+If schedule $S$ gives a specification for one of the $X$, $Y$, or $Z$ arrays ($S$[gid].arrayXYZ is 0, 1, or 2) then the
+algorithm uses the spatiotemporal indexing scheme
+(lines~\ref{alglineST.spatiotemporal_begin}-\ref{alglineST.spatiotemporal_end}),
+otherwise ($S$[gid].arrayXYZ is -1) it defaults to the temporal scheme
+(lines~\ref{alglineST.temporal_begin}-\ref{alglineST.temporal_end}).
+For the spatiotemporal indexing scheme, the algorithm first
+retrieves the pointer to the correct $X$, $Y$, or $Z$ array
+(line~\ref{alglineST.XYZ}).  It then uses the array to determine the index
+range for the entry segments
+(lines~\ref{alglineST.entryidmin_into_private_memory}-\ref{alglineST.entryidmax_into_private_memory}).
+The algorithm then processes the entry segments
+(line~\ref{alglineST.loop}) as the previous algorithms.
+
+%Next,  an index is retrieved
+%that indicates which subbin is to be selected (1 - X, 2 - Y, or 3 - Z)
+%(line~\ref{alglineST.subbinselect}).  Next, an array of pointers to the 3
+%lookup arrays is initialized
+%(lines~\ref{alglineST.ptrtoX}-\ref{alglineST.ptrtoZ}). The range of ids in
+%the corresponding subbin array is copied into the thread's private memory
+%(lines~\ref{alglineST.entryidmin_into_private_memory}-\ref{alglineST.entryidmax_into_private_memory}),
+%and the query id and segment is stored in private memory
+%(lines~\ref{alglineST.queryID_into_private_memory}-\ref{alglineST.queryseg_into_private_memory}).
+%If the spatial subbins can be utilized
+%(line~\ref{alglineST.subbinselectcheck}), a pointer is set to one of the
+%lookup arrays (\emph{Xarr}, \emph{Yarr}, \emph{Zarr}) on
+%line~\ref{alglineST.subbinptr}.  For all of the overlapping entries
+%(line~\ref{alglineST.loop}), the loop proceeds as follows: the entry id in
+%$D$ is retrieved from the appropriate subbin array
+%(line~\ref{alglineST.geteid}), and the entry segment is copied
+%(line~\ref{alglineST.entryseg_from_global_memory}).  With the entry segment
+%and query segment, the temporal intersection is taken, whereby the two line
+%segments are modified to have the same temporal extent
+%(line~\ref{alglineST.interpolate}).  Next, the moving distance calculation
+%is performed which determines whether the two segments are within the query
+%distance $d$ (and the subsequent time interval that this occurs), or
+%returns null if the segments are not within the query distance
+%(line~\ref{alglineST.time}). If a time interval is returned, the value is
+%added to the result set annotated with the respective entry and query ids
+%(line~\ref{alglineST.atomicinc}), which is performed by incrementing
+%\emph{setID} that keeps track of where the next element should be written.
+%If the spatial subbins were unable to be used, then the algorithm
+%degenerates to the pure temporal index (line~\ref{alglineST.puretemporal}),
+%which is the same pseudo-code shown in Algorithm~\ref{alg:GPU_temporal}, on
+%lines~\ref{algline.loop}-{\ref{algline.endloop}. Once all of the GPU threads
+%have completed, the result set is returned to the host.
+
+
+
+\section{Experimental Evaluation}\label{sec:exp_eval}
+
+\subsection{Datasets}
+
+%Selecting appropriate datasets to test the performance of spatial and
+%spatiotemporal aggregations with differing indexing methods should
+%demonstrate index performance in a range of scenarios.  
+
+We evaluate the performance of our distance threshold approaches
+using 3 spatiotemporal datasets:
+
+\noindent
+\emph{\random} --  A small, sparse symthetic ataset that consists of 2,500
+trajectories generated via random walks over 400 timesteps, for a total of
+997,500 entry segments. Trajectory start times are sampled from a uniform
+distribution over the [0,100] interval.
+
+%\begin{figure}[t]
+%\centering
+%  \includegraphics[width=0.6\textwidth]{images/datasets/fit_of_disk1.pdf}  
+%    \caption{The fit parameters are as follows: $n_0=9.87 \times10^{-4}$, $h_R=3251$ pc and $x$ is the radial distance.}
+%   \label{fit_disk1}
+%\end{figure}
+
+\noindent
+\emph{\merger} -- A large real-world dataset\footnote{This dataset was obtained from Josh
+Barnes~\cite{1986Natur.324..446B}.} from the field of astronomy and
+consists of particle trajectories  that simulate the merger of the disks of
+two galaxies.  It contains the positions of 131,072 particles over 193
+timesteps for a total of 25,165,824 entry segments. 
+%Figure~\ref{fig:merger_dataset}
+%depicts particles positions projected onto the $x-y$ plane at different times, showing
+%the merger evolution.
+
+%- In astronomy people stude isolated galaxies, or regions of
+%interest of a galaxy, over various time scale. 
+%- We genrate a random dataset that corresponds to the spatial moving object density
+  %in the solar region 8kpc... which is number 0.112
+%- We use ranomd walks
+%
+%
+%A fit of the particle surface density distributions of one of the
+%disks is shown in Figure~\ref{fit_disk1}.\todo{HC: At this point the reader has NO idea what Figure 5 means.}  
+%
+
+%Given a subset of
+%particles that represent the actual density of particles in the Milky Way,
+%how does the performance compare between our implementations.
+%
+%A lower limit
+%on the number of stars in the disk of the Milky Way is 100 billion, and a
+%single disk in \merger has 65,536 particles, which means the Milky Way has
+%$\sim6.53\times10^6$ times the number of stars as a single disk in \merger.
+%
+
+\noindent
+\emph{\dense} -- A high density synthetic dataset that is motivated by astronomy applications and generated as follows.
+Consider the stellar number
+density of the solar neighborhood, i.e., at galactocentric radius $R_\odot=8$ kpc
+(kiloparsecs), of Reid et al.  \cite{2002AJ....124.2721R}, $n_\odot=0.112$
+stars/pc$^{3}$. \dense has the same number of particles of
+one disk in the \merger dataset (65,536) and 193 timesteps, yielding 12,582,912
+entry segments. To match the
+density of \cite{2002AJ....124.2721R}, we require a volume of $65536/0.112
+= 585142$ pc$^{3}$. This yields a cube with length, width and height
+dimensions of 83.64 pc.  
+Trajectories are generated as random walks as in the \random dataset.
+This dataset aims
+to represent a density consistent within the range of possible densities
+within the Milky Way that a single node might process.
+
+%The characteristics of each dataset are summarized in
+%Table~\ref{tab:datasets}.  
+
+
+%Note that the density in the solar neighborhood at
+%$R=8$ kpc is far less dense than that at $R<8$ kpc
+%(Figure~\ref{fit_disk1}), as the disk is consistent with estimates of the
+%disk radial scale length of the Milky Way.  
+
+
+
+%In what follows, we demonstrate the difference in densities between disk1 in the \merger dataset and back-of-the-envelope calulcations of the surface and mass densities of a Milky Way-like object. While performing trajectory similarity searches using the number of stars in the Milky Way would be intractable in a single machine, a distributed implementation would require that each node process a subset of the entire database of trajectories. Therefore, this dataset aims to represent a density consistent within the range of possible densities within the Milky Way that a single node might process.
+
+
+%good sentence to use:
+%Therefore, this dataset aims to represent a density consistent within the range of possible densities within the Milky Way that a single node might process.
+
+
+%The \merger dataset is the output of a simulation that shows the evolution of two galaxies that merge and consists of two halos and disks (we only use the disks in our dataset).  For the disks of galaxies, the stellar surface density is expressed in the form: $n(R)=n_0 e^{-R/h_R}$, where $R$ is the radius from the galactic centre, $n$ is the number of stars per pc$^2$, $n_0$ is a normalization of the number of stars per pc$^2$, and $h_R$ is the disk radial scale length. We fit the data of disk1 at $t=0$ in the \merger dataset to obtain the fit shown in Figure~\ref{fit_disk1}, resulting in $h_R=3251$ pc and $n_0=9.87 \times10^{-4}$. This value of $h_R$ is roughly consistent with estimates of the scale lengths of Milky Way-like objects. For comparison, we selected a shorter scale length, that of \cite{2006ima..book.....C}, which has $h_R=2250$ pc, and used the value of $n_0$ from the fit of disk1 in the \merger dataset and plotted the surface density in Figure~\ref{comparison_c_o}. Note, however, that to make a direct comparison with the same total surface density, a different value of $n_0$ should be selected for the fit with $h_R=2250$.  While only for illustrative purposes, we see that the scale length of Carroll and Ostlie \cite{2006ima..book.....C} which is $\sim$1 kpc shorter than that of disk1, leads to a more compact object, but that they have fairly similar surface density distributions.   
+
+
+
+% \begin{figure}[t]
+% \centering
+%   \includegraphics[width=0.6\textwidth]{images/datasets/disk1_vs_c_o.pdf}  
+%     \caption{}
+%    \label{comparison_c_o}
+% \end{figure}
+
+%To estimate the difference between the surface density of the number of particles in disk1 of the \merger dataset and that of a Milky Way-like object, we first make a series of assumptions and then test whether the result is consistent with the literature. First, we assume that the Milky Way consists of 100 billion stars.  Using this assumption, we show the obtained stellar surface density in Figure~\ref{stellar_mass_density_scaled}, which yields $n_0=1506$, or a factor of 1.53 $\times10^{6}$ greater than that of the fit $n_0=9.87 \times10^{-4}$. In the literature, most surface density estimates are given in $M_\odot$ pc$^{-2}$. We make the assumption that the initial mass function (IMF) follows that of Salpeter \cite{1955ApJ...121..161S}, which matches a power-law distribution with $\alpha=2.35$, and assume that the minimum and maximum stellar masses are 0.08$M_\odot$ and $100M_\odot$, respectively \cite{1993MNRAS.262..545K}.  Using the average stellar mass from this distribution calculated using 5 million monte-carlo realizations, we obtain $m_0=0.283M_\odot$ pc$^{-2}$ (while the average of power-law distributions should not be taken in general, galaxies contain a sufficient population size), we obtain the mass density curve shown in Figure~\ref{stellar_mass_density_scaled}.  To ensure that our back of the envelope calculations are roughly consistent with the surface mass density in the literature, at $R=8$ kpc, we have a surface density of $M=36.4$ M$_\odot$pc$^{-2}$ and find that we are consistent within a factor of 2 of \cite{2011MNRAS.414.2446M} and \cite{2013ApJ...779..115B}, assuming that $R_\odot= 8$ kpc.  The underestimation of $M_\odot$ at 8 kpc, while roughly consisent with the literature, can be attributed to two factors: first, 100 billion stars is probably a lower-limit on the number of stars in the Milky Way, and secondly the Salpeter IMF favours low-mass stars in the distribution. 
+
+% \begin{figure}[t]
+% \centering
+%   \includegraphics[width=0.6\textwidth]{images/datasets/stellar_and_mass_density.pdf}  
+%     \caption{}
+%    \label{stellar_mass_density_scaled}
+% \end{figure}
+
+% To test our implementations on a much denser dataset but with half of the number of trajectory segments in \merger, we note that we can select a number density in a large range, as the stellar surface density is not constant across values of $R$ in Figure~\ref{stellar_mass_density_scaled}. Furthermore, while we have been discussing the surface density, we need to develop a volume density consistent with that found in the Milky Way as a function of radial distance $R$ and height above and below the midplane $z$.
+
+% Consider the stellar number density of the solar neighbourhood of Reid et al. \cite{2002AJ....124.2721R}, $n_\odot=0.112$ stars pc$^{-3}$. We develop a dataset with the same number of particles of a disk in the \merger dataset (65536), and the same number of timesteps. To match the density of \cite{2002AJ....124.2721R}, we require a volume of $65536/0.112$ stars pc$^{3}=$ 585142 pc$^{3}$. This yields a cube with length, width and height dimensions of 83.64 pc. Note that the density in the solar neighbourhood at $R=8$ kpc is far less dense than that at $R<8$ kpc (Figure~\ref{stellar_mass_density_scaled}). 
+
+% With the volume calculated to roughly match the mass density at $R_\odot$, we construct \dense as a series of random walks with 193 timesteps, where all of the particles are initially populated within the cubic region described above. We allow the trajectories to move a variable distance in each of the x,y,z dimensions at each timestep (between 0.001 and 0.005 kpc), and if a particle moves outside of the cube by 20\% of the length in any dimension, the particle is forced back towards the cube.   The particles, on average, cannot travel too far from the cube such that we maintain a fairly consistent trajectory density at each timestep. The characteristics of each dataset are summarized in Table~\ref{tab:datasets}.     
+
+
+%\begin{table}
+%\centering
+%\caption{Characteristics of Datasets}
+%\begin{tabular}{|c|c|c|} \hline
+%Dataset&Trajec.&Entries\\ \hline
+%\hline
+%\random&2,500&997,500\\ 
+%\hline
+%\merger&131,072&25,165,824\\
+%\hline
+%\dense&65,536&12,582,912\\ 
+%\hline\end{tabular}
+%\label{tab:datasets}
+%\end{table}
+
+
+%%%%%%%
+%THIS IS THE IMAGES OF THE MERGER DATASET. UNCOMMENT AFTER DONE WRITING, BECAUSE THEY MAKE THE PDF SLOW AS SHIT TO NAVIGATE
+%%%%%%%
+%\begin{figure}[t]
+%\centering
+%        \subfigure[]{
+%            \includegraphics[width=0.30\textwidth]{images/datasets/merger_time_0_Gyr.pdf}
+%      }
+%        \subfigure[]{
+%            \includegraphics[width=0.30\textwidth]{images/datasets/merger_time_1_5_Gyr.pdf}
+%        }
+%        \subfigure[]{
+%            \includegraphics[width=0.30\textwidth]{images/datasets/merger_time_3_Gyr.pdf}
+%        }
+%        
+%    \caption{Sample particle positions in the \merger dataset at times 0 Gyr (a), 1.5 Gyr (b) and 3 Gyr (c).}
+%   \label{fig:merger_dataset}
+%\end{figure}
+
+\subsection{Experimental Methodology}
+
+For all our distance threshold search implementations the GPU-side is
+developed in OpenCL and the host-side is developed in C++. The host-side
+implementation is executed on one of the 6 cores of a dedicated 3.46 GHz
+Intel Xeon W3690 processor with 12 MiB L3 cache. The GPU-side
+implementation runs on an Nvidia Tesla C2075 card with 6GiB of RAM and 448
+cores. In all experiments we measure query response time as an average over
+3 trials (standard deviation is negligible). We allocate a buffer to hold
+the result set of the search on the GPU that can hold $5.0 \times 10^7$
+items.  The response time does not include the time to build the index and
+to store $D$ and the index in GPU memory, which is done off-line before
+query processing begins.
+
+We consider three experimental scenarios, each for one of our datasets and for
+a range of query distances:
+\begin{itemize}
+\item S1: The \random dataset and a query with 100 trajectories each with
+400 timesteps for a total of 39,900 query segments.
+
+\item S2: The \merger dataset and a query set with 265 trajectories each
+with 193 timesteps for a total of 50,880 query segments.
+
+\item S3: The \dense dataset and a query set with 265 trajectories each
+with 193 timesteps for a total of 50,880 query segments.
+\end{itemize}
+
+In addition to our GPU implementations, we also evaluate a CPU-only
+implementation developed in our previous
+work~\cite{Gowanlock2014,Gowanlock2014b}, which we call \cpu.  Unlike our GPU implementations,
+\cpu uses an index-tree traversal, which would be
+problematic on the GPU, e.g., due to thread divergence slowdowns. More
+specifically, \cpu uses an in-memory R-tree
+index~\cite{Guttman-R_tree} and is multithreaded using OpenMP.  Threads
+traverse the R-tree in parallel, each for a different query segment, and
+returns candidate entry segments.  All executions of \cpu
+use 6 threads on our 6-core CPU.  Results in~\cite{Gowanlock2014c} show
+that this implementation achieves high parallel efficiency.  Like for our
+GPU implementations, response time measurements do not include the time to
+build the index. On important driver of response time for index trees  is
+how trajectory segments are assigned to
+MBBs~\cite{Hadjieleftheriou:2002:EIS:645340.650233,Rasetic2005,Gowanlock2014}.
+\cpu stores $r \geq 1$ segments by MBB, with larger $r$
+implying lower index search time but more candidate entry segments to
+process.  For all experiments presented hereafter we executed \cpu
+with a range of values for $r$, and only report on results
+for the $r$ value that leads to the lowest response time.
+
+Due to lack of space we cannot present all results. Although all results
+are described, we refer the reader to a companion technical
+report~\cite{TR} for comprehensive result graphs.
+
+\subsection{Results for the \random Dataset}\label{sec:results_random}
+
+%In this section, we present results for the \random dataset, first giving
+%results for individual implementations and then combining results that make
+%it possible to compare the implementations.  
+%\begin{figure}[t]
+%\centering
+%  \includegraphics[width=0.5\textwidth]{images/results/RW_1M/RW1M_R_tree_parallel_time_vs_segments.pdf}
+%    \caption{Response time vs. number of entry segments per MBB ($r$) for the CPU implementation in scenario S1 with $d=5, 10, \ldots, 50$.}
+%   \label{fig:CPU_random}
+%\end{figure}
+%
+%Figure~\ref{fig:CPU_random} shows response time vs. the number of entry segments per MBB ($r$)
+%for the CPU implementation for a range of query distances. Using a single entry segment per MBB ($r=1$)
+%does not lead to the best response time. For this experimental scenario using, e.g.,
+%$r=10$ leads to good response times across all query distances.  
+
+%
+%\begin{figure}[t]
+%\centering
+%  \includegraphics[width=0.5\textwidth]{images/results/RW_1M/FSG_RW1M_cells_vs_time_vs_distance.pdf}
+%    \caption{Response time vs. $d$ for \gpuS in scenario S1. Different curves are shown for different numbers of spatial cells in the $x$, $y$, and $z$ dimensions (i.e., ``Cells=10" means a $10\times 10\times 10$ grid).}
+%   \label{fig:GPU_FSG_random}
+%\end{figure}
+%
+
+
+We used \gpuS with a range of FSG resolutions (i.e., numbers of grid
+cells).  Using and FSG with too coarse a resolution increases response time
+due due to poor spatial selectivity. Poor spatial selectivity leads to
+large numbers of interactions and to many GPU threads overflowing their
+buffers ($U_k$) thus requiring multiple kernel invocations. Using too fine
+a resolution also increases response time because entry segments overlap
+multiple cells and thus deuplicates in the result set.  Although filtering
+out these duplicates takes negligible time, transferring them from the GPU
+back to the host incurs non-negligible overhead.  In our experiments, and
+among the FSG configurations we have attempted, using 50 grid cells per
+dimension leads to the lowest response time.  Regardless of FSG resolution,
+we observe rapid growth in response time as $d$ increases.  The disposition
+of the FSG index to prefer small $d$ values has also been alluded to
+in~\cite{Zhang:2012:USH:2390226.2390229}. This suggests that FSGs may not
+be particularly useful for spatiotemporal trajectory searches due to the
+large spatial extent of the data and absence of temporal discernment,
+unless query distances are small.
+
+%\begin{figure}[t]
+%\centering
+%  \includegraphics[width=0.5\textwidth]{images/results/RW_1M/RW1M_time_vs_temporal_bins_and_distance.pdf}
+%    \caption{Response time vs. $d$ for \gpuT in scenario S1. Different curves are shown for different numbers of temporal bins (100, 1000, 5000, 10000).}
+%   \label{fig:GPU_temporal_random}
+%\end{figure}
+
+
+
+Unlike for \gpuS, \gpuT's response time does not depend on $d$ because
+entry segments are selected based on their temporal extents. We have used
+\gpuS with various numbers of temporal bins.  With too few temporal bins
+there is not enough temporal selectivity leading to large numbers of
+interactions.  But as the number of bins increases the response time
+reaches a minimum. In these experiments, increasing beyond 5,000 bins does
+not lead to increased temporal selectivity.
+
+%\begin{figure}[t]
+%\centering
+%  \includegraphics[width=0.5\textwidth]{images/results/RW_1M/RW1M_time_vs_subbins_and_distance.pdf}
+%    \caption{Response time vs. the number of subbins ($v$) for \gpuST in scenario S1 with a range of query distances. The number of temporal bins is set to 10,000.}
+%   \label{fig:GPU_spatiotemporal_random}
+%\end{figure}
+
+
+%Figure~\ref{fig:GPU_spatiotemporal_random} shows response time vs. the
+When using \gpuST, with 10,000 temporal bins, we find that for lower $d$
+values greater numbers of spatial subbins are desirable. This is because it
+is unlikely that a query will overlap multiple subbins, which would cause
+our algorithm to revert to the purely temporal method.  As $d$ increases,
+queries overlap multiple spatial subbins with higher probability and better
+performance is thus achieved with fewer subbins. Overall, picking
+$v=4$ subbins leads to low response time across all query distances even though
+for some query distances using up to $v=16$ can further reduce response time.
+%
+%Recall that we require that a query fall within a single subbin
+%so as to avoid duplication in the result set.  Without this requirement, an
+%increasing number of subbins would suggest an increase in the duplication
+%of entries in the index, thereby increasing the number of candidates that
+%need to be processed (the same trade-off discussed for \gpuS). There is
+%thus a trade-off between having too few or too many subbins, even when
+%duplicates in the result set are permitted.
+%
+Comparing results between \gpuST with 1 subbin and \gpuT allows us to
+quantify the effect of the additional indirection in \gpuST. At $d=50$
+(yielding the greatest number of indirections), the response time of \gpuST
+with 1 subbin is 1.36 s, whereas the response time of \gpuT is 1.21 s.
+This is a 12.4\% increase in response time due to the extra indirection.
+
+\begin{figure}[t]
+\centering
+  \includegraphics[width=0.5\textwidth]{images/results/RW_1M/RW1M_comparison_indexes.pdf}
+    \caption{Response time vs. $d$ for our 4 implementations for scenario
+    S1.  For \gpuS we also plot an optimistic curve that ignores kernel
+    re-invocation overheads.}
+   \label{fig:comparison_indexes_random}
+\end{figure}
+
+
+Figure~\ref{fig:comparison_indexes_random} shows response time vs. $d$ for
+our four implementations. Each implementation is configured with 
+good parameter values based on previous results in this sections (\gpuS: 50 grid cells
+per dimension, \gpuT: 10,000 temporal bins, \gpuST: 10,000 temporal bins and 4
+spatial subbins).
+\cpu is best across all query distances.  
+\gpuS performs better than \gpuT and \gpuST when $d<20$, but it does not scale well as $d$
+increases. One may wonder whether this lack of scalability comes from the
+overhead of re-launching the kernel due to buffer overflows.
+Figure~\ref{fig:comparison_indexes_random} plots an ``optimistic" curve
+that discounts this overhead. We see that the same trend, if not as
+extreme, remains.  \gpuT and \gpuST 
+have consistent response times across query distances, and combining
+spatial and temporal selectivity as in \gpuST leads to response
+time reductions.
+%Note that we could have
+%selected the best number of subbins for each value of $d$ from
+%Figure~\ref{fig:GPU_spatiotemporal_random}, which would have improved
+%results.  
+We conclude that an in-memory R-tree is a good approach when indexing small
+and sparse trajectory datasets that lead to few interactions. For such a
+dataset, the overhead of using the GPU is simply too great.
+
+\subsection{Results for the \merger Dataset}
+
+%\begin{figure}[t]
+%\centering
+%  \includegraphics[width=0.5\textwidth]{images/results/merger/2disk_merger_MSB.pdf}
+%    \caption{Response time vs. number of entry segments per MBB ($r$) for the CPU implementation in scenario S2 with $d=0.01, 0.1, 0.05$.}
+%   \label{fig:CPU_merger}
+%\end{figure}
+
+
+%Figure~\ref{fig:CPU_merger} shows response time vs. $r$ for the CPU
+%implementation for 3 query distances. With this large dataset, unlike with
+%\random, storing more than $r=1$ segments per MBB leads to higher response
+%time. A higher $r$ value decreases the time to search the R-tree index, but
+%this benefit is offset by the increase in candidate set size. This is an
+%important result. There is a literature devoted to assigning trajectory
+%segments to MBBs for improving response
+%time~\cite{Hadjieleftheriou:2002:EIS:645340.650233,Rasetic2005,Gowanlock2014}.
+%These works, however, do not consider large datasets.  For these datasets,
+%an intriguing future research direction is to take the opposite approach as
+%that advocated in the literature: splice individual polylines to increase
+%the size of the dataset (which can be thought of as setting $r<1$).
+%
+%This is a great example of real-world application requirements having a
+%direct impact on developing research directions for theoretical computer
+%science.
+
+%\begin{figure}[t]
+%\centering
+  %\includegraphics[width=0.5\textwidth]{images/results/merger/2disk_merger_spatiotemporal_time_vs_subbins_and_distance.pdf}
+    %\caption{Response time vs. the number of subbins ($v$) for \gpuST in scenario S2 with a range of query distances. The number of temporal bins is set to 1,000.}
+   %\label{fig:GPU_spatiotemporal_merger}
+%\end{figure}
+
+
+
+% Figure~\ref{fig:GPU_temporal_merger} shows query distance vs. response time for S2 with the temporal index.  To accommodate the fixed result set buffer size, we also indicate the number of batches required to successfully process all of the queries for each value of $d$.  
+
+On the larger \merger dataset \gpuS leads to extremely high response times.
+In executions of \gpuS and \gpuST, for some values $d$, $Q$ is processed
+incrementally due to to to response time increases.  Results for \gpuT are
+similar to those for the \random dataset (using 1,000 temporal bins leads
+to the lowest response time consistently across all $d$ values).  For
+\gpuST, also using 1,000 temporal bins, we find that using $v=16$  subbins
+leads to the best results for most $d$ values.  Picking a good $v$ value
+can thus likely be done for a dataset regardless of the queries.  
+%The
+%complex dependency between $v$ and $d$ seen in
+%Figure~\ref{fig:GPU_spatiotemporal_random} for the \random dataset is no
+%longer seen with a larger dataset with many interactions.
+
+% Furthermore, with
+%increasing $d$, there is a greater chance that a query will overlap
+%multiple subbins, and the search for that query will degenerate into the
+%(larger number of) indices indicated by the pure temporal index (shown at
+%$v>64$ in Figure~\ref{fig:GPU_spatiotemporal_merger}). 
+
+% \begin{figure}[t]
+% \centering
+%   \includegraphics[width=0.5\textwidth]{images/results/merger/2disk_merger_temporal.pdf}
+%     \caption{Response time vs. query distance for the temporal index with S2.  The number of temporal entry bins is set to 1000, and the number of batches needed to process the entire query set is shown on the rightmost vertical axis.}
+%    \label{fig:GPU_temporal_merger}
+% \end{figure}
+
+Figure~\ref{fig:merger_comparison_indexes} compares the performance of \cpu,
+\gpuT (with 10,000 temporal bins), and \gpuST (with
+10,000 temporal bis and $v=16$ subbins). \gpuS is omitted.  \gpuST
+outperforms \gpuT across the board, with response times at least 23.6\%
+faster. \cpu is best at low query distances but is
+overtaken by \gpuST at $d\sim1.5$.  At $d=0.001$ the response time for \cpu
+is 9.70 s vs. 41.75 s for \gpuST (or
+is 330.4\% slower).  At $d=5$ these response times become 184.4 s and
+116.09 s respectively (or 58.8\% faster).  We
+conclude that \gpuST outperforms \cpu.
+when using large datasets and/or when large query distances are considered.
+
+%(41.7564-9.70312)/9.70312=330.3%
+%(184.397-116.087)/116.087=58.8%  
+
+
+
+\begin{figure}[t]
+\centering
+  \includegraphics[width=0.5\textwidth]{images/results/merger/2disk_merger_comparison_indexes.pdf}
+    \caption{Response time vs. $d$ for our implementations for scenario S2.
+       We indicate three distance thresholds relevant
+       to the study of the habitability of the Milky
+       Way. Red: close encounters between stars and planetary systems
+       \cite{2013AsBio..13..491J}; Blue: supernova events on
+       habitable planetary systems \cite{2011AsBio..11..855G}, and
+       Magenta: studying the effects of gamma ray bursts on habitable
+       planets \cite{2005ApJ...634..509T}. Both the led and blue lines are
+             close to the vertical axis.}
+   \label{fig:merger_comparison_indexes}
+\end{figure}
+
+\subsection{Results for the \dense Dataset}
+
+%We now present results for the \dense dataset, which is smaller than
+%\merger and representative of scenarios in which many trajectories are
+%located in a small spatial region, as motivated by the stellar number
+%density at the solar neighborhood. Note that increasing the density by even
+%$>4\times$ would still be consistent with that resembling the disk in the
+%inner Galaxy.
+
+%\begin{figure}[t]
+%\centering
+  %\includegraphics[width=0.5\textwidth]{images/results/RW_dense/RWdense_distance_response_time_num_mbbs.pdf}
+    %\caption{Response time vs. $d$ for the CPU implementation in scenario S3. Different curves
+%are shown for different values of $r$ (1,2,4, and 8).}
+   %\label{fig:RW_dense_CPU}
+%\end{figure}
+%
+%
+%Figure~\ref{fig:RW_dense_CPU} shows response time vs. query distance for
+%the CPU implementation for $r=1, 2, 4, 8$.
+%Unlike for \merger, which has $2\times$ the number of
+%entries as \dense, storing multiple segments/MBB improves response time. We
+%find that $r=4$ yields low response time values across all query
+%distances.  
+
+%At $d=0.001$ and $d=0.09$ the CPU implementation with 
+%$r=4$ achieves a speedup over the sequential implementation
+%of 5.12 and 4.18 respectively.  Thus, with large/dense data, the R-tree
+%remains resilient, maintaining high parallel efficiency (we showed this to
+%be the case with smaller datasets in \cite{Gowanlock2014b}).
+
+
+% \begin{figure}[t]
+% \centering
+%   \includegraphics[width=0.5\textwidth]{images/results/RW_dense/RW_dense_temporal.pdf}
+%     \caption{Query distance vs. response time for S3 using the temporal indexing method.  We illustrate the number of kernel invocations needed to ensure that the result set does not overflow for each respective query distance.}
+%    \label{fig:RW_dense_temporal}
+% \end{figure}
+
+
+
+%\begin{figure}[t]
+%\centering
+        %\subfigure[]{
+            %\includegraphics[width=0.45\textwidth]{images/results/RW_dense/RWdense_spatiotemporal_time_vs_subbins_and_distance.pdf}
+      %}
+        %\subfigure[]{
+            %\includegraphics[width=0.45\textwidth]{images/results/RW_dense/RWdense_spatiotemporal_subbin_usage.pdf}
+        %}
+        %
+    %\caption{(a)~Response time vs. number of subbins ($v$) for \gpuST for scenario S3 for a range of query distances. The number of temporal bins is set to 1,000. (b)~The fraction of queries that use the entries provided by subbins vs. the number of subbins ($v$).}
+   %\label{fig:RW_dense_spatiotemporal}
+%\end{figure}
+%
+
+As for the \merger dataset, \gpuS leads to extremely high response times
+and \gpuT using 1,000 temporal bins leads to the lowest response time
+consistently across all query distances.   Results for \gpuST show that the
+use of subbins to reduce response time (when compared to \gpuT) is only
+possible for low query distances. This is because the dataset is denser
+than \merger.  Queries are thus more likely to fall within multiple subbins
+in which case \gpuST defaults to \gpuT. For instance, For instance for
+$d=0.03$ and $v=2$ subbins, \gpuST detaults to \gpuT for almost 40\% of the
+queries. When $v=4$, then \gpuST always defaults to \gpuT.
+Given the density of \dense, for larger values of $d$ only a fraction
+of the queries can be solved per kernel invocation as there is insufficient
+memory space for the result set.  Since \dense has half as many entries as
+\merger, we can increase the size of the buffer on the GPU for the result
+set (from $5\times10^7$ elements for \merger to $9.2\times10^7$ elements
+for \dense).  This buffer size increase leads to decreases in response time
+due to fewer host-GPU communications.  For instance, at $d=0.09$ (which
+requires the greatest number of kernel invocations), the increased buffer
+size reduces response time by 65.76\%.
+
+
+
+%\begin{figure}[t]
+%\centering
+  %\includegraphics[width=0.5\textwidth]{images/results/RW_dense/RWdense_comparison_buffer_sizes.pdf}
+    %\caption{Response time vs. $d$ for \gpuT and \gpuST for scenario S3.  Results are shown for the original buffer size ($5\times10^7$) and for  a larger buffer size ($9.2\times10^7$).}
+   %\label{fig:RW_dense_comparison_buffer}
+%\end{figure}
+
+
+%Since current trends point to
+%improvements in host-to-GPU bandwidth, in the future, our indexing
+%methods should provide even better performance improvements compared to CPU
+%implementations.
+
+
+%(211.064-127.330)/127.330=65.76%
+
+\HC{In Figure~\ref{fig:RW_dense_comparison_indexes} we should remove
+    the CPU curve for $r=1$.}
+
+\begin{figure}[t]
+\centering
+  \includegraphics[width=0.5\textwidth]{images/results/RW_dense/RWdense_comparison_indexes.pdf}
+    \caption{Response time (left vertical axis) and fraction of entries with distance $d$ of the query (right vertical axis) vs. $d$ for \cpu, \gpuT, and \gpuST for scenario S3.}
+   \label{fig:RW_dense_comparison_indexes}
+\end{figure}
+
+
+Figure~\ref{fig:RW_dense_comparison_indexes} shows response time and
+fraction of entries within $d$ of the query vs. $d$ for \cpu, \gpuT (with
+1,000 temporal bins), and \gpuST (with 1,000 temporal bins and $v=4$
+subbins) with the larger buffer sizes for a range of query distances.  When
+$d=0.001$ $\approx 0\%$ of the entries are within the query distance, and
+when $d=0.09$, 73.9\% of the entries are within the query distance.  \cpu
+is best for very small $d\lesssim 0.02$ but is outperformed by the GPU
+implementations for larger $d$.  At $d=0.05$, the GPU implementations are
+223\% faster than \cpu.  Comparing
+Figures~\ref{fig:merger_comparison_indexes} (\merger dataset)
+and~\ref{fig:RW_dense_comparison_indexes} (\dense dataset), we see that the
+range of query distances for which using the GPU is preferable to using the
+CPU is much larger for the \dense dataset. (Consider the vertical lines
+distances that correspond to relevant application scenarios).  In the
+astronomy domain datasets denser than the \dense dataset are relevant
+(i.e., to study the galactic regions at $R<8$ kpc). For these datasets the
+GPU approach will be a drastic improvement over a CPU-only approach.
+
+
+%NEW: (198.2630-61.3699)/61.3699=223%
+
+%IS THE FRACTION WITH THE OVERTAKE THE SAME AS MERGER?
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.45\textwidth]{python/comparison_figure.pdf}
+        %\subfigure[]{
+            %\includegraphics[width=0.45\textwidth]{images/results/comparison_all/comparison_index_relative_r_tree_random1M.pdf}
+      %}
+        %\subfigure[]{
+            %\includegraphics[width=0.45\textwidth]{images/results/comparison_all/comparison_index_relative_r_tree_merger_dense.pdf}
+        %}
+        
+    \caption{Ratio of GPU to CPU response times across all datasets for (a) S1 and  (b) S2 and S3. Values below the $y=1$ line indicate improvements over the CPU implementation.}
+   \label{fig:comparison_all_datasets}
+\end{figure}
+
+
+
+
+
+\section{Conclusions}\label{sec:conclusions}
+
+
+
+In this paper, we have proposed indexing methods and accompanying
+algorithms for efficient distance threshold similarity searches on
+spatiotemporal trajectory datasets.  Our main result is that GPU-friendly
+indexing methods can outperform a multicore CPU implementation that uses an
+in-memory R-tree index. To summarize our results,
+Figure~\ref{fig:comparison_all_datasets} shows the ratio of the response
+times of the GPU implementations to the CPU implementation for our 3
+datasets for a few representative query distances. 
+The main findings are that although the
+CPU is preferable for small and sparse datasets
+(Figure~\ref{fig:comparison_all_datasets}~(a)), the GPU leads to
+significant improvements for large and/or dense datasets
+(Figure~\ref{fig:comparison_all_datasets}~(b)) unless query distances are
+very small.  Large and dense datasets routine in some applications, and in
+particular in our driving application domain (astronomy).  Overall, we find
+that spatiotemporal indexing methods, which achieves selectivity both in
+time and space but \emph{without} the use of an index tree, is effective on
+the GPU.  The trends and future plans for GPU technology point to key
+improvements (faster host-to-GPU transfers, increased memory, etc.) that
+will give a further advantage to GPU implementation of spatiotemporal
+similarity searches.
+
+%Our results show that for the in-memory R-tree CPU implementation, the
+%well-studied question of how to split a trajectory and store it in multiple
+%MBBs is not pertinent for large datasets. For these datasets, storing a
+%single segment by MBB is appropriate, and in fact it is likely appropriate
+%to splice segments and increase dataset size so as to trade-off higher
+%index-tree search time for small candidate sets to process.  This result
+%should apply to other similarity searches, such as $k$NN searches.
+
+The main future work direction is to apply our indexing techniques to other
+spatial/spatiotemporal trajectory searches and investigating hybrid
+implementations of the distance threshold search that uses both the CPU and
+GPU for query processing.
+
+
+%\section*{Acknowledgments}
+%The authors thank Josh Barnes for providing us with the \merger dataset.
+%This material is based upon work supported by the National Aeronautics and
+%Space Administration through the NASA Astrobiology Institute under
+%Cooperative Agreement No. NNA08DA77A issued through the Office of Space
+%Science.
+
+
+
+%original with the document:
+% \begin{thebibliography}{1}
+
+% \bibitem{IEEEhowto:kopka}
+% H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+% \end{thebibliography}
+%%%%%%%%
+
+%mine:
+\newcommand{\BIBdecl}{\setlength{\itemsep}{0.25 em}}
+
+\bibliographystyle{IEEEtran}
+\bibliography{trajectory} 
+
+
+
+
+\end{document}
+
+
