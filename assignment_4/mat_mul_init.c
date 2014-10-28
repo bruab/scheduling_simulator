@@ -77,7 +77,34 @@ int main(int argc, char *argv[])
   }
 
   // Declare matrices
-  // TODO
+  int A[N][N];
+  int B[N][N];
+  int C[N][N];
+
+  // TODO macro for debug and script to run it
+  // TODO figure out why this causes seg fault. something to do with private variables?
+
+  // Populate the matrices
+  /*
+  for (i=0; i<N; i++) {
+  	for (j=0; j<N; j++) {
+  		A[i][j] = i;
+  		B[i][j] = i + j;
+  		C[i][j] = 0;
+	}
+  }
+  */
+
+
+  // Print matrix contents (debug)
+  /*
+  for (i=0; i<N; i++) {
+  	for (j=0; j<N; j++) {
+		printf("A[i][j] is %d, B[i][j] is %d\n", A[i][j], B[i][j]);
+		// TODO make entries double!
+	}
+  }
+  */
 
   // Start the timer
   double start_time;
@@ -86,8 +113,7 @@ int main(int argc, char *argv[])
     start_time = MPI_Wtime();
   }
 
-  // Print out string message and wall-clock time if the broadcast was
-  // successful
+  // Not sure what this is here for, but afraid to delete just yet TODO
   MPI_Barrier(MPI_COMM_WORLD);
 
   // Clean-up
