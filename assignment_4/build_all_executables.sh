@@ -15,6 +15,6 @@ fi
 
 
 
-smpicc mmult.c -O4 -DVERSION=0 -o mmult_version0
-smpicc mmult.c -O4 -DVERSION=1 -o mmult_version1
-smpicc mat_mul_init.c -O4 -DVERSION=0 -o mat_mul_init
+smpicc mmult.c -lm -O4 -DVERSION=0 -o mmult_version0
+smpicc mmult.c -lm -O4 -DVERSION=1 -o mmult_version1
+smpicc mat_mul_init.c -lm -O4 -DVERSION=0 -o mat_mul_init

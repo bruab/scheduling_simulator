@@ -4,10 +4,6 @@
 #include <mpi.h>
 #include <math.h>
 
-#ifndef VERSION
-#define VERSION 1
-#endif
-
 
 ///////////////////////////////////////////////////////
 //// program_abort() and print_usage() functions //////
@@ -55,10 +51,9 @@ static void print_usage(char *exec_name) {
 
 int main(int argc, char *argv[])
 {
-  int i,j,N;
+  int i,j,N,root;
   
   // Get N from command line arg
-  // TODO not sure why it's argv[3]; also getting compile warning about cast to int
   N = atoi(argv[3]);
 
   MPI_Init(&argc, &argv);
@@ -70,7 +65,12 @@ int main(int argc, char *argv[])
   MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
 
   // Abort if num_procs is not a perfect squre
-  // TODO
+  printf("num_procs is %d\n", num_procs);
+  printf("its square is %f\n", sqrt(num_procs));
+  root = sqrt(num_procs);
+  if (root*root != num_procs) {
+        program_abort(argv[0],"Number of processors is not a perfect square, I give up...\n");
+  }
 
   // Abort if num_procs doesn't divide N
   // TODO
@@ -85,24 +85,6 @@ int main(int argc, char *argv[])
     start_time = MPI_Wtime();
   }
 
-  /////////////////////////////////////////////////////////////////////////////
-  ///////////s i///////////////// TO IMPLEMENT: BEGIN ////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////
-  
-#if VERSION == 0 //bcast_default
-  printf("this is processor %d...  ", rank);
-  printf("you chose version 0 ...  ");
-  printf("N is %d\n", N);
-
-#elif VERSION == 1 //bcast_naive
-  printf("you chose version 1");
-#endif
-
-  
-  /////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////// TO IMPLEMENT: END /////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////
- 
   // Print out string message and wall-clock time if the broadcast was
   // successful
   MPI_Barrier(MPI_COMM_WORLD);
