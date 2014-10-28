@@ -51,7 +51,7 @@ static void print_usage(char *exec_name) {
 
 int main(int argc, char *argv[])
 {
-  int i,j,N,root;
+  int i,j,N,root,dividend;
   
   // Get N from command line arg
   N = atoi(argv[3]);
@@ -65,15 +65,16 @@ int main(int argc, char *argv[])
   MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
 
   // Abort if num_procs is not a perfect squre
-  printf("num_procs is %d\n", num_procs);
-  printf("its square is %f\n", sqrt(num_procs));
   root = sqrt(num_procs);
   if (root*root != num_procs) {
         program_abort(argv[0],"Number of processors is not a perfect square, I give up...\n");
   }
 
   // Abort if num_procs doesn't divide N
-  // TODO
+  dividend = N / num_procs;
+  if (dividend * num_procs != N) {
+	  program_abort(argv[0], "Number of processors does not divide N, I give up...\n");
+  }
 
   // Declare matrices
   // TODO
