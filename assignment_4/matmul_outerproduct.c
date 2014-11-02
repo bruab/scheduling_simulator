@@ -104,55 +104,13 @@ int main(int argc, char *argv[])
   }
 
   // Local function to multiply matrices
-  // OKAY THIS IS HORRIBLE, I'VE WASTED AN HOUR MESSING
-  // WITH POINTERS AND SCOPE AND I'M JUST GOING TO HAVE TO
-  // DUPLICATE CODE IN ORDER TO GET THIS DONE ON TIME
-  void MatrixMultiplyAddBothLocal() {
+  void MatrixMultiply(double myA[block_size][block_size], double myB[block_size][block_size]) {
 	for (i=0; i<block_size; i++) {
 		for (k=0; k<block_size; k++) {
 			for (j=0; j<block_size; j++) {
-					C[i][j] = C[i][j] + (A[i][k]) * (B[k][j]);
+					C[i][j] = C[i][j] + (myA[i][k]) * (myB[k][j]);
 					#ifdef DEBUG
-						printf("A%d%d and B%d%d are: %f, %f\n", i, k, k, j, A[i][k], B[k][j]);
-						printf("C%d%d is %f\n", i, j, C[i][j]);
-					#endif
-			}
-		}
-	}
-  }
-  void MatrixMultiplyAddBothBuffer() {
-	for (i=0; i<block_size; i++) {
-		for (k=0; k<block_size; k++) {
-			for (j=0; j<block_size; j++) {
-					C[i][j] = C[i][j] + (bufferA[i][k]) * (bufferB[k][j]);
-					#ifdef DEBUG
-						printf("bufferA%d%d and bufferB%d%d are: %f, %f\n", i, k, k, j, bufferA[i][k], bufferB[k][j]);
-						printf("C%d%d is %f\n", i, j, C[i][j]);
-					#endif
-			}
-		}
-	}
-  }
-  void MatrixMultiplyAddABuffer() {
-	for (i=0; i<block_size; i++) {
-		for (k=0; k<block_size; k++) {
-			for (j=0; j<block_size; j++) {
-					C[i][j] = C[i][j] + (bufferA[i][k]) * (B[k][j]);
-					#ifdef DEBUG
-						printf("bufferA%d%d and B%d%d are: %f, %f\n", i, k, k, j, bufferA[i][k], B[k][j]);
-						printf("C%d%d is %f\n", i, j, C[i][j]);
-					#endif
-			}
-		}
-	}
-  }
-  void MatrixMultiplyAddBBuffer() {
-	for (i=0; i<block_size; i++) {
-		for (k=0; k<block_size; k++) {
-			for (j=0; j<block_size; j++) {
-					C[i][j] = C[i][j] + (A[i][k]) * (bufferB[k][j]);
-					#ifdef DEBUG
-						printf("A%d%d and bufferB%d%d are: %f, %f\n", i, k, k, j, A[i][k], bufferB[k][j]);
+						printf("myA%d%d and myB%d%d are: %f, %f\n", i, k, k, j, myA[i][k], myB[k][j]);
 						printf("C%d%d is %f\n", i, j, C[i][j]);
 					#endif
 			}
@@ -160,9 +118,9 @@ int main(int argc, char *argv[])
 	}
   }
 
+  // Just testing ...
+  MatrixMultiply(A, B);
 
-  // Multiply local matrices (just to test MatrixMultiplyAddBothLocal function)
-  MatrixMultiplyAddBothLocal();
 
   // Sum elements of matrix C
   double sum;
