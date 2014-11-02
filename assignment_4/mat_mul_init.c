@@ -51,10 +51,11 @@ static void print_usage(char *exec_name) {
 
 int main(int argc, char *argv[])
 {
-  int i,j,N,root,dividend;
+  int blocks_per_row,N,block_size;
   
   // Get N from command line arg
-  N = atoi(argv[3]);
+  // TODO segfaults if i forget to pass arg, so ghetto :(
+  N = atoi(argv[3]); 
 
   MPI_Init(&argc, &argv);
 
@@ -65,37 +66,66 @@ int main(int argc, char *argv[])
   MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
 
   // Abort if num_procs is not a perfect squre
-  root = sqrt(num_procs);
-  if (root*root != num_procs) {
+  blocks_per_row = sqrt(num_procs);
+  if (blocks_per_row*blocks_per_row != num_procs) {
         program_abort(argv[0],"Number of processors is not a perfect square, I give up...\n");
   }
 
-  // Abort if num_procs doesn't divide N
-  dividend = N / num_procs;
-  if (dividend * num_procs != N) {
-	  program_abort(argv[0], "Number of processors does not divide N, I give up...\n");
+  // Abort if sqrt(num_procs) doesn't divide N
+  block_size = N / blocks_per_row;
+  if (block_size * blocks_per_row != N) {
+	  program_abort(argv[0], "Square root of number of processors does not divide N, I give up...\n");
   }
+
+  // Figure out which block we are in
+  int num_blocks;
+  int this_block_row,this_block_col;
+
+  num_blocks = num_procs;  // Redundant but here to remind me WTH i am doing
+  this_block_row = rank / blocks_per_row;
+  this_block_col = (this_block_row + rank) % (blocks_per_row + 1);
 
   // Declare matrices
-  int A[N][N];
-  int B[N][N];
-  int C[N][N];
+  double A[block_size][block_size];
+  double B[block_size][block_size];
+  double C[block_size][block_size];
 
-  // TODO macro for debug and script to run it
-  // TODO figure out why this causes seg fault. something to do with private variables?
-
-  // Populate the matrices
-  /*
-  for (i=0; i<N; i++) {
-  	for (j=0; j<N; j++) {
-  		A[i][j] = i;
-  		B[i][j] = i + j;
-  		C[i][j] = 0;
+  // Fill C with zeroes because it is easy
+  int i, j;
+  for (i=0; i<block_size; i++) {
+  	for (j=0; j<block_size; j++) {
+		C[i][j] = 0.0;
 	}
   }
-  */
 
+  // Fill A and B, not so easy
+  for (i=0; i<block_size; i++) {
+  	for (j=0; j<block_size; j++) {
+		A[i][j] = (rank / blocks_per_row) * block_size + i;
+		B[i][j] = (this_block_row + this_block_col) * block_size + i + j;
+	}
+  }
 
+  // Print out A
+  printf("Block of A on rank %d at coordinates (%d, %d)\n", rank, this_block_row, this_block_col);
+  for (i=0; i<block_size; i++) {
+  	for (j=0; j<block_size; j++) {
+		printf("%f ", A[i][j]);
+	}
+	printf("\n");
+  }
+
+  // Print out B
+  printf("Block of B on rank %d at coordinates (%d, %d)\n", rank, this_block_row, this_block_col);
+  for (i=0; i<block_size; i++) {
+  	for (j=0; j<block_size; j++) {
+		printf("%f ", B[i][j]);
+	}
+	printf("\n");
+  }
+
+  
+  
   // Print matrix contents (debug)
   /*
   for (i=0; i<N; i++) {
