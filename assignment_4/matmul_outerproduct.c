@@ -45,14 +45,16 @@ static void print_usage(char *exec_name) {
   }
 }
 
+int blocks_per_row,N,block_size;
+
 ///////////////////////////
 ////// Main function //////
 ///////////////////////////
 
 int main(int argc, char *argv[])
 {
-  int blocks_per_row,N,block_size;
-  
+  int i,j,k;
+
   // Get N from command line arg
   // TODO segfaults if i forget to pass arg, so ghetto :(
   N = atoi(argv[3]); 
@@ -89,31 +91,78 @@ int main(int argc, char *argv[])
   double A[block_size][block_size];
   double B[block_size][block_size];
   double C[block_size][block_size];
+  double bufferA[block_size][block_size];
+  double bufferB[block_size][block_size];
 
-  int i, j, k;
   // Fill matrices
   for (i=0; i<block_size; i++) {
   	for (j=0; j<block_size; j++) {
 		A[i][j] = (rank / blocks_per_row) * block_size + i;
-		if (rank == 0) {
-			printf("process zero here. A[%d][%d] = %f\n", i, j, A[i][j]);
-		}
 		B[i][j] = (this_block_row + this_block_col) * block_size + i + j;
-		if (rank == 0) {
-			printf("process zero here. B[%d][%d] = %f\n", i, j, B[i][j]);
-		}
 		C[i][j] = 0.0;
 	}
   }
 
-  // Multiply matrices
-  for (k=0; k<N; k++) {
-	for (i=0; i<N; i++) {
-		for (j=0; j<N; j++) {
-			C[i][j] = C[i][j] + (A[i][k] * B[k][i]);
+  // Local function to multiply matrices
+  // OKAY THIS IS HORRIBLE, I'VE WASTED AN HOUR MESSING
+  // WITH POINTERS AND SCOPE AND I'M JUST GOING TO HAVE TO
+  // DUPLICATE CODE IN ORDER TO GET THIS DONE ON TIME
+  void MatrixMultiplyAddBothLocal() {
+	for (i=0; i<block_size; i++) {
+		for (k=0; k<block_size; k++) {
+			for (j=0; j<block_size; j++) {
+					C[i][j] = C[i][j] + (A[i][k]) * (B[k][j]);
+					#ifdef DEBUG
+						printf("A%d%d and B%d%d are: %f, %f\n", i, k, k, j, A[i][k], B[k][j]);
+						printf("C%d%d is %f\n", i, j, C[i][j]);
+					#endif
+			}
 		}
 	}
   }
+  void MatrixMultiplyAddBothBuffer() {
+	for (i=0; i<block_size; i++) {
+		for (k=0; k<block_size; k++) {
+			for (j=0; j<block_size; j++) {
+					C[i][j] = C[i][j] + (bufferA[i][k]) * (bufferB[k][j]);
+					#ifdef DEBUG
+						printf("bufferA%d%d and bufferB%d%d are: %f, %f\n", i, k, k, j, bufferA[i][k], bufferB[k][j]);
+						printf("C%d%d is %f\n", i, j, C[i][j]);
+					#endif
+			}
+		}
+	}
+  }
+  void MatrixMultiplyAddABuffer() {
+	for (i=0; i<block_size; i++) {
+		for (k=0; k<block_size; k++) {
+			for (j=0; j<block_size; j++) {
+					C[i][j] = C[i][j] + (bufferA[i][k]) * (B[k][j]);
+					#ifdef DEBUG
+						printf("bufferA%d%d and B%d%d are: %f, %f\n", i, k, k, j, bufferA[i][k], B[k][j]);
+						printf("C%d%d is %f\n", i, j, C[i][j]);
+					#endif
+			}
+		}
+	}
+  }
+  void MatrixMultiplyAddBBuffer() {
+	for (i=0; i<block_size; i++) {
+		for (k=0; k<block_size; k++) {
+			for (j=0; j<block_size; j++) {
+					C[i][j] = C[i][j] + (A[i][k]) * (bufferB[k][j]);
+					#ifdef DEBUG
+						printf("A%d%d and bufferB%d%d are: %f, %f\n", i, k, k, j, A[i][k], bufferB[k][j]);
+						printf("C%d%d is %f\n", i, j, C[i][j]);
+					#endif
+			}
+		}
+	}
+  }
+
+
+  // Multiply local matrices (just to test MatrixMultiplyAddBothLocal function)
+  MatrixMultiplyAddBothLocal();
 
   // Sum elements of matrix C
   double sum;
@@ -121,19 +170,22 @@ int main(int argc, char *argv[])
   for (i=0; i<block_size; i++) {
   	for (j=0; j<block_size; j++) {
 		sum = sum + C[i][j];
-		if (rank == 0) {
-			printf("process zero here. C[%d][%d] = %f\n", i, j, C[i][j]);
+		if (rank == 1) {
+			#ifdef DEBUG
+			printf("process %d here. C[%d][%d] = %f\n", rank, i, j, C[i][j]);
+			#endif
 		}
 	}
   }
 
   printf("process %d here, i got a sum of %f\n", rank, sum);
 
-  // Calculate what total should be
-  double c_sum;
-  c_sum = N*N*N*(N-1)*(N-1)/2;
-
-  printf("total sum should be %f\n", c_sum);
+  // Calculate what total should be, only one process needs to do this
+  if (rank == 0) {
+	  double c_sum;
+	  c_sum = N*N*N*(N-1)*(N-1)/2;
+	  printf("total sum should be %f\n", c_sum);
+  }
   
 
   // Start the timer
