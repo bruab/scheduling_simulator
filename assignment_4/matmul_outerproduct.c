@@ -94,6 +94,7 @@ int main(int argc, char *argv[])
   double bufferA[block_size][block_size];
   double bufferB[block_size][block_size];
   int row_mates[blocks_per_row-1];
+  int col_mates[blocks_per_row-1];
 
   // Calculate row mates
   int factor, index, mate_rank;
@@ -107,6 +108,7 @@ int main(int argc, char *argv[])
 	  }
   }
 
+  // Verify row mates
   #ifdef DEBUG
   printf("process %d here. these are my row mates: ", rank);
   for (i=0; i<blocks_per_row-1; i++) {
@@ -115,7 +117,26 @@ int main(int argc, char *argv[])
   printf("\n");
   #endif
 
+  // Calculate column mates
+  int lowest_col_mate;
+  lowest_col_mate = rank % blocks_per_row;
+  index = 0;
+  for (i=0; i<blocks_per_row; i++) {
+	  mate_rank = lowest_col_mate + i * blocks_per_row;
+	  if (rank != mate_rank) {
+		  col_mates[index] = mate_rank;
+		  index++;
+	  }
+  }
 
+  // Verify column mates
+  #ifdef DEBUG
+  printf("process %d here. these are my column mates: ", rank);
+  for (i=0; i<blocks_per_row-1; i++) {
+	  printf("%d, ", col_mates[i]);
+  }
+  printf("\n");
+  #endif
 
   // Fill matrices
   for (i=0; i<block_size; i++) {
