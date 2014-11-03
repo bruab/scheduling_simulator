@@ -93,6 +93,29 @@ int main(int argc, char *argv[])
   double C[block_size][block_size];
   double bufferA[block_size][block_size];
   double bufferB[block_size][block_size];
+  int row_mates[blocks_per_row-1];
+
+  // Calculate row mates
+  int factor, index, mate_rank;
+  factor = rank / blocks_per_row;
+  index = 0;
+  for (i=0; i<blocks_per_row; i++) {
+	  mate_rank = factor * blocks_per_row + i;
+	  if (rank != mate_rank) {
+		  row_mates[index] = mate_rank;
+	  	  index++;
+	  }
+  }
+
+  #ifdef DEBUG
+  printf("process %d here. these are my row mates: ", rank);
+  for (i=0; i<blocks_per_row-1; i++) {
+	  printf("%d, ", row_mates[i]);
+  }
+  printf("\n");
+  #endif
+
+
 
   // Fill matrices
   for (i=0; i<block_size; i++) {

@@ -4,5 +4,5 @@
 
 if [ $? == 0 ]
 then
-	./run_this_executable.sh matmul_outerproduct 81
+	./run_this_executable.sh matmul_outerproduct 16
 fi
