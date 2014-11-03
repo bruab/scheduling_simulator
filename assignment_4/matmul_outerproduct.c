@@ -88,11 +88,11 @@ int main(int argc, char *argv[])
   this_block_col = (this_block_row + rank) % (blocks_per_row + 1);
 
   // Declare matrices
-  double A[block_size][block_size];
-  double B[block_size][block_size];
-  double C[block_size][block_size];
-  double bufferA[block_size][block_size];
-  double bufferB[block_size][block_size];
+  double A[block_size*block_size];
+  double B[block_size*block_size];
+  double C[block_size*block_size];
+  double bufferA[block_size*block_size];
+  double bufferB[block_size*block_size];
 
   // Determine row and column mates; create communicators
   int row_mates[blocks_per_row];
@@ -152,29 +152,44 @@ int main(int argc, char *argv[])
   // Fill matrices
   for (i=0; i<block_size; i++) {
   	for (j=0; j<block_size; j++) {
-		A[i][j] = (rank / blocks_per_row) * block_size + i;
-		B[i][j] = (this_block_row + this_block_col) * block_size + i + j;
-		C[i][j] = 0.0;
+		A[i*block_size + j] = (rank / blocks_per_row) * block_size + i;
+		B[i*block_size + j] = (this_block_row + this_block_col) * block_size + i + j;
+		C[i*block_size + j] = 0.0;
 	}
   }
 
   // Local function to multiply matrices
-  void MatrixMultiply(double myA[block_size][block_size], double myB[block_size][block_size]) {
+  void MatrixMultiply(double myA[block_size*block_size], double myB[block_size*block_size]) {
 	for (i=0; i<block_size; i++) {
 		for (k=0; k<block_size; k++) {
 			for (j=0; j<block_size; j++) {
-					C[i][j] = C[i][j] + (myA[i][k]) * (myB[k][j]);
-					#ifdef DEBUG
-						//printf("myA%d%d and myB%d%d are: %f, %f\n", i, k, k, j, myA[i][k], myB[k][j]);
-						//printf("C%d%d is %f\n", i, j, C[i][j]);
-					#endif
+					C[i*block_size + j] = C[i*block_size + j] + (myA[i*block_size + k]) * (myB[k*block_size + j]);
 			}
 		}
 	}
   }
 
+  // Local function to print matrix for debugging
+  void PrintMatrix(double mat[block_size*block_size]) {
+	  for (i=0; i<block_size; i++) {
+		  for (j=0; j<block_size; j++) {
+			  printf("%f ", mat[i*block_size + j]);
+		  }
+		  printf("\n");
+	  }
+  }
+
   // Just testing ...
   MatrixMultiply(A, B);
+#ifdef DEBUG
+  printf("Process %d here. Matrix A:\n", rank);
+  PrintMatrix(A);
+  printf("******\nMatrix B:\n");
+  PrintMatrix(B);
+  printf("******\nMatrix C:\n");
+  PrintMatrix(C);
+  printf("\n\n");
+#endif
 
   // Broadcast and multiply
   /*
@@ -238,19 +253,14 @@ int main(int argc, char *argv[])
   sum = 0.0;
   for (i=0; i<block_size; i++) {
   	for (j=0; j<block_size; j++) {
-		sum = sum + C[i][j];
-		if (rank == 1) {
-			#ifdef DEBUG
-			printf("process %d here. C[%d][%d] = %f\n", rank, i, j, C[i][j]);
-			#endif
-		}
+		sum = sum + C[i*block_size + j];
 	}
   }
 
   printf("process %d here, i got a sum of %f\n", rank, sum);
 
   // Calculate what total should be, only one process needs to do this
-  if (rank == 0) {
+  if (rank == num_procs - 1) {
 	  double c_sum;
 	  c_sum = N*N*N*(N-1)*(N-1)/2;
 	  printf("total sum should be %f\n", c_sum);
