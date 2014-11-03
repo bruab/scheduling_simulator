@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 	for (i=0; i<block_size; i++) {
 		for (kk=0; kk<block_size; kk++) {
 			for (j=0; j<block_size; j++) {
-					C[i*block_size + j] = C[i*block_size + j] + (myA[i*block_size + kk]) * (myB[kk*block_size + j]);
+					myC[i*block_size + j] = myC[i*block_size + j] + (myA[i*block_size + kk]) * (myB[kk*block_size + j]);
 			}
 		}
 	}
@@ -179,8 +179,7 @@ int main(int argc, char *argv[])
 		}
 	  }
 		
-	row_sender_rank = (rank / blocks_per_row) * blocks_per_row + k;
-	MPI_Bcast(&bufferA, block_size*block_size, MPI_FLOAT, row_sender_rank, row_comm_id);
+	MPI_Bcast(bufferA, block_size*block_size, MPI_DOUBLE, k, row_comm_id);
 
 	  // Every block in row k sends B to its column mates
 	  if (this_block_row == k) {
@@ -192,17 +191,8 @@ int main(int argc, char *argv[])
 		}
 	  }
 
-	  col_sender_rank = rank % blocks_per_row + k * blocks_per_row;
-
-	  MPI_Bcast(&bufferB, block_size*block_size, MPI_FLOAT, col_sender_rank, col_comm_id);
+	  MPI_Bcast(bufferB, block_size*block_size, MPI_DOUBLE, k, col_comm_id);
 	  
-#ifdef DEBUG
-	if (rank == 3) {
-		printf("post bcast b, bufferB is \n");
-		PrintMatrix(bufferB);
-	}
-#endif
-
 	  // Multiply Matrix blocks
 	  if (this_block_row == k && this_block_col == k) {
 	  	MatrixMultiply(A, B, C);
@@ -223,6 +213,10 @@ int main(int argc, char *argv[])
 		sum = sum + C[i*block_size + j];
 	}
   }
+
+#ifdef DEBUG
+  printf("process %d here, i got a sum of %f\n", rank, sum);
+#endif
 
 
   // Calculate what total should be, only one process needs to do this
