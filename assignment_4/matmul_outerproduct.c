@@ -93,50 +93,61 @@ int main(int argc, char *argv[])
   double C[block_size][block_size];
   double bufferA[block_size][block_size];
   double bufferB[block_size][block_size];
-  int row_mates[blocks_per_row-1];
-  int col_mates[blocks_per_row-1];
+
+  // Determine row and column mates; create communicators
+  int row_mates[blocks_per_row];
+  int col_mates[blocks_per_row];
 
   // Calculate row mates
   int factor, index, mate_rank;
   factor = rank / blocks_per_row;
-  index = 0;
   for (i=0; i<blocks_per_row; i++) {
 	  mate_rank = factor * blocks_per_row + i;
-	  if (rank != mate_rank) {
-		  row_mates[index] = mate_rank;
-	  	  index++;
-	  }
+		  row_mates[i] = mate_rank;
   }
 
   // Verify row mates
   #ifdef DEBUG
-  printf("process %d here. these are my row mates: ", rank);
-  for (i=0; i<blocks_per_row-1; i++) {
-	  printf("%d, ", row_mates[i]);
-  }
-  printf("\n");
+  //printf("process %d here. these are my row mates: ", rank);
+  //for (i=0; i<blocks_per_row; i++) {
+	  //printf("%d, ", row_mates[i]);
+  //}
+  //printf("\n");
   #endif
 
   // Calculate column mates
   int lowest_col_mate;
   lowest_col_mate = rank % blocks_per_row;
-  index = 0;
   for (i=0; i<blocks_per_row; i++) {
 	  mate_rank = lowest_col_mate + i * blocks_per_row;
-	  if (rank != mate_rank) {
-		  col_mates[index] = mate_rank;
-		  index++;
-	  }
+		  col_mates[i] = mate_rank;
   }
 
   // Verify column mates
   #ifdef DEBUG
-  printf("process %d here. these are my column mates: ", rank);
-  for (i=0; i<blocks_per_row-1; i++) {
-	  printf("%d, ", col_mates[i]);
-  }
-  printf("\n");
+  //printf("process %d here. these are my column mates: ", rank);
+  //for (i=0; i<blocks_per_row; i++) {
+	  //printf("%d, ", col_mates[i]);
+  //}
+  //printf("\n");
   #endif
+
+  // Create MPI groups and communicators
+  MPI_Group world_group_id;
+  MPI_Comm row_comm_id;
+  MPI_Group row_group_id;
+  MPI_Comm col_comm_id;
+  MPI_Group col_group_id;
+
+  MPI_Comm_group ( MPI_COMM_WORLD, &world_group_id );
+
+  // Rows
+  MPI_Group_incl ( world_group_id, blocks_per_row, row_mates, &row_group_id );
+  MPI_Comm_create ( MPI_COMM_WORLD, row_group_id, &row_comm_id );
+
+  // Columns
+  MPI_Group_incl ( world_group_id, blocks_per_row, col_mates, &col_group_id );
+  MPI_Comm_create ( MPI_COMM_WORLD, col_group_id, &col_comm_id );
 
   // Fill matrices
   for (i=0; i<block_size; i++) {
@@ -154,8 +165,8 @@ int main(int argc, char *argv[])
 			for (j=0; j<block_size; j++) {
 					C[i][j] = C[i][j] + (myA[i][k]) * (myB[k][j]);
 					#ifdef DEBUG
-						printf("myA%d%d and myB%d%d are: %f, %f\n", i, k, k, j, myA[i][k], myB[k][j]);
-						printf("C%d%d is %f\n", i, j, C[i][j]);
+						//printf("myA%d%d and myB%d%d are: %f, %f\n", i, k, k, j, myA[i][k], myB[k][j]);
+						//printf("C%d%d is %f\n", i, j, C[i][j]);
 					#endif
 			}
 		}
@@ -164,6 +175,62 @@ int main(int argc, char *argv[])
 
   // Just testing ...
   MatrixMultiply(A, B);
+
+  // Broadcast and multiply
+  /*
+  int row_sender_rank, col_sender_rank;
+  for (k=0; k < blocks_per_row; k++) {
+	  // Every block in column k sends A to its row mates
+	  if (this_block_col == k) {
+		// first copy contents of A to bufferA
+		for (i=0; i<block_size; i++) {
+			for (j=0; j<block_size; j++) {
+				bufferA[i][j] = A[i][j];
+			}
+		}
+	  }
+		
+	row_sender_rank = (rank / blocks_per_row) * blocks_per_row + k;
+	MPI_Bcast(bufferA, block_size*block_size, MPI_FLOAT, row_sender_rank, row_comm_id);
+
+	  // Every block in row k sends B to its column mates
+	  if (this_block_row == k) {
+		// first copy contents of B to bufferB
+		for (i=0; i<block_size; i++) {
+			for (j=0; j<block_size; j++) {
+				bufferB[i][j] = B[i][j];
+			}
+		}
+	  }
+
+	  col_sender_rank = rank % blocks_per_row + k * blocks_per_row;
+	#ifdef DEBUG
+	printf("process %d here, pre-broadcast. k=%d and my bufferB looks like this:\n", rank, k);
+	for (i=0; i<block_size; i++) {
+		for (j=0; j<block_size; j++) {
+			printf("%f ", bufferB[i][j]);
+		}
+		printf("\n");
+	}
+	#endif
+	  MPI_Bcast(bufferB, block_size*block_size, MPI_FLOAT, col_sender_rank, col_comm_id);
+	#ifdef DEBUG
+	printf("process %d here, post-broadcast. k=%d and my bufferB looks like this:\n", rank, k);
+	for (i=0; i<block_size; i++) {
+		for (j=0; j<block_size; j++) {
+			printf("%f ", bufferB[i][j]);
+		}
+		printf("\n");
+	}
+	#endif
+
+
+
+	  // Multiply Matrix blocks
+	  //
+	  //
+  }
+  */
 
 
   // Sum elements of matrix C
