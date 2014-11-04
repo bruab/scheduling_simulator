@@ -45,6 +45,11 @@ static void print_usage(char *exec_name) {
   }
 }
 
+
+///////////////////////////////////////////////////////
+//// MatrixMultiply() and PrintMatrix() functions /////
+///////////////////////////////////////////////////////
+
 void MatrixMultiply(double* myA, double* myB, double* myC, int block_size) {
         int i, j, k;
 	for (i=0; i<block_size; i++) {
@@ -56,7 +61,17 @@ void MatrixMultiply(double* myA, double* myB, double* myC, int block_size) {
 	}
 }
 
-int blocks_per_row,N,block_size;
+// Local function to print matrix for debugging
+void PrintMatrix(double* mat, int block_size) {
+	  int i, j;
+	  for (i=0; i<block_size; i++) {
+		  for (j=0; j<block_size; j++) {
+			  printf("%f ", mat[i*block_size + j]);
+		  }
+		  printf("\n");
+	  }
+}
+
 
 ///////////////////////////
 ////// Main function //////
@@ -65,6 +80,7 @@ int blocks_per_row,N,block_size;
 int main(int argc, char *argv[])
 {
   int i,j,k;
+  int blocks_per_row, block_size, N;
 
   // Get N from command line arg
   // TODO segfaults if i forget to pass arg, so ghetto :(
@@ -153,16 +169,6 @@ int main(int argc, char *argv[])
 		bufferA[i*block_size + j] = 0.0;
 		bufferB[i*block_size + j] = 0.0;
 	}
-  }
-
-  // Local function to print matrix for debugging
-  void PrintMatrix(double mat[block_size*block_size]) {
-	  for (i=0; i<block_size; i++) {
-		  for (j=0; j<block_size; j++) {
-			  printf("%f ", mat[i*block_size + j]);
-		  }
-		  printf("\n");
-	  }
   }
 
   // Broadcast and multiply
