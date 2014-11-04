@@ -61,7 +61,6 @@ void MatrixMultiply(double* myA, double* myB, double* myC, int block_size) {
 	}
 }
 
-// Local function to print matrix for debugging
 void PrintMatrix(double* mat, int block_size) {
 	  int i, j;
 	  for (i=0; i<block_size; i++) {
@@ -158,8 +157,6 @@ int main(int argc, char *argv[])
   MPI_Group_incl ( world_group_id, blocks_per_row, col_mates, &col_group_id );
   MPI_Comm_create ( MPI_COMM_WORLD, col_group_id, &col_comm_id );
 
-
-
   // Fill matrices
   for (i=0; i<block_size; i++) {
   	for (j=0; j<block_size; j++) {
@@ -217,6 +214,13 @@ int main(int argc, char *argv[])
   	for (j=0; j<block_size; j++) {
 		sum = sum + C[i*block_size + j];
 	}
+  }
+
+  // Collect all sums
+  double total_sum;
+  MPI_Reduce(&sum, &total_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+  if (rank == 0) {
+	  printf("actual sum is %f\n", total_sum);
   }
 
 #ifdef DEBUG
