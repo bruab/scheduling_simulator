@@ -37,3 +37,5 @@ bcast_ring_pipelined_isend
 bcast_bintree_pipelined_isend
 mat_mul_init
 matmul_outerproduct
+lu_simple
+sequential_lu
