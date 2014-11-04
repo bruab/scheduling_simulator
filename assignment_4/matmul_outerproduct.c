@@ -45,6 +45,17 @@ static void print_usage(char *exec_name) {
   }
 }
 
+void MatrixMultiply(double* myA, double* myB, double* myC, int block_size) {
+        int i, j, k;
+	for (i=0; i<block_size; i++) {
+		for (k=0; k<block_size; k++) {
+			for (j=0; j<block_size; j++) {
+					myC[i*block_size + j] = myC[i*block_size + j] + (myA[i*block_size + k]) * (myB[k*block_size + j]);
+			}
+		}
+	}
+}
+
 int blocks_per_row,N,block_size;
 
 ///////////////////////////
@@ -154,18 +165,6 @@ int main(int argc, char *argv[])
 	  }
   }
 
-  // Local function to multiply matrices
-  void MatrixMultiply(double myA[block_size*block_size], double myB[block_size*block_size], double myC[block_size*block_size]) {
-	  int kk;
-	for (i=0; i<block_size; i++) {
-		for (kk=0; kk<block_size; kk++) {
-			for (j=0; j<block_size; j++) {
-					myC[i*block_size + j] = myC[i*block_size + j] + (myA[i*block_size + kk]) * (myB[kk*block_size + j]);
-			}
-		}
-	}
-  }
-
   // Broadcast and multiply
   int row_sender_rank, col_sender_rank;
   for (k=0; k < blocks_per_row; k++) {
@@ -195,13 +194,13 @@ int main(int argc, char *argv[])
 	  
 	  // Multiply Matrix blocks
 	  if (this_block_row == k && this_block_col == k) {
-	  	MatrixMultiply(A, B, C);
+	  	MatrixMultiply(A, B, C, block_size);
 	  } else if (this_block_row == k) {
-	  	MatrixMultiply(bufferA, B, C);
+	  	MatrixMultiply(bufferA, B, C, block_size);
 	  } else if (this_block_col == k) {
-	  	MatrixMultiply(A, bufferB, C);
+	  	MatrixMultiply(A, bufferB, C, block_size);
 	  } else {
-	  	MatrixMultiply(bufferA, bufferB, C);
+	  	MatrixMultiply(bufferA, bufferB, C, block_size);
 	  }
   }
 
