@@ -161,37 +161,15 @@ int main(int argc, char *argv[])
   // MAIN ALGORITHM
   int k, local_j; 
 
-#ifdef DEBUG
-  int rank_to_test;
-  rank_to_test = 1;
-#endif
-
   for (k=0; k < N-1; k++) {
 	  int k_owner, local_k;
 	  k_owner = owner_global_column(k, num_procs, N);
 	  local_k = global_to_local_column(k, num_procs, N);
 	  // update k-th column if I have it
 	  if (k_owner == rank) {
-		#ifdef DEBUG
-		  printf("process %d here; k=%d and I own that column ...\n", rank, k);
-		  printf("updating %dth column...\n", k);
-		  printf("before:\n");
-	          print_matrix(A, N, columns_per_processor);
-		#endif
 		  for (i=k+1; i<N; i++) {
-			  if (k==2) {
-				  printf("i=%d, k=%d, rank=%d\n", i, k, rank);
-				  double Aik, Akk;
-				  Aik = A[i*columns_per_processor + local_k];
-				  Akk = A[k*columns_per_processor + local_k];
-				  printf("Aik=%f, Akk=%f\n\n", Aik, Akk);
-			  }
 			  A[i*columns_per_processor + local_k] = A[i*columns_per_processor + local_k] / A[k*columns_per_processor + local_k];
 		  }
-		#ifdef DEBUG
-		  printf("after:\n");
-		  print_matrix(A, N, columns_per_processor);
-		#endif
 
 		  // Copy kth column to buffer for broadcast
 		  for (i=0; i<N; i++) {
@@ -201,16 +179,10 @@ int main(int argc, char *argv[])
 
 	// broadcast to all
 	MPI_Bcast(buffer, N, MPI_DOUBLE, k_owner, MPI_COMM_WORLD);
-  MPI_Barrier(MPI_COMM_WORLD);
 
 
 	  // update any columns I have that come after k
 	  double Aik;
-		#ifdef DEBUG
-		  printf("process %d, updating LR ...\n", rank);
-		  printf("before:\n");
-	          print_matrix(A, N, columns_per_processor);
-		#endif
 	  for (j=k+1; j<N; j++) {  // j is the global column
 		  for (i=k+1; i<N; i++) {  // i is the row
 			  if (owner_global_column(j, num_procs, N) == rank) {
@@ -220,50 +192,32 @@ int main(int argc, char *argv[])
 				  } else {
 
 					  Aik = buffer[i];
-					  if (rank == 1) {
-						  printf("buffer looks like:\n");
-						  print_matrix(buffer, N, 1);
-					  }
 				  }
 
-				  if (rank==1) {
-					  double Aij, Akj;
-					  Aij = A[i*columns_per_processor + local_j];
-					  Akj = A[k*columns_per_processor + local_j];
-					  printf("i=%d, j=%d, k=%d\n", i, j, k);
-					  printf("Aij=%f, Aik=%f, Akj=%f\n\n", Aij, Aik, Akj);
-				  }
 				  A[i*columns_per_processor + local_j] -= Aik * A[k*columns_per_processor + local_j];
 			  }
 		  }
 	  }
-		#ifdef DEBUG
-		  printf("process %d, updating LR ...\n", rank);
-		  printf("after:\n");
-	          print_matrix(A, N, columns_per_processor);
-		#endif
-	#ifdef DEBUG
-	  if (rank == rank_to_test) {
-		  //printf("after:\n");
-		  //print_matrix(A, N, columns_per_processor);
-	  }
-	#endif
+  } // end k loop
+
+  // Validate the results
+  double Aij;
+  for (i=0; i < N; i++) {
+    for (j=0; j < N; j++) {
+	    if (owner_global_column(j, num_procs, N) == rank) {
+		    local_j = global_to_local_column(j, num_procs, N);
+		    Aij = A[i*columns_per_processor + local_j];
+		    if ((i > j) && (Aij != 1.0)) {
+        		fprintf(stderr,"** MISMATCH  ** A(%d,%d) = %.2lf but should be %.2lf\n", i,j, Aij, 1.0);
+		    }
+		    if ((i <= j) && (Aij != (double)(i+1)*(i+1))) {
+        		fprintf(stderr,"** MISMATCH  ** A(%d,%d) = %.2lf but should be %.2lf\n",i,j, Aij, (double)(i+1)*(i+1));
+		    }
+	    }
+    }
   }
 
   /*
-  // Do the Gaussian elimination
-  for (k=0; k <N-1; k++) {
-    // Update the k-th column
-    for (i=k+1; i < N; i++) {
-      A[i*N+k] = + A[i*N+k] / A[k*N+k];
-    }
-    for (j=k+1; j < N; j++) {
-      for (i = k+1; i < N; i++) {
-        A[i*N+j] -= A[i*N+k] * A[k*N+j];
-      }
-    }
-  }
-
   // Start the timer
   double start_time;
   MPI_Barrier(MPI_COMM_WORLD);
