@@ -159,11 +159,11 @@ int main(int argc, char *argv[])
   }
 
   // MAIN ALGORITHM
-  int k, local_col; 
+  int k, local_j; 
 
 #ifdef DEBUG
   int rank_to_test;
-  rank_to_test = 0;
+  rank_to_test = 1;
 #endif
 
   for (k=0; k < N-1; k++) {
@@ -175,20 +175,22 @@ int main(int argc, char *argv[])
 		#ifdef DEBUG
 		  printf("process %d here; k=%d and I own that column ...\n", rank, k);
 		  printf("updating %dth column...\n", k);
-		  if (rank == rank_to_test) {
-			  printf("before:\n");
-			  print_matrix(A, N, columns_per_processor);
-		  }
+		  printf("before:\n");
+	          print_matrix(A, N, columns_per_processor);
 		#endif
 		  for (i=k+1; i<N; i++) {
-			  local_col = global_to_local_column(i, num_procs, N); 
-			  A[local_col*columns_per_processor + k] = A[local_col*columns_per_processor + k] / A[k*columns_per_processor + k];
+			  if (k==2) {
+				  printf("i=%d, k=%d, rank=%d\n", i, k, rank);
+				  double Aik, Akk;
+				  Aik = A[i*columns_per_processor + local_k];
+				  Akk = A[k*columns_per_processor + local_k];
+				  printf("Aik=%f, Akk=%f\n\n", Aik, Akk);
+			  }
+			  A[i*columns_per_processor + local_k] = A[i*columns_per_processor + local_k] / A[k*columns_per_processor + local_k];
 		  }
 		#ifdef DEBUG
-		  if (rank == rank_to_test) {
-			  printf("after:\n");
-			  print_matrix(A, N, columns_per_processor);
-		  }
+		  printf("after:\n");
+		  print_matrix(A, N, columns_per_processor);
 		#endif
 
 		  // Copy kth column to buffer for broadcast
@@ -198,37 +200,52 @@ int main(int argc, char *argv[])
 	  } // end if (k_owner == rank)
 
 	// broadcast to all
-	MPI_Bcast(buffer, N, MPI_DOUBLE, rank, MPI_COMM_WORLD);
-	#ifdef DEBUG
-		printf("rank %d here; my buffer looks like this:\n", rank);
-		print_matrix(buffer, N, 1);
-	#endif
-	printf("*****\n\n");
+	MPI_Bcast(buffer, N, MPI_DOUBLE, k_owner, MPI_COMM_WORLD);
+  MPI_Barrier(MPI_COMM_WORLD);
+
 
 	  // update any columns I have that come after k
-	#ifdef DEBUG
-	  printf("updating other columns now ...\n");
-	#endif
-	  for (j=k+1; j<N; j++) {
-		  for (i=k+1; i<N; i++) {
-			  if (owner_global_column(i, num_procs, N) == rank) {
-			#ifdef DEBUG
-				  if (rank == rank_to_test) {
-					  printf("before:\n");
-					  print_matrix(A, N, columns_per_processor);
+	  double Aik;
+		#ifdef DEBUG
+		  printf("process %d, updating LR ...\n", rank);
+		  printf("before:\n");
+	          print_matrix(A, N, columns_per_processor);
+		#endif
+	  for (j=k+1; j<N; j++) {  // j is the global column
+		  for (i=k+1; i<N; i++) {  // i is the row
+			  if (owner_global_column(j, num_procs, N) == rank) {
+			          local_j = global_to_local_column(j, num_procs, N);
+				  if (k_owner == rank) {
+					  Aik = A[i*columns_per_processor + local_k];
+				  } else {
+
+					  Aik = buffer[i];
+					  if (rank == 1) {
+						  printf("buffer looks like:\n");
+						  print_matrix(buffer, N, 1);
+					  }
 				  }
-			#endif
-			          local_col = global_to_local_column(i, num_procs, N);
-				  A[local_col*columns_per_processor + j] -= A[local_col*columns_per_processor + k] * buffer[local_k*columns_per_processor + j];
-				  // TODO that A[k*cols + j] should check whether we own column k or not;
-				  // IOW A[k*cols + j] is A[k][j] which this process may not own.
+
+				  if (rank==1) {
+					  double Aij, Akj;
+					  Aij = A[i*columns_per_processor + local_j];
+					  Akj = A[k*columns_per_processor + local_j];
+					  printf("i=%d, j=%d, k=%d\n", i, j, k);
+					  printf("Aij=%f, Aik=%f, Akj=%f\n\n", Aij, Aik, Akj);
+				  }
+				  A[i*columns_per_processor + local_j] -= Aik * A[k*columns_per_processor + local_j];
 			  }
 		  }
 	  }
+		#ifdef DEBUG
+		  printf("process %d, updating LR ...\n", rank);
+		  printf("after:\n");
+	          print_matrix(A, N, columns_per_processor);
+		#endif
 	#ifdef DEBUG
 	  if (rank == rank_to_test) {
-		  printf("after:\n");
-		  print_matrix(A, N, columns_per_processor);
+		  //printf("after:\n");
+		  //print_matrix(A, N, columns_per_processor);
 	  }
 	#endif
   }
