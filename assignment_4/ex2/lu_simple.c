@@ -87,6 +87,17 @@ struct cell global_to_local(struct cell global_cell, int np, int N) {
 	return local_cell;
 }
 
+double calculate_cell_value(int i, int j) {
+	double sum;
+	int k;
+        int min_i_j = (i < j ? i : j);
+	for (k=0; k<=min_i_j; k++) {
+		sum += (k + 1) * (k + 1);
+	}
+	return sum;
+}
+
+
 
 ///////////////////////////
 ////// Main function //////
@@ -142,6 +153,15 @@ int main(int argc, char *argv[])
 	  struct cell test_global_cell2 = {10, 4};
 	  struct cell test_local_cell2 = global_to_local(test_global_cell2, test_num_procs, test_N);
 	  printf("global cell is (10, 4); local cell is (%d, %d)\n", test_local_cell2.row, test_local_cell2.col);
+
+	  int test_i, test_j;
+	  test_i = 3;
+	  test_j = 5;
+	  double result;
+	  result = calculate_cell_value(test_i, test_j);
+	  printf("for global cell (3, 5) expected a value of 30; actual=%f\n", result);
+	  result = calculate_cell_value(4, 4);
+	  printf("for global cell (4, 4) expected a value of 55; actual=%f\n", result);
 
   }
 #endif

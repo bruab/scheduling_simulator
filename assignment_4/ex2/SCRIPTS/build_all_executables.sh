@@ -9,5 +9,5 @@ do
 	fi
 done
 
-smpicc sequential_lu.c -lm -O4 -DDEBUG -o sequential_lu
+gcc sequential_lu.c -lm -O4 -DDEBUG -o sequential_lu
 smpicc lu_simple.c -lm -O4 -DDEBUG -o lu_simple
