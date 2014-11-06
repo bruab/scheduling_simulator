@@ -161,6 +161,13 @@ int main(int argc, char *argv[])
   // MAIN ALGORITHM
   int k, local_j; 
 
+  // Start the timer
+  double start_time, idle_start_time, idle_time;
+  MPI_Barrier(MPI_COMM_WORLD);
+  if (rank == 0) {  
+    start_time = MPI_Wtime();
+  }
+
   for (k=0; k < N-1; k++) {
 	  int k_owner, local_k;
 	  k_owner = owner_global_column(k, num_procs, N);
@@ -182,6 +189,8 @@ int main(int argc, char *argv[])
 
 
 	  // update any columns I have that come after k
+	  MPI_Barrier(MPI_COMM_WORLD);
+	  idle_start_time = MPI_Wtime();
 	  double Aik;
 	  for (j=k+1; j<N; j++) {  // j is the global column
 		  for (i=k+1; i<N; i++) {  // i is the row
@@ -198,7 +207,19 @@ int main(int argc, char *argv[])
 			  }
 		  }
 	  }
+	  MPI_Barrier(MPI_COMM_WORLD);
+	  idle_time += MPI_Wtime() - idle_start_time;
   } // end k loop
+
+  // Print out string message and wall-clock time if the broadcast was
+  // successful
+  MPI_Barrier(MPI_COMM_WORLD);
+  double total_idle_time;
+  MPI_Reduce(&idle_time, &total_idle_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+  if (0 == rank) {
+    fprintf(stdout,"Wall clock time: %.3lf\n",MPI_Wtime() - start_time);
+    printf("Idle time is %f\n", total_idle_time);
+  }
 
   // Validate the results
   double Aij;
@@ -218,12 +239,6 @@ int main(int argc, char *argv[])
   }
 
   /*
-  // Start the timer
-  double start_time;
-  MPI_Barrier(MPI_COMM_WORLD);
-  if (rank == 0) {  
-    start_time = MPI_Wtime();
-  }
   */
 
   // Clean-up
