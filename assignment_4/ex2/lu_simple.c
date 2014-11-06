@@ -53,13 +53,13 @@ struct cell {
 	int col;
 };
 
-void print_matrix(double *A,int n) {
+void print_matrix(double *A, int num_cols, int num_rows) {
   int i,j;
 
-  for (i=0; i < n; i++) {
+  for (i=0; i < num_cols; i++) {
     printf("  ");
-    for (j=0; j < n; j++) {
-      printf("%2.0lf ",A[i*n+j]);
+    for (j=0; j < num_rows; j++) {
+      printf("%2.0lf ",A[i*num_rows+j]);
     }
     printf("\n");
   }
@@ -106,7 +106,10 @@ double calculate_cell_value(int i, int j) {
 int main(int argc, char *argv[])
 {
   // Get N from command line arg
-  // TODO segfaults if i forget to pass arg, so ghetto :(
+  if (argc != 4) {
+    fprintf(stderr,"Missing an arg, or too many args.\nUsage: %s <N>\n",argv[0]);
+    exit(1);
+  }
   int N;
   N = atoi(argv[3]); 
 
@@ -127,6 +130,7 @@ int main(int argc, char *argv[])
  
   // Declare matrices
   double* A = (double*)malloc(sizeof(double)*columns_per_processor*N);
+  double* buffer = (double*)malloc(sizeof(double)*columns_per_processor*N);
 
   // Testing ...
 #ifdef DEBUG 
@@ -165,6 +169,32 @@ int main(int argc, char *argv[])
 
   }
 #endif
+
+  // Populate this processor's chunk of the matrix
+  int i, j;
+  struct cell local_cell = {0, 0};
+  struct cell global_cell;
+  double value;
+  for (i=0; i<N; i++) {
+	  for (j=0; j<columns_per_processor; j++) {
+		  local_cell.row = i;
+		  local_cell.col = j;
+		  global_cell = local_to_global(local_cell, rank, num_procs, N);
+		  A[i*columns_per_processor + j] = calculate_cell_value(global_cell.row, global_cell.col);
+		  if (rank == 0) {
+		  	printf("i is %d, j is %d\n", i, j);
+			printf("index is %d\n", i*columns_per_processor + j);
+			printf("A[%d][%d] is %f\n", i, j, A[i*columns_per_processor + j]);
+		  }
+	  }
+  }
+
+#ifdef DEBUG
+  if (rank == 0) {
+  	print_matrix(A, N, columns_per_processor);
+  }
+#endif
+
   /*
   // Determine row and column mates
   int row_mates[blocks_per_row];
