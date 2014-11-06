@@ -44,8 +44,15 @@ static void print_usage(char *exec_name) {
     fprintf(stderr,"\n");
   }
 }
+//////////////////////////////////////////////
+////// Matrix and local-global routines //////
+//////////////////////////////////////////////
 
-// Matrix printing routine
+struct cell {
+	int row;
+	int col;
+};
+
 void print_matrix(double *A,int n) {
   int i,j;
 
@@ -62,6 +69,22 @@ void print_matrix(double *A,int n) {
 
 int owner_global_column(int col_num, int procs, int N) {
 	return col_num * procs / N;
+}
+
+struct cell local_to_global(struct cell local_cell, int rank, int np, int N) {
+	int global_row, global_col;
+	global_row = local_cell.row;
+	global_col = local_cell.col + rank * N / np;
+	struct cell global_cell = {global_row, global_col};
+	return global_cell;
+}
+
+struct cell global_to_local(struct cell global_cell, int np, int N) {
+	int local_row, local_col;
+	local_row = global_cell.row;
+	local_col = global_cell.col % (N / np);
+	struct cell local_cell = {local_row, local_col};
+	return local_cell;
 }
 
 
@@ -105,6 +128,23 @@ int main(int argc, char *argv[])
   }
 #endif
 
+#ifdef DEBUG 
+  if (rank == 0) {
+	  // Test calculations with dummy values
+	  int test_num_procs, test_rank, test_N;
+	  test_num_procs = 4;
+	  test_rank = 2;
+	  test_N = 12;
+	  struct cell test_local_cell1 = {7, 0};
+	  struct cell test_global_cell1 = local_to_global(test_local_cell1, test_rank, test_num_procs, test_N);
+	  printf("local cell is (7, 0); global cell is (%d, %d)\n", test_global_cell1.row, test_global_cell1.col);
+
+	  struct cell test_global_cell2 = {10, 4};
+	  struct cell test_local_cell2 = global_to_local(test_global_cell2, test_num_procs, test_N);
+	  printf("global cell is (10, 4); local cell is (%d, %d)\n", test_local_cell2.row, test_local_cell2.col);
+
+  }
+#endif
   /*
   // Determine row and column mates
   int row_mates[blocks_per_row];
