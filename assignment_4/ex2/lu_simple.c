@@ -48,11 +48,6 @@ static void print_usage(char *exec_name) {
 ////// Matrix and local-global routines //////
 //////////////////////////////////////////////
 
-struct cell {
-	int row;
-	int col;
-};
-
 void print_matrix(double *A, int num_cols, int num_rows) {
   int i,j;
 
@@ -81,22 +76,6 @@ int global_to_local_column(int global_col, int np, int N) {
 	int local_col;
 	local_col = global_col % (N / np);
 	return local_col;
-}
-
-struct cell local_to_global_indices(struct cell local_cell, int rank, int np, int N) {
-	int global_row, global_col;
-	global_row = local_cell.row;
-	global_col = local_cell.col + rank * N / np;
-	struct cell global_cell = {global_row, global_col};
-	return global_cell;
-}
-
-struct cell global_to_local_indices(struct cell global_cell, int np, int N) {
-	int local_row, local_col;
-	local_row = global_cell.row;
-	local_col = global_cell.col % (N / np);
-	struct cell local_cell = {local_row, local_col};
-	return local_cell;
 }
 
 double calculate_cell_value(int i, int j) {
@@ -146,15 +125,12 @@ int main(int argc, char *argv[])
 
   // Populate this processor's chunk of the matrix
   int i, j;
-  struct cell local_cell = {0, 0};
-  struct cell global_cell;
+  int global_col;
   double value;
   for (i=0; i<N; i++) {
 	  for (j=0; j<columns_per_processor; j++) {
-		  local_cell.row = i;
-		  local_cell.col = j;
-		  global_cell = local_to_global_indices(local_cell, rank, num_procs, N);
-		  A[i*columns_per_processor + j] = calculate_cell_value(global_cell.row, global_cell.col);
+		  global_col = j + rank * N / num_procs;
+		  A[i*columns_per_processor + j] = calculate_cell_value(i, global_col);
 	  }
   }
 
