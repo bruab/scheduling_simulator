@@ -71,7 +71,19 @@ int owner_global_column(int col_num, int procs, int N) {
 	return col_num * procs / N;
 }
 
-struct cell local_to_global(struct cell local_cell, int rank, int np, int N) {
+int local_to_global_column(int local_col, int rank, int np, int N) {
+	int global_col;
+	global_col = local_col + rank * N / np;
+	return global_col;
+}
+
+int global_to_local_column(int global_col, int np, int N) {
+	int local_col;
+	local_col = global_col % (N / np);
+	return local_col;
+}
+
+struct cell local_to_global_indices(struct cell local_cell, int rank, int np, int N) {
 	int global_row, global_col;
 	global_row = local_cell.row;
 	global_col = local_cell.col + rank * N / np;
@@ -79,7 +91,7 @@ struct cell local_to_global(struct cell local_cell, int rank, int np, int N) {
 	return global_cell;
 }
 
-struct cell global_to_local(struct cell global_cell, int np, int N) {
+struct cell global_to_local_indices(struct cell global_cell, int np, int N) {
 	int local_row, local_col;
 	local_row = global_cell.row;
 	local_col = global_cell.col % (N / np);
@@ -94,7 +106,7 @@ double calculate_cell_value(int i, int j) {
 	for (k=0; k<=min_i_j; k++) {
 		sum += (k + 1) * (k + 1);
 	}
-	return sum;
+	return (double)sum;
 }
 
 
@@ -130,45 +142,7 @@ int main(int argc, char *argv[])
  
   // Declare matrices
   double* A = (double*)malloc(sizeof(double)*columns_per_processor*N);
-  double* buffer = (double*)malloc(sizeof(double)*columns_per_processor*N);
-
-  // Testing ...
-#ifdef DEBUG 
-  if (rank == 0) {
-	  int jj, owner;
-	  for (jj=0; jj<N; jj++) {
-		  owner = owner_global_column(jj, num_procs, N);
-		  printf("column %d belongs to process %d\n", jj, owner);
-	  }
-  }
-#endif
-
-#ifdef DEBUG 
-  if (rank == 0) {
-	  // Test calculations with dummy values
-	  int test_num_procs, test_rank, test_N;
-	  test_num_procs = 4;
-	  test_rank = 2;
-	  test_N = 12;
-	  struct cell test_local_cell1 = {7, 0};
-	  struct cell test_global_cell1 = local_to_global(test_local_cell1, test_rank, test_num_procs, test_N);
-	  printf("local cell is (7, 0); global cell is (%d, %d)\n", test_global_cell1.row, test_global_cell1.col);
-
-	  struct cell test_global_cell2 = {10, 4};
-	  struct cell test_local_cell2 = global_to_local(test_global_cell2, test_num_procs, test_N);
-	  printf("global cell is (10, 4); local cell is (%d, %d)\n", test_local_cell2.row, test_local_cell2.col);
-
-	  int test_i, test_j;
-	  test_i = 3;
-	  test_j = 5;
-	  double result;
-	  result = calculate_cell_value(test_i, test_j);
-	  printf("for global cell (3, 5) expected a value of 30; actual=%f\n", result);
-	  result = calculate_cell_value(4, 4);
-	  printf("for global cell (4, 4) expected a value of 55; actual=%f\n", result);
-
-  }
-#endif
+  double* buffer = (double*)malloc(sizeof(double)*N);   // holds one column
 
   // Populate this processor's chunk of the matrix
   int i, j;
@@ -179,138 +153,99 @@ int main(int argc, char *argv[])
 	  for (j=0; j<columns_per_processor; j++) {
 		  local_cell.row = i;
 		  local_cell.col = j;
-		  global_cell = local_to_global(local_cell, rank, num_procs, N);
+		  global_cell = local_to_global_indices(local_cell, rank, num_procs, N);
 		  A[i*columns_per_processor + j] = calculate_cell_value(global_cell.row, global_cell.col);
-		  if (rank == 0) {
-		  	printf("i is %d, j is %d\n", i, j);
-			printf("index is %d\n", i*columns_per_processor + j);
-			printf("A[%d][%d] is %f\n", i, j, A[i*columns_per_processor + j]);
+	  }
+  }
+
+  // MAIN ALGORITHM
+  int k, local_col; 
+
+#ifdef DEBUG
+  int rank_to_test;
+  rank_to_test = 0;
+#endif
+
+  for (k=0; k < N-1; k++) {
+	  int k_owner, local_k;
+	  k_owner = owner_global_column(k, num_procs, N);
+	  local_k = global_to_local_column(k, num_procs, N);
+	  // update k-th column if I have it
+	  if (k_owner == rank) {
+		#ifdef DEBUG
+		  printf("process %d here; k=%d and I own that column ...\n", rank, k);
+		  printf("updating %dth column...\n", k);
+		  if (rank == rank_to_test) {
+			  printf("before:\n");
+			  print_matrix(A, N, columns_per_processor);
+		  }
+		#endif
+		  for (i=k+1; i<N; i++) {
+			  local_col = global_to_local_column(i, num_procs, N); 
+			  A[local_col*columns_per_processor + k] = A[local_col*columns_per_processor + k] / A[k*columns_per_processor + k];
+		  }
+		#ifdef DEBUG
+		  if (rank == rank_to_test) {
+			  printf("after:\n");
+			  print_matrix(A, N, columns_per_processor);
+		  }
+		#endif
+
+		  // Copy kth column to buffer for broadcast
+		  for (i=0; i<N; i++) {
+	 		  buffer[i] = A[i*columns_per_processor + local_k];
+		  }
+	  } // end if (k_owner == rank)
+
+	// broadcast to all
+	MPI_Bcast(buffer, N, MPI_DOUBLE, rank, MPI_COMM_WORLD);
+	#ifdef DEBUG
+		printf("rank %d here; my buffer looks like this:\n", rank);
+		print_matrix(buffer, N, 1);
+	#endif
+	printf("*****\n\n");
+
+	  // update any columns I have that come after k
+	#ifdef DEBUG
+	  printf("updating other columns now ...\n");
+	#endif
+	  for (j=k+1; j<N; j++) {
+		  for (i=k+1; i<N; i++) {
+			  if (owner_global_column(i, num_procs, N) == rank) {
+			#ifdef DEBUG
+				  if (rank == rank_to_test) {
+					  printf("before:\n");
+					  print_matrix(A, N, columns_per_processor);
+				  }
+			#endif
+			          local_col = global_to_local_column(i, num_procs, N);
+				  A[local_col*columns_per_processor + j] -= A[local_col*columns_per_processor + k] * buffer[local_k*columns_per_processor + j];
+				  // TODO that A[k*cols + j] should check whether we own column k or not;
+				  // IOW A[k*cols + j] is A[k][j] which this process may not own.
+			  }
 		  }
 	  }
+	#ifdef DEBUG
+	  if (rank == rank_to_test) {
+		  printf("after:\n");
+		  print_matrix(A, N, columns_per_processor);
+	  }
+	#endif
   }
-
-#ifdef DEBUG
-  if (rank == 0) {
-  	print_matrix(A, N, columns_per_processor);
-  }
-#endif
 
   /*
-  // Determine row and column mates
-  int row_mates[blocks_per_row];
-  int col_mates[blocks_per_row];
-
-  // Calculate row mates
-  int factor, index, mate_rank;
-  factor = rank / blocks_per_row;
-  for (i=0; i<blocks_per_row; i++) {
-	  mate_rank = factor * blocks_per_row + i;
-		  row_mates[i] = mate_rank;
+  // Do the Gaussian elimination
+  for (k=0; k <N-1; k++) {
+    // Update the k-th column
+    for (i=k+1; i < N; i++) {
+      A[i*N+k] = + A[i*N+k] / A[k*N+k];
+    }
+    for (j=k+1; j < N; j++) {
+      for (i = k+1; i < N; i++) {
+        A[i*N+j] -= A[i*N+k] * A[k*N+j];
+      }
+    }
   }
-
-  // Calculate column mates
-  int lowest_col_mate;
-  lowest_col_mate = rank % blocks_per_row;
-  for (i=0; i<blocks_per_row; i++) {
-	  mate_rank = lowest_col_mate + i * blocks_per_row;
-		  col_mates[i] = mate_rank;
-  }
-
-  // Create MPI groups and communicators
-  MPI_Group world_group_id;
-  MPI_Comm row_comm_id;
-  MPI_Group row_group_id;
-  MPI_Comm col_comm_id;
-  MPI_Group col_group_id;
-
-  MPI_Comm_group ( MPI_COMM_WORLD, &world_group_id );
-
-  // Rows
-  MPI_Group_incl ( world_group_id, blocks_per_row, row_mates, &row_group_id );
-  MPI_Comm_create ( MPI_COMM_WORLD, row_group_id, &row_comm_id );
-
-  // Columns
-  MPI_Group_incl ( world_group_id, blocks_per_row, col_mates, &col_group_id );
-  MPI_Comm_create ( MPI_COMM_WORLD, col_group_id, &col_comm_id );
-
-  // Fill matrices
-  for (i=0; i<block_size; i++) {
-  	for (j=0; j<block_size; j++) {
-		A[i*block_size + j] = (rank / blocks_per_row) * block_size + i;
-		B[i*block_size + j] = (this_block_row + this_block_col) * block_size + i + j;
-		C[i*block_size + j] = 0.0;
-		bufferA[i*block_size + j] = 0.0;
-		bufferB[i*block_size + j] = 0.0;
-	}
-  }
-
-  // Broadcast and multiply
-  int row_sender_rank, col_sender_rank;
-  for (k=0; k < blocks_per_row; k++) {
-	  // Every block in column k sends A to its row mates
-	  if (this_block_col == k) {
-		// first copy contents of A to bufferA
-		for (i=0; i<block_size; i++) {
-			for (j=0; j<block_size; j++) {
-				bufferA[i*block_size + j] = A[i*block_size + j];
-			}
-		}
-	  }
-		
-	MPI_Bcast(bufferA, block_size*block_size, MPI_DOUBLE, k, row_comm_id);
-
-	  // Every block in row k sends B to its column mates
-	  if (this_block_row == k) {
-		// first copy contents of B to bufferB
-		for (i=0; i<block_size; i++) {
-			for (j=0; j<block_size; j++) {
-				bufferB[i*block_size + j] = B[i*block_size + j];
-			}
-		}
-	  }
-
-	  MPI_Bcast(bufferB, block_size*block_size, MPI_DOUBLE, k, col_comm_id);
-	  
-	  // Multiply Matrix blocks
-	  if (this_block_row == k && this_block_col == k) {
-	  	MatrixMultiply(A, B, C, block_size);
-	  } else if (this_block_row == k) {
-	  	MatrixMultiply(bufferA, B, C, block_size);
-	  } else if (this_block_col == k) {
-	  	MatrixMultiply(A, bufferB, C, block_size);
-	  } else {
-	  	MatrixMultiply(bufferA, bufferB, C, block_size);
-	  }
-  }
-
-  // Sum elements of matrix C
-  double sum;
-  sum = 0.0;
-  for (i=0; i<block_size; i++) {
-  	for (j=0; j<block_size; j++) {
-		sum = sum + C[i*block_size + j];
-	}
-  }
-
-  // Collect all sums
-  double total_sum;
-  MPI_Reduce(&sum, &total_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-  if (rank == 0) {
-	  printf("actual sum is %f\n", total_sum);
-  }
-
-#ifdef DEBUG
-  printf("process %d here, i got a sum of %f\n", rank, sum);
-#endif
-
-
-  // Calculate what total should be, only one process needs to do this
-  if (rank == num_procs - 1) {
-	  double c_sum;
-	  c_sum = N*N*N*(N-1)*(N-1)/2;
-	  printf("total sum should be %f\n", c_sum);
-  }
-  
 
   // Start the timer
   double start_time;
