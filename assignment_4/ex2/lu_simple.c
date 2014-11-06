@@ -60,6 +60,10 @@ void print_matrix(double *A,int n) {
   return;
 }
 
+int owner_global_column(int col_num, int procs, int N) {
+	return col_num * procs / N;
+}
+
 
 ///////////////////////////
 ////// Main function //////
@@ -86,9 +90,20 @@ int main(int argc, char *argv[])
   if (columns_per_processor * num_procs != N) {
 	  program_abort(argv[0], "Number of processors does not divide N, I give up...\n");
   }
-
+ 
   // Declare matrices
-  double* A = (double*)malloc(sizeof(double)*columns_per_processor*columns_per_processor);
+  double* A = (double*)malloc(sizeof(double)*columns_per_processor*N);
+
+  // Testing ...
+#ifdef DEBUG 
+  if (rank == 0) {
+	  int jj, owner;
+	  for (jj=0; jj<N; jj++) {
+		  owner = owner_global_column(jj, num_procs, N);
+		  printf("column %d belongs to process %d\n", jj, owner);
+	  }
+  }
+#endif
 
   /*
   // Determine row and column mates
