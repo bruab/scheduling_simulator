@@ -168,6 +168,13 @@ int main(int argc, char *argv[])
 	}
   }
 
+  // Start the timer
+  double start_time;
+  MPI_Barrier(MPI_COMM_WORLD);
+  if (rank == 0) {  
+    start_time = MPI_Wtime();
+  }
+
   // Broadcast and multiply
   int row_sender_rank, col_sender_rank;
   for (k=0; k < blocks_per_row; k++) {
@@ -207,6 +214,11 @@ int main(int argc, char *argv[])
 	  }
   }
 
+  MPI_Barrier(MPI_COMM_WORLD);
+  if (0 == rank) {
+    fprintf(stdout,"%.3lf\n",MPI_Wtime() - start_time);
+  }
+
   // Sum elements of matrix C
   double sum;
   sum = 0.0;
@@ -219,9 +231,6 @@ int main(int argc, char *argv[])
   // Collect all sums
   double total_sum;
   MPI_Reduce(&sum, &total_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-  if (rank == 0) {
-	  printf("actual sum is %f\n", total_sum);
-  }
 
 #ifdef DEBUG
   printf("process %d here, i got a sum of %f\n", rank, sum);
@@ -229,19 +238,14 @@ int main(int argc, char *argv[])
 
 
   // Calculate what total should be, only one process needs to do this
-  if (rank == num_procs - 1) {
+  if (rank == 0) {
 	  double c_sum;
-	  c_sum = N*N*N*(N-1)*(N-1)/2;
-	  printf("total sum should be %f\n", c_sum);
+	  c_sum = (double)N*N*N*(N-1)*(N-1)/2;
+	  if (total_sum != c_sum) {
+	    fprintf(stderr, "total sum should be %f, got %f\n", c_sum, total_sum);
+	  }
   }
   
-
-  // Start the timer
-  double start_time;
-  MPI_Barrier(MPI_COMM_WORLD);
-  if (rank == 0) {  
-    start_time = MPI_Wtime();
-  }
 
   // Clean-up
   MPI_Finalize();
