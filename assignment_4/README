@@ -1,0 +1,22 @@
+###################
+ICS 632 - Fall 2014
+Brian Hall
+Assignment 4
+###################
+
+	## Exercise 1 ##
+	################
+
+Question 1) See ex1/mat_mul_init.c.
+
+Question 2) See ex1/matmul_outerproduct.c.
+
+Question 3) See ex1/results/parallel_speedup.png. The parallel speedup for the optimal platform with 1600 processors is an amazing 1033.5! However, for the normal platform it's a modest 11.125, actually worse than using 16 or 64 processors. On a real machine I would rein in the number of processors used, regardless of how many are available. 
+
+Question 4) I decided the time it would take me to implement, run and plot the changes would take me past the deadline. Working on the project instead. Humbled.
+
+
+	## Exercise 2 ##
+	################
+
+Question 1) 
