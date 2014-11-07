@@ -63,7 +63,8 @@ void print_matrix(double *A, int num_cols, int num_rows) {
 }
 
 int owner_global_column(int col_num, int procs, int N) {
-	return col_num * procs / N;
+//	return col_num * procs / N;
+	return col_num % procs;
 }
 
 int local_to_global_column(int local_col, int rank, int np, int N) {
@@ -74,7 +75,8 @@ int local_to_global_column(int local_col, int rank, int np, int N) {
 
 int global_to_local_column(int global_col, int np, int N) {
 	int local_col;
-	local_col = global_col % (N / np);
+	//local_col = global_col % (N / np);
+	local_col = global_col / np;
 	return local_col;
 }
 
