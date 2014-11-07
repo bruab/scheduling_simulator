@@ -193,8 +193,11 @@ int main(int argc, char *argv[])
   double total_idle_time;
   MPI_Reduce(&idle_time, &total_idle_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
   if (0 == rank) {
-    fprintf(stdout,"Wall clock time: %.3lf\n",MPI_Wtime() - start_time);
-    printf("Idle time is %f\n", total_idle_time);
+    double percent_idle_time, wall_time;
+    wall_time = MPI_Wtime() - start_time;
+    percent_idle_time = 100.0 * total_idle_time / (num_procs * wall_time);
+    fprintf(stdout,"Wall clock time: %.3lf\n", wall_time);
+    printf("Percent idle time is %f\n", total_idle_time);
   }
 
   // Validate the results
