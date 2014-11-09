@@ -119,11 +119,11 @@ int main(int argc, char *argv[])
 	  program_abort(argv[0], "Number of processors does not divide N, I give up...\n");
   }
  
-  /*
   // Declare matrices
-  double* A = (double*)malloc(sizeof(double)*columns_per_processor*N);
-  double* buffer = (double*)malloc(sizeof(double)*N);   // holds one column
+  double* A = (double*)SMPI_SHARED_MALLOC(sizeof(double)*columns_per_processor*N);
+  double* buffer = (double*)SMPI_SHARED_MALLOC(sizeof(double)*N);   // holds one column
 
+  /*
   // Populate this processor's chunk of the matrix
   int i, j;
   int global_col;
