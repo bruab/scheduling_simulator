@@ -149,7 +149,8 @@ int main(int argc, char *argv[])
   // Simulate computation
 #define FLOP_CALIBRATION_FACTOR 0.03  // TODO
   double flops;
-  flops = N*N*N; // TODO how many flops 4 rill?
+  flops = N*columns_per_processor*2;  // not super confident in this formula. 
+  				      // doesn't consider update k-th column.
 
   SMPI_SAMPLE_FLOPS(flops) {
 
