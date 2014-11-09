@@ -13,7 +13,7 @@ Question 2) See ex1/matmul_outerproduct.c.
 
 Question 3) See ex1/results/parallel_speedup.png. The parallel speedup for the optimal platform with 1600 processors is an amazing 1033.5! However, for the normal platform it's a modest 11.125, actually worse than using 16 or 64 processors. On a real machine I would rein in the number of processors used, regardless of how many are available. 
 
-Question 4) Ran out of time; moved on to project.
+Question 4) Ran out of time*
 
 
 	## Exercise 2 ##
@@ -25,6 +25,9 @@ Question 2)  See ex2/lu_roundrobin.c.
 
 Question 3) See ex2/lu_simulated.c. I came up with FLOP_CALIBRATION_FACTOR=0.00000000009 ...
 
-Question 4) Ran out of time; moved on to project.
+Question 4) Ran out of time*
 
-Question 5) Ran out of time; moved on to project.
+Question 5) Ran out of time*
+
+
+*I hope it's not too disappointing to turn in an incomplete assignment after being granted an extension. The extra time did allow me to spend ~5 hours more on the code, and I learned a lot more about C and my own weaknesses during those hours. For example: my workflow for generating graphs is pretty nonexistent (I'm equally clumsy in R and Excel). Eventually I decided to cut my losses and move on to the project. Thanks for your help.
