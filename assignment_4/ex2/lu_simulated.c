@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 {
   // Get N from command line arg
   if (argc != 4) {
-    fprintf(stderr,"Missing an arg, or too many args.\nUsage: %s <N>\n",argv[0]);
+    fprintf(stderr,"Missing an ARG, or too many args.\nUsage: %s <N>\n",argv[0]);
     exit(1);
   }
   int N;
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
   int columns_per_processor;
   columns_per_processor = N / num_procs;
   if (columns_per_processor * num_procs != N) {
-	  program_abort(argv[0], "Number of processors does not divide N, I give up...\n");
+	  program_abort(argv[0], "Number of processors does not divide N; I give up...\n");
   }
  
   // Declare matrices
@@ -147,11 +147,10 @@ int main(int argc, char *argv[])
   }
 
   // Simulate computation
-#define FLOP_CALIBRATION_FACTOR 0.03  // TODO
+#define FLOP_CALIBRATION_FACTOR 0.000000785
   double flops;
-  flops = N*columns_per_processor*2;  // not super confident in this formula. 
-  				      // doesn't consider update k-th column.
-
+  flops = N*columns_per_processor*2*FLOP_CALIBRATION_FACTOR;  // not super confident in this formula. 
+  				      			      // doesn't consider update k-th column.
   SMPI_SAMPLE_FLOPS(flops) {
 
   /*

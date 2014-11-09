@@ -12,4 +12,4 @@ done
 gcc sequential_lu.c -lm -O4 -DDEBUG -o sequential_lu
 smpicc lu_simple.c -lm -O4 -DDEBUG -o lu_simple
 smpicc lu_roundrobin.c -lm -O4 -DDEBUG -o lu_roundrobin
-smpicc lu_roundrobin.c -lm -O4 -DDEBUG -o lu_simulated
+smpicc lu_simulated.c -lm -O4 -DDEBUG -o lu_simulated
