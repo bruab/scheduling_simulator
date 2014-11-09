@@ -23,7 +23,7 @@ Question 1) See ex2/lu_simple.c.
 
 Question 2)  See ex2/lu_roundrobin.c.
 
-Question 3) Ran out of time; moved on to project.
+Question 3) See ex2/lu_simulated.c. I came up with FLOP_CALIBRATION_FACTOR=0.00000000009 ...
 
 Question 4) Ran out of time; moved on to project.
 

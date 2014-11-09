@@ -123,11 +123,11 @@ int main(int argc, char *argv[])
   double* A = (double*)SMPI_SHARED_MALLOC(sizeof(double)*columns_per_processor*N);
   double* buffer = (double*)SMPI_SHARED_MALLOC(sizeof(double)*N);   // holds one column
 
-  /*
   // Populate this processor's chunk of the matrix
   int i, j;
   int global_col;
   double value;
+  /*
   for (i=0; i<N; i++) {
 	  for (j=0; j<columns_per_processor; j++) {
 		  global_col = j + rank * N / num_procs;
@@ -146,22 +146,25 @@ int main(int argc, char *argv[])
     start_time = MPI_Wtime();
   }
 
-  // Simulate computation
-#define FLOP_CALIBRATION_FACTOR 0.000000785
+#define FLOP_CALIBRATION_FACTOR 0.00000000009
   double flops;
-  flops = N*columns_per_processor*2*FLOP_CALIBRATION_FACTOR;  // not super confident in this formula. 
-  				      			      // doesn't consider update k-th column.
-  SMPI_SAMPLE_FLOPS(flops) {
 
-  /*
   for (k=0; k < N-1; k++) {
 	  int k_owner, local_k;
 	  k_owner = owner_global_column(k, num_procs, N);
 	  local_k = global_to_local_column(k, num_procs, N);
 	  // update k-th column if I have it
 	  if (k_owner == rank) {
-		  for (i=k+1; i<N; i++) {
-			  A[i*columns_per_processor + local_k] = A[i*columns_per_processor + local_k] / A[k*columns_per_processor + local_k];
+
+		  // Simulate update
+		  flops = (N-k)*FLOP_CALIBRATION_FACTOR;
+
+		  SMPI_SAMPLE_FLOPS(flops) {
+			  /*
+			  for (i=k+1; i<N; i++) {
+				  A[i*columns_per_processor + local_k] = A[i*columns_per_processor + local_k] / A[k*columns_per_processor + local_k];
+			  }
+			  */
 		  }
 
 		  // Copy kth column to buffer for broadcast
@@ -178,6 +181,12 @@ int main(int argc, char *argv[])
 	  MPI_Barrier(MPI_COMM_WORLD);
 	  idle_start_time = MPI_Wtime();
 	  double Aik;
+
+	  // Simulate calculations
+  	  flops = N*columns_per_processor*2*FLOP_CALIBRATION_FACTOR;  // not super confident in this formula. 
+	  
+	  SMPI_SAMPLE_FLOPS(flops) {
+	  /*
 	  for (j=k+1; j<N; j++) {  // j is the global column
 		  for (i=k+1; i<N; i++) {  // i is the row
 			  if (owner_global_column(j, num_procs, N) == rank) {
@@ -193,12 +202,12 @@ int main(int argc, char *argv[])
 			  }
 		  }
 	  }
+	  */
+	  }
+
 	  MPI_Barrier(MPI_COMM_WORLD);
 	  idle_time += MPI_Wtime() - idle_start_time;
   } // end k loop
-  */
-
-  }
 
 
   // Print out string message and wall-clock time if the broadcast was
