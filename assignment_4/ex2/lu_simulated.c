@@ -119,6 +119,7 @@ int main(int argc, char *argv[])
 	  program_abort(argv[0], "Number of processors does not divide N, I give up...\n");
   }
  
+  /*
   // Declare matrices
   double* A = (double*)malloc(sizeof(double)*columns_per_processor*N);
   double* buffer = (double*)malloc(sizeof(double)*N);   // holds one column
@@ -133,6 +134,7 @@ int main(int argc, char *argv[])
 		  A[i*columns_per_processor + j] = calculate_cell_value(i, global_col);
 	  }
   }
+  */
 
   // MAIN ALGORITHM
   int k, local_j; 
@@ -212,6 +214,7 @@ int main(int argc, char *argv[])
     printf("Percent idle time is %f\n", total_idle_time);
   }
 
+  /*
   // Validate the results
   double Aij;
   for (i=0; i < N; i++) {
@@ -228,8 +231,6 @@ int main(int argc, char *argv[])
 	    }
     }
   }
-
-  /*
   */
 
   // Clean-up
