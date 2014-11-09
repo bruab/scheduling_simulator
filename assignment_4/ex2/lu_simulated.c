@@ -144,6 +144,14 @@ int main(int argc, char *argv[])
     start_time = MPI_Wtime();
   }
 
+  // Simulate computation
+#define FLOP_CALIBRATION_FACTOR 0.03  // TODO
+  double flops;
+  flops = N*N*N; // TODO how many flops 4 rill?
+
+  SMPI_SAMPLE_FLOPS(flops) {
+
+  /*
   for (k=0; k < N-1; k++) {
 	  int k_owner, local_k;
 	  k_owner = owner_global_column(k, num_procs, N);
@@ -186,6 +194,10 @@ int main(int argc, char *argv[])
 	  MPI_Barrier(MPI_COMM_WORLD);
 	  idle_time += MPI_Wtime() - idle_start_time;
   } // end k loop
+  */
+
+  }
+
 
   // Print out string message and wall-clock time if the broadcast was
   // successful
