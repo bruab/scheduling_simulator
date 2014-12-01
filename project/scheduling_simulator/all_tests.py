@@ -2,11 +2,13 @@
 
 # import all the lovely files
 import unittest
-import test.foo_tests
+import test.compute_node_tests
+import test.job_tests
 
 # get suites from test modules
 suites = [
-test.foo_tests.suite(),
+test.compute_node_tests.suite(),
+test.job_tests.suite(),
 ]
 
 # collect suites in a TestSuite object
