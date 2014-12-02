@@ -13,16 +13,23 @@ def run_historical_jobs(accounting_file):
     slow2 = ComputeNode(name='slow2', watts_per_second=SLOW_NODE_2_WATTS)
     fast = ComputeNode(name='fast', watts_per_second=FAST_NODE_WATTS)
 
+    # print header for job data
+    print("\n## JOB INFORMATION ##\n")
+            # output arrival time, start time, completion time run time and energy cost for job
+    print("arrival_time\tstart_time\tcompletion_time\trun_time\tenergy_cost")
+    print("------------\t----------\t---------------\t--------\t-----------")
     with open(accounting_file, 'r') as accfile:
         for line in accfile:
             # sample line:
-            #all.q:compute-0-1.local:users:sgeib:assembly.qsub:2:sge:0:1395639825:1395639831:1395639831:0:0:0:0.107983:0.217966:2700.000000:0:0:0:0:26527:0:0:8.000000:24:0:0:0:226:157:NONE:defaultdepartment:orte:32:0:0.325949:0.000000:0.000000:-pe orte 32:0.000000:NONE:0.000000:0:0
-
-            if not ":" in line:
-                # header or comment or blank or error or something
+            # all.q:compute-0-1.local:users:sgeib:assembly.qsub:2:sge:0:1395639825:1395639831:1395639831:0:0:0:0.107983:0.217966:2700.000000:0:0:0:0:26527:0:0:8.000000:24:0:0:0:226:157:NONE:defaultdepartment:orte:32:0:0.325949:0.000000:0.000000:-pe orte 32:0.000000:NONE:0.000000:0:0
+            if line.startswith("#"):
+                # header or comment
                 continue
 
-            print("ready to parse this line: " + line)
+            if not ":" in line:
+                # header or blank or error or something
+                continue
+
             fields = line.strip().split(":")
             if len(fields) < 10:
                 # something is wrong
@@ -50,19 +57,20 @@ def run_historical_jobs(accounting_file):
             # calculate energy cost
             energy_cost = run_time * node.watts_per_second
 
-            # output arrival time, start time, completion time and energy cost for job
+            # output arrival time, start time, completion time run time and energy cost for job
             print(str(submission_time) + "\t" + str(start_time) + "\t" +
-                    str(end_time) + "\t" + str(energy_cost))
+                    str(end_time) + "\t" + str(run_time) + "\t" + str(energy_cost))
             # update node with runtime, power consumption
             node.wattages.append(energy_cost)
             node.compute_times.append(run_time)
             # TODO add node idle time
 
+        print("\n\n## NODE INFORMATION ##\n")
         for node in [slow1, slow2, fast]:
             # TODO output summary stats for runtimes, idle times, power consumption
             print(node.name + "summary:")
-            print(node.wattages)
-            print(node.compute_times)
+            print("wattages: " + str(node.wattages))
+            print("compute times: " + str(node.compute_times))
             
 
 def main():
