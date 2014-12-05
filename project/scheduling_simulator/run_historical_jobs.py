@@ -16,8 +16,8 @@ def run_historical_jobs(accounting_file):
     # print header for job data
     print("\n## JOB INFORMATION ##\n")
             # output arrival time, start time, completion time run time and energy cost for job
-    print("arrival_time\tstart_time\tcompletion_time\trun_time\tenergy_cost")
-    print("------------\t----------\t---------------\t--------\t-----------")
+    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tenergy_cost (kWh)")
+    print("------------\t----------\t---------------\t------------------\t-----------")
     with open(accounting_file, 'r') as accfile:
         for line in accfile:
             # sample line:
@@ -54,8 +54,8 @@ def run_historical_jobs(accounting_file):
                 sys.stderr.write("couldn't figure out which node this line ran on; skipped it: " + line)
                 continue
 
-            # calculate energy cost
-            energy_cost = run_time * node.watts_per_second
+            # calculate energy cost in kWh
+            energy_cost = ( run_time * node.watts_per_second / 3600 ) / 1000
 
             # output arrival time, start time, completion time run time and energy cost for job
             print(str(submission_time) + "\t" + str(start_time) + "\t" +
@@ -71,6 +71,7 @@ def run_historical_jobs(accounting_file):
             print(node.name + "summary:")
             print("wattages: " + str(node.wattages))
             print("compute times: " + str(node.compute_times))
+            print("")
             
 
 def main():
