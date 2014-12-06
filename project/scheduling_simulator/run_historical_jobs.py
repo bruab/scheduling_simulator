@@ -2,6 +2,7 @@
 import sys
 from src.compute_node import ComputeNode
 from src.job import Job
+from src.scheduler import Scheduler
 
 SLOW_NODE_1_RUNNING_WATTS = 375.8
 SLOW_NODE_1_IDLE_WATTS = 360.5
@@ -51,6 +52,7 @@ def run_historical_jobs(accounting_file):
                         idle_watts=SLOW_NODE_2_IDLE_WATTS)
     fast = ComputeNode(name='fast', running_watts=FAST_NODE_RUNNING_WATTS,
                         idle_watts=FAST_NODE_IDLE_WATTS)
+    nodes = [slow1, slow2, fast]
 
     ## Read submission data into a list
     jobs = jobs_from_accounting_file(accounting_file)
@@ -62,22 +64,41 @@ def run_historical_jobs(accounting_file):
     ## Get start and end times for simulation
     period_of_study_begin = jobs[0].arrival_time
     period_of_study_end = jobs[-1].historical_end_time
+    period_of_study_duration = period_of_study_end - period_of_study_begin
+    if not (period_of_study_begin and period_of_study_end):
+        sys.stderr.write("Failed to find period fo study; exiting.\n")
+        sys.exit()
 
-    print(period_of_study_begin)
-    print(period_of_study_end)
-    exit()
     ## Create Scheduler
-
+    scheduler = Scheduler(nodes, jobs)
 
     ## Run simulation
-
+    scheduler.initialize(period_of_study_begin)
+    for second in range(period_of_study_begin, period_of_study_end+1):
+        scheduler.update(second)
 
     ## Report results
-    # print header for job data
+    # print simulation info
+    print("\n## SIMULATION INFORMATION ##\n")
+    print("simulation start: " + str(period_of_study_begin))
+    print("simulation end: " + str(period_of_study_end))
+    print("simulation dur: " + str(period_of_study_duration) + "\n")
+
+    # print job info
     print("\n## JOB INFORMATION ##\n")
-            # output arrival time, start time, completion time run time and energy cost for job
-    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tenergy_cost (kWh)")
+    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\t")
     print("------------\t----------\t---------------\t------------------\t-----------")
+    print(scheduler.generate_job_report())
+
+    # print header for node data
+    print("\n\n## NODE INFORMATION ##\n")
+    print("name\ttotal_compute_time (sec)\ttotal_idle_time (sec)\t" +
+            "total_energy_consumption (kWh)")
+    print("----\t------------------------\t---------------------\t" +
+            "------------------------------")
+    print(scheduler.generate_node_report())
+
+    exit()
 
     with open(accounting_file, 'r') as accfile:
         for line in accfile:
