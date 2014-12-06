@@ -69,11 +69,20 @@ class Scheduler:
         elif hist_node == "compute-1-0.local":
             return self.nodes["fast"]
 
-    def assign_job(self, job):
-        # for now just use historical data to do this
+    def assign_job_from_historical_data(self, job):
         target_node = self.get_node_from_historical_node_name(job.historical_node)
+        if not target_node:
+            sys.stderr.write("unable to find corresponding node: " +
+                             job.historical_node + ". Skipping ...\n")
+            # TODO now what.
         job.start_time = job.historical_start_time
         job.end_time = job.historical_end_time
         job.node_name = target_node.name
         target_node.add_job(job)
+
+
+    def assign_job(self, job):
+        # for now just use historical data to do this
+        self.assign_job_from_historical_data(job)
+
 
