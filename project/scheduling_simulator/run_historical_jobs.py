@@ -38,6 +38,9 @@ def jobs_from_accounting_file(accounting_file):
             end_time = int(fields[10])
             run_time = int(end_time) - int(start_time)
 
+            if not start_time: # job never ran
+                continue
+
             # create Job and add it to list
             job = Job(arrival_time, start_time, end_time, target_node)
             jobs.append(job)
@@ -46,6 +49,7 @@ def jobs_from_accounting_file(accounting_file):
 
 def run_historical_jobs(accounting_file):
     ## Create Nodes
+    sys.stderr.write("Creating nodes ...\n")
     slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
                         idle_watts=SLOW_NODE_1_IDLE_WATTS)
     slow2 = ComputeNode(name='slow2', running_watts=SLOW_NODE_2_RUNNING_WATTS,
@@ -55,13 +59,16 @@ def run_historical_jobs(accounting_file):
     nodes = [slow1, slow2, fast]
 
     ## Read submission data into a list
+    sys.stderr.write("Reading job submission data into memory ...\n")
     jobs = jobs_from_accounting_file(accounting_file)
     if not jobs:
         sys.stderr.write("Failed to read accounting file " + accounting_file +\
                             "; exiting.\n")
         sys.exit()
+    sys.stderr.write("Got " + str(len(jobs)) + " jobs.\n")
 
     ## Get start and end times for simulation
+    sys.stderr.write("Finding start and end times for period of study ...\n")
     period_of_study_begin = jobs[0].arrival_time
     period_of_study_end = jobs[-1].historical_end_time
     if not (period_of_study_begin and period_of_study_end):
@@ -70,11 +77,19 @@ def run_historical_jobs(accounting_file):
     period_of_study_duration = period_of_study_end - period_of_study_begin
 
     ## Create Scheduler
+    sys.stderr.write("Creating scheduler ...\n")
     scheduler = Scheduler(nodes, jobs)
 
     ## Run simulation
+    sys.stderr.write("Initializing scheduler ...\n")
     scheduler.initialize(period_of_study_begin)
+    sys.stderr.write("Beginning simulation ...\n")
+    count = 1
     for second in range(period_of_study_begin, period_of_study_end+2):
+        if count % 3600 == 0:
+            hours_to_go = int((period_of_study_end - second) / 3600)
+            sys.stderr.write(str(hours_to_go) + " hours remaining ...\n")
+        count += 1
         scheduler.update(second)
 
     ## Report results
