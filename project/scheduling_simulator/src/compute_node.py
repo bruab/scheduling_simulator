@@ -34,12 +34,12 @@ class ComputeNode:
             for job in self.current_jobs:
                 if job.end_time <= moment:
                     completed_jobs.append(job)
+                    # remove this job from self.current_jobs
+                    self.current_jobs = [j for j in self.current_jobs if j not in completed_jobs]
             if self.was_running(moment):
                 self.compute_time += 1
             else:
                 self.idle_time += 1
-        # remove those jobs from self.current_jobs
-        self.current_jobs = [j for j in self.current_jobs if j not in completed_jobs]
         self.current_time = newtime
         return completed_jobs
 

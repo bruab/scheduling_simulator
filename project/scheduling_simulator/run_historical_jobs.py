@@ -85,12 +85,18 @@ def run_historical_jobs(accounting_file):
     scheduler.initialize(period_of_study_begin)
     sys.stderr.write("Beginning simulation ...\n")
     count = 1
+    next_job_arrival_time = scheduler.get_next_job_arrival_time()
     for second in range(period_of_study_begin, period_of_study_end+2):
         if count % 3600 == 0:
             hours_to_go = int((period_of_study_end - second) / 3600)
             sys.stderr.write(str(hours_to_go) + " hours remaining ...\n")
+        if second == next_job_arrival_time:
+            scheduler.update(second)
+        if not next_job_arrival_time:
+            # have to run to completion
+            scheduler.update(second)
         count += 1
-        scheduler.update(second)
+        next_job_arrival_time = scheduler.get_next_job_arrival_time()
 
     ## Report results
     # print simulation info

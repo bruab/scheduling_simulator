@@ -18,10 +18,15 @@ class Scheduler:
             node.initialize(init_time)
 
     def update(self, newtime):
+        print("\nupdating for time " + str(newtime))
+        print("pending jobs: " + str(self.pending_jobs))
         for node in self.nodes.values():
             completed_jobs = node.update(newtime)
+            print("just got these completed jobs from node.update: " + str(completed_jobs))
             self.completed_jobs += completed_jobs
             self.scheduled_jobs = [j for j in self.scheduled_jobs if j not in completed_jobs]
+            print("self.scheduled jobs is now " + str(self.scheduled_jobs))
+            print("self.completed jobs is now " + str(self.completed_jobs))
         # find pending jobs that have arrived, assign and move them to scheduled jobs
         to_schedule = []
         for job in self.pending_jobs:
@@ -34,8 +39,16 @@ class Scheduler:
         # (note doing it this way means at each tick all arrived jobs must be
         #  scheduled. iow no carrying them over and scheduling them in a few seconds)
         self.pending_jobs = [j for j in self.pending_jobs if j.arrival_time > newtime]
+        if not self.pending_jobs:
+            print("no more pending jobs...")
         # update time
         self.current_time = newtime
+
+    def get_next_job_arrival_time(self):
+        if not self.pending_jobs:
+            return None
+        else:
+            return self.pending_jobs[0].arrival_time
 
     def generate_job_report(self):
         #print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tnode")

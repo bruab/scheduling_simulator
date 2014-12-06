@@ -1,0 +1,27 @@
+
+## SIMULATION INFORMATION ##
+
+simulation start: 1395690990
+simulation end: 1395801525
+simulation dur: 110536
+
+
+## JOB INFORMATION ##
+
+arrival_time	start_time	completion_time	run_time (seconds)	node
+------------	----------	---------------	------------------	----
+1395690991	1395691124	1395691135	12	slow1
+1395690990	1395691132	1395691178	47	slow2
+1395782781	1395782787	1395782797	11	fast
+1395801519	1395801522	1395801525	4	slow2
+
+
+
+## NODE INFORMATION ##
+
+name	total_compute_time (sec)	total_idle_time (sec)	total_energy_consumption (kWh)
+----	------------------------	---------------------	------------------------------
+slow2	51	110485	0.0042925
+fast	11	110525	0.0007764013888888889
+slow1	12	110524	0.001252666666666667
+

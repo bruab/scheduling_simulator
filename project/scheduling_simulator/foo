@@ -1,0 +1,27 @@
+
+## SIMULATION INFORMATION ##
+
+simulation start: 1395690990
+simulation end: 1395801525
+simulation dur: 110536
+
+
+## JOB INFORMATION ##
+
+arrival_time	start_time	completion_time	run_time (seconds)	node
+------------	----------	---------------	------------------	----
+1395690991	1395691124	1395691135	12	slow1
+1395690990	1395691132	1395691178	47	slow2
+1395782781	1395782787	1395782797	11	fast
+## WARNING: the following jobs are still pending:
+[]['<src.job.Job object at 0x7f94af1e90f0>']
+
+
+## NODE INFORMATION ##
+
+name	total_compute_time (sec)	total_idle_time (sec)	total_energy_consumption (kWh)
+----	------------------------	---------------------	------------------------------
+slow1	11	110518	0.0011482777777777778
+fast	10	110519	0.0007058194444444445
+slow2	46	110483	0.0038716666666666665
+
