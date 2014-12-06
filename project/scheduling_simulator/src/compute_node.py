@@ -35,3 +35,7 @@ class ComputeNode:
         total_compute_time = sum([t[1] - t[0] for t in wall_times])
         return total_compute_time
 
+    def generate_report(self):
+        # TODO
+        return self.name + " node report\n"
+
