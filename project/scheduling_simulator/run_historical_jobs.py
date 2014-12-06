@@ -3,15 +3,18 @@ import sys
 from src.compute_node import ComputeNode
 from src.job import Job
 
-SLOW_NODE_1_WATTS = 440
-SLOW_NODE_2_WATTS = 410
-FAST_NODE_WATTS = 320
+SLOW_NODE_1_RUNNING_WATTS = 375.8
+SLOW_NODE_1_IDLE_WATTS = 360.5
+SLOW_NODE_2_RUNNING_WATTS = 303
+SLOW_NODE_2_IDLE_WATTS = 254
+FAST_NODE_RUNNING_WATTS = 254.095
+FAST_NODE_IDLE_WATTS = 147
 
 def run_historical_jobs(accounting_file):
     # Create Nodes
-    slow1 = ComputeNode(name='slow1', watts_per_second=SLOW_NODE_1_WATTS)
-    slow2 = ComputeNode(name='slow2', watts_per_second=SLOW_NODE_2_WATTS)
-    fast = ComputeNode(name='fast', watts_per_second=FAST_NODE_WATTS)
+    slow1 = ComputeNode(name='slow1', watts_per_second=SLOW_NODE_1_RUNNING_WATTS)
+    slow2 = ComputeNode(name='slow2', watts_per_second=SLOW_NODE_2_RUNNING_WATTS)
+    fast = ComputeNode(name='fast', watts_per_second=FAST_NODE_RUNNING_WATTS)
 
     # print header for job data
     print("\n## JOB INFORMATION ##\n")
