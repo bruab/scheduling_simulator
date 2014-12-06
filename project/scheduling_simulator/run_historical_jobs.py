@@ -74,7 +74,7 @@ def run_historical_jobs(accounting_file):
     if not (period_of_study_begin and period_of_study_end):
         sys.stderr.write("Failed to find period of study; exiting.\n")
         sys.exit()
-    period_of_study_duration = period_of_study_end - period_of_study_begin
+    period_of_study_duration = period_of_study_end - period_of_study_begin + 1
 
     ## Create Scheduler
     sys.stderr.write("Creating scheduler ...\n")

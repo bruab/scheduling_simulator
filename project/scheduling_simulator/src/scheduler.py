@@ -14,8 +14,8 @@ class Scheduler:
 
     def initialize(self, init_time):
         self.current_time = init_time
-        # initialize nodes
-        # assign any pending jobs that have arrived; move them to scheduled jobs
+        for node in self.nodes.values():
+            node.initialize(init_time)
 
     def update(self, newtime):
         for node in self.nodes.values():

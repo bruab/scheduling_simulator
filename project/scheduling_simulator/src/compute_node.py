@@ -13,6 +13,7 @@ class ComputeNode:
         self.current_jobs = []
         self.compute_time = 0
         self.idle_time = 0
+        self.current_time = None
 
     def was_running(self, time):
         for job in self.current_jobs:
@@ -20,21 +21,26 @@ class ComputeNode:
                 return True
         return False
 
+    def initialize(self, time):
+        self.current_time = time
+
     def update(self, newtime):
-        """Returns a list of jobs completed in the second previous to newtime.
+        """Returns a list of jobs completed in the period previous to newtime.
 
         Also increments self.compute_time or self.idle_time.
         """
-        if self.was_running(newtime-1):
-            self.compute_time += 1
-        else:
-            self.idle_time += 1
         completed_jobs = []
-        for job in self.current_jobs:
-            if job.end_time <= newtime-1:
-                completed_jobs.append(job)
+        for moment in range(self.current_time, newtime):
+            for job in self.current_jobs:
+                if job.end_time <= moment:
+                    completed_jobs.append(job)
+            if self.was_running(moment):
+                self.compute_time += 1
+            else:
+                self.idle_time += 1
         # remove those jobs from self.current_jobs
         self.current_jobs = [j for j in self.current_jobs if j not in completed_jobs]
+        self.current_time = newtime
         return completed_jobs
 
     def calculate_total_compute_time(self):
