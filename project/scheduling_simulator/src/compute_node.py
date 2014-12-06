@@ -8,7 +8,6 @@ class ComputeNode:
         self.running_watts = running_watts
         self.idle_watts = idle_watts
         self.speed_factor = speed_factor
-        self.wattages = []
         self.compute_times = []
         self.idle_times = []
 

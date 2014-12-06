@@ -41,3 +41,4 @@ lu_simple
 sequential_lu
 lu_simulated
 *.pyc
+*__pycache__*

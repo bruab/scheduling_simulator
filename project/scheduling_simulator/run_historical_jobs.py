@@ -78,21 +78,20 @@ def run_historical_jobs(accounting_file):
             print(str(submission_time) + "\t" + str(start_time) + "\t" +
                     str(end_time) + "\t" + str(run_time) + "\t" + str(energy_cost))
             # update node with start and end times, power consumption
-            node.wattages.append(energy_cost)
             node.compute_times.append( (start_time, end_time) )
 
         # Finished read job submission file, time to wrap up
         period_of_study_duration = period_of_study_end - period_of_study_begin
         print("\n\n## NODE INFORMATION ##\n")
+        print("pos start: " + str(period_of_study_begin))
+        print("pos end: " + str(period_of_study_end))
+        print("pos dur: " + str(period_of_study_duration) + "\n")
         for node in [slow1, slow2, fast]:
-            # TODO output summary stats for runtimes, idle times, power consumption
-            print("pos start: " + str(period_of_study_begin))
-            print("pos end: " + str(period_of_study_end))
-            print("pos dur: " + str(period_of_study_duration))
             total_compute_time = node.calculate_total_compute_time()
+            running_kwh = ( total_compute_time * node.running_watts / 3600 ) / 1000
             total_idle_time = period_of_study_duration - total_compute_time
             idle_kwh = ( total_idle_time * node.idle_watts / 3600 ) / 1000
-            total_kwh = idle_kwh + sum(node.wattages)
+            total_kwh = idle_kwh + running_kwh
             print(node.name + "summary:")
             print("total compute time: " + str(total_compute_time))
             print("total idle time: " + str(total_idle_time))
