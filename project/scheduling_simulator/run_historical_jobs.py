@@ -12,15 +12,22 @@ FAST_NODE_IDLE_WATTS = 147
 
 def run_historical_jobs(accounting_file):
     # Create Nodes
-    slow1 = ComputeNode(name='slow1', watts_per_second=SLOW_NODE_1_RUNNING_WATTS)
-    slow2 = ComputeNode(name='slow2', watts_per_second=SLOW_NODE_2_RUNNING_WATTS)
-    fast = ComputeNode(name='fast', watts_per_second=FAST_NODE_RUNNING_WATTS)
+    slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
+                        idle_watts=SLOW_NODE_1_IDLE_WATTS)
+    slow2 = ComputeNode(name='slow2', running_watts=SLOW_NODE_2_RUNNING_WATTS,
+                        idle_watts=SLOW_NODE_2_IDLE_WATTS)
+    fast = ComputeNode(name='fast', running_watts=FAST_NODE_RUNNING_WATTS,
+                        idle_watts=FAST_NODE_IDLE_WATTS)
 
     # print header for job data
     print("\n## JOB INFORMATION ##\n")
             # output arrival time, start time, completion time run time and energy cost for job
     print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tenergy_cost (kWh)")
     print("------------\t----------\t---------------\t------------------\t-----------")
+
+    period_of_study_begin = None
+    period_of_study_end = None
+
     with open(accounting_file, 'r') as accfile:
         for line in accfile:
             # sample line:
@@ -41,10 +48,17 @@ def run_historical_jobs(accounting_file):
 
             # get run time, target node
             target_node = fields[1]
-            submission_time = fields[8]
-            start_time = fields[9]
-            end_time = fields[10]
+            submission_time = int(fields[8])
+            start_time = int(fields[9])
+            end_time = int(fields[10])
             run_time = int(end_time) - int(start_time)
+
+            # keep track of overal time range
+            # we assume that input data is chronological
+            if not period_of_study_begin:
+                period_of_study_begin = submission_time
+            period_of_study_end = end_time
+
 
             # ugly bit of business logic here
             if target_node == "compute-0-1.local":
@@ -58,22 +72,31 @@ def run_historical_jobs(accounting_file):
                 continue
 
             # calculate energy cost in kWh
-            energy_cost = ( run_time * node.watts_per_second / 3600 ) / 1000
+            energy_cost = ( run_time * node.running_watts / 3600 ) / 1000
 
             # output arrival time, start time, completion time run time and energy cost for job
             print(str(submission_time) + "\t" + str(start_time) + "\t" +
                     str(end_time) + "\t" + str(run_time) + "\t" + str(energy_cost))
-            # update node with runtime, power consumption
+            # update node with start and end times, power consumption
             node.wattages.append(energy_cost)
-            node.compute_times.append(run_time)
-            # TODO add node idle time
+            node.compute_times.append( (start_time, end_time) )
 
+        # Finished read job submission file, time to wrap up
+        period_of_study_duration = period_of_study_end - period_of_study_begin
         print("\n\n## NODE INFORMATION ##\n")
         for node in [slow1, slow2, fast]:
             # TODO output summary stats for runtimes, idle times, power consumption
+            print("pos start: " + str(period_of_study_begin))
+            print("pos end: " + str(period_of_study_end))
+            print("pos dur: " + str(period_of_study_duration))
+            total_compute_time = node.calculate_total_compute_time()
+            total_idle_time = period_of_study_duration - total_compute_time
+            idle_kwh = ( total_idle_time * node.idle_watts / 3600 ) / 1000
+            total_kwh = idle_kwh + sum(node.wattages)
             print(node.name + "summary:")
-            print("wattages: " + str(node.wattages))
-            print("compute times: " + str(node.compute_times))
+            print("total compute time: " + str(total_compute_time))
+            print("total idle time: " + str(total_idle_time))
+            print("total energy consumption: " + str(total_kwh) + " kWh")
             print("")
             
 
