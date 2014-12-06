@@ -17,6 +17,7 @@ class Scheduler:
 
     def update(self, newtime):
         for node in self.nodes:
+            # TODO
             # find out which jobs completed in the previous second (self.current_time)
             # move these jobs from scheduled to completed
             pass
@@ -26,7 +27,7 @@ class Scheduler:
             if job.arrival_time <= newtime:
                 to_schedule.append(job)
         for job in to_schedule:
-            self.assign_job(job)
+            self.assign_job(job) # TODO what happens here?
             self.scheduled_jobs.append(job) # TODO dictionary instead? lots of removes
         # remove the jobs we just scheduled from the 'pending' list
         # (note doing it this way means at each tick all arrived jobs must be
