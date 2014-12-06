@@ -8,9 +8,7 @@ class Job:
         self.historical_node = historical_node
         self.historical_start_time = historical_start_time
         self.historical_end_time = historical_end_time
+        self.node_name = None
         self.start_time = None
         self.end_time = None
-
-    def echo(self, input):
-        return input
 

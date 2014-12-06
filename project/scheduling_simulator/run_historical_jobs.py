@@ -101,8 +101,8 @@ def run_historical_jobs(accounting_file):
 
     # print job info
     print("\n## JOB INFORMATION ##\n")
-    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)")
-    print("------------\t----------\t---------------\t------------------")
+    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tnode")
+    print("------------\t----------\t---------------\t------------------\t----")
     print(scheduler.generate_job_report())
 
     # print header for node data

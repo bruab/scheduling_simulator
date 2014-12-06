@@ -38,11 +38,12 @@ class Scheduler:
         self.current_time = newtime
 
     def generate_job_report(self):
-        #print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\t")
+        #print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tnode")
         report = ""
         for job in self.completed_jobs:
             stats = [str(job.arrival_time), str(job.start_time),
-                    str(job.end_time), str(job.end_time - job.start_time)]
+                    str(job.end_time), str(job.end_time - job.start_time+1),
+                    job.node_name]
             report += "\t".join(stats) + "\n"
 
         if self.pending_jobs or self.scheduled_jobs:
@@ -73,5 +74,6 @@ class Scheduler:
         target_node = self.get_node_from_historical_node_name(job.historical_node)
         job.start_time = job.historical_start_time
         job.end_time = job.historical_end_time
+        job.node_name = target_node.name
         target_node.add_job(job)
 
