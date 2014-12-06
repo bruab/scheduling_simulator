@@ -4,7 +4,9 @@
 class Scheduler:
 
     def __init__(self, nodes, jobs):
-        self.nodes = nodes
+        self.nodes = {}
+        for node in nodes:
+            self.nodes[node.name] = node
         self.pending_jobs = jobs
         self.current_time = None
         self.scheduled_jobs = []
@@ -16,7 +18,7 @@ class Scheduler:
         # assign any pending jobs that have arrived; move them to scheduled jobs
 
     def update(self, newtime):
-        for node in self.nodes:
+        for node in self.nodes.values():
             # TODO
             # find out which jobs completed in the previous second (self.current_time)
             # move these jobs from scheduled to completed
@@ -53,11 +55,22 @@ class Scheduler:
         #print("name\ttotal_compute_time (sec)\ttotal_idle_time (sec)\t" +
         #        "total_energy_consumption (kWh)")
         report = ""
-        for node in self.nodes:
+        for node in self.nodes.values():
             report += node.generate_report()
         return report
+    
+    def get_node_from_historical_node_name(self, hist_node):
+        if hist_node == "compute-0-1.local":
+            return self.nodes["slow1"]
+        elif hist_node == "compute-0-2.local":
+            return self.nodes["slow2"]
+        elif hist_node == "compute-1-0.local":
+            return self.nodes["fast"]
 
     def assign_job(self, job):
-        pass
-
+        # for now just use historical data to do this
+        target_node = self.get_node_from_historical_node_name(job.historical_node)
+        job.start_time = job.historical_start_time
+        job.end_time = job.historical_end_time
+        target_node.add_job(job)
 

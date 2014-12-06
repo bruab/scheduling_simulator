@@ -10,6 +10,7 @@ class ComputeNode:
         self.speed_factor = speed_factor
         self.compute_times = []
         self.idle_times = []
+        self.current_jobs = []
 
     def calculate_total_compute_time(self):
         self.compute_times = sorted(self.compute_times)
@@ -39,3 +40,5 @@ class ComputeNode:
         # TODO
         return self.name + " node report\n"
 
+    def add_job(self, job):
+        self.current_jobs.append(job)
