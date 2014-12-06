@@ -12,6 +12,16 @@ class ComputeNode:
         self.idle_times = []
         self.current_jobs = []
 
+    def update(self, newtime):
+        """Returns a list of jobs completed in the second previous to newtime."""
+        completed_jobs = []
+        for job in self.current_jobs:
+            if job.end_time <= newtime-1:
+                completed_jobs.append(job)
+        # remove those jobs from self.current_jobs
+        self.current_jobs = [j for j in self.current_jobs if j not in completed_jobs]
+        return completed_jobs
+
     def calculate_total_compute_time(self):
         self.compute_times = sorted(self.compute_times)
         wall_times = []
@@ -37,6 +47,8 @@ class ComputeNode:
         return total_compute_time
 
     def generate_report(self):
+    #print("name\ttotal_compute_time (sec)\ttotal_idle_time (sec)\t" +
+    #        "total_energy_consumption (kWh)")
         # TODO
         return self.name + " node report\n"
 

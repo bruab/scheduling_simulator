@@ -19,10 +19,11 @@ class Scheduler:
 
     def update(self, newtime):
         for node in self.nodes.values():
-            # TODO
-            # find out which jobs completed in the previous second (self.current_time)
-            # move these jobs from scheduled to completed
-            pass
+            completed_jobs = node.update(newtime)
+            if completed_jobs:
+                print("completed jobs are " + str(completed_jobs))
+            self.completed_jobs += completed_jobs
+            self.scheduled_jobs = [j for j in self.scheduled_jobs if j not in completed_jobs]
         # find pending jobs that have arrived, assign and move them to scheduled jobs
         to_schedule = []
         for job in self.pending_jobs:
