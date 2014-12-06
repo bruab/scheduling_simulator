@@ -74,7 +74,7 @@ def run_historical_jobs(accounting_file):
 
     ## Run simulation
     scheduler.initialize(period_of_study_begin)
-    for second in range(period_of_study_begin, period_of_study_end+1):
+    for second in range(period_of_study_begin, period_of_study_end+2):
         scheduler.update(second)
 
     ## Report results
@@ -86,8 +86,8 @@ def run_historical_jobs(accounting_file):
 
     # print job info
     print("\n## JOB INFORMATION ##\n")
-    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\t")
-    print("------------\t----------\t---------------\t------------------\t-----------")
+    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)")
+    print("------------\t----------\t---------------\t------------------")
     print(scheduler.generate_job_report())
 
     # print header for node data

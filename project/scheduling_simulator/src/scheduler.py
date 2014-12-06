@@ -20,8 +20,6 @@ class Scheduler:
     def update(self, newtime):
         for node in self.nodes.values():
             completed_jobs = node.update(newtime)
-            if completed_jobs:
-                print("completed jobs are " + str(completed_jobs))
             self.completed_jobs += completed_jobs
             self.scheduled_jobs = [j for j in self.scheduled_jobs if j not in completed_jobs]
         # find pending jobs that have arrived, assign and move them to scheduled jobs
@@ -30,8 +28,8 @@ class Scheduler:
             if job.arrival_time <= newtime:
                 to_schedule.append(job)
         for job in to_schedule:
-            self.assign_job(job) # TODO what happens here?
-            self.scheduled_jobs.append(job) # TODO dictionary instead? lots of removes
+            self.assign_job(job) 
+            self.scheduled_jobs.append(job) 
         # remove the jobs we just scheduled from the 'pending' list
         # (note doing it this way means at each tick all arrived jobs must be
         #  scheduled. iow no carrying them over and scheduling them in a few seconds)
@@ -43,7 +41,9 @@ class Scheduler:
         #print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\t")
         report = ""
         for job in self.completed_jobs:
-            report += str(job)
+            stats = [str(job.arrival_time), str(job.start_time),
+                    str(job.end_time), str(job.end_time - job.start_time)]
+            report += "\t".join(stats) + "\n"
 
         if self.pending_jobs or self.scheduled_jobs:
             report += "## WARNING: the following jobs are still pending:\n"
