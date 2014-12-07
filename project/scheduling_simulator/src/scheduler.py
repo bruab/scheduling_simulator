@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+from src.util import date_string_from_epoch_timestamp, date_string_from_duration_in_seconds
 
 class Scheduler:
 
@@ -50,18 +51,29 @@ class Scheduler:
             return self.pending_jobs[0].arrival_time
 
     def generate_job_report(self):
-        # arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tnode
+        # arrival_time\tstart_time\tcompletion_time\twait_time\trun_time\tnode
         report = ""
         for job in self.completed_jobs:
-            stats = [str(job.arrival_time), str(job.start_time),
-                    str(job.end_time), str(job.end_time - job.start_time+1),
-                    job.node_name]
+            stats = [job.arrival_time, job.start_time, job.end_time]
+            stats = [date_string_from_epoch_timestamp(x) for x in stats]
+            stats.append(date_string_from_duration_in_seconds(job.start_time - job.arrival_time+1))
+            stats.append(date_string_from_duration_in_seconds(job.end_time - job.start_time+1))
+            stats.append(job.node_name)
             report += "\t".join(stats) + "\n"
 
         if self.pending_jobs or self.scheduled_jobs:
             report += "## WARNING: the following jobs are still pending:\n"
             report += str([str(j) for j in self.pending_jobs])
             report += str([str(j) for j in self.scheduled_jobs])
+
+        # summarize all that junk
+        njobs = len(self.pending_jobs) + len(self.scheduled_jobs) +\
+                len(self.completed_jobs)
+        report += "\nnumber of jobs: " + str(njobs) + "\n"
+        report += "average wait time in seconds (completed jobs only): "
+        wait_times = [j.start_time - j.arrival_time for j in self.completed_jobs]
+        avg_wait = sum(wait_times) / len(wait_times)
+        report += str(avg_wait) + "\n"
 
         return report
 

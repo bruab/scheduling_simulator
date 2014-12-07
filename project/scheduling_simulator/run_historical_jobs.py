@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import sys
-import datetime
 from src.compute_node import ComputeNode
 from src.job import Job
 from src.scheduler import Scheduler
+from src.util import date_string_from_epoch_timestamp, date_string_from_duration_in_seconds
 
 SLOW_NODE_1_RUNNING_WATTS = 375.8
 SLOW_NODE_1_IDLE_WATTS = 360.5
@@ -11,27 +11,6 @@ SLOW_NODE_2_RUNNING_WATTS = 303
 SLOW_NODE_2_IDLE_WATTS = 254
 FAST_NODE_RUNNING_WATTS = 254.095
 FAST_NODE_IDLE_WATTS = 147
-
-def date_string_from_epoch_timestamp(epoch):
-    result = ""
-    date_time = datetime.datetime.fromtimestamp(epoch)
-    m_d_y = [date_time.month, date_time.day, date_time.year]
-    m_d_y = [str(x) for x in m_d_y]
-    result += "/".join(m_d_y)
-    h_m_s = [date_time.hour, date_time.minute, date_time.second]
-    h_m_s = [str(x) for x in h_m_s]
-    result += " at " + ":".join(h_m_s)
-    return result
-
-def date_string_from_duration_in_seconds(seconds):
-    result = ""
-    td = datetime.timedelta(seconds=seconds)
-    d = datetime.datetime(1,1,1) + td
-    result += str(d.day-1) + " days, "
-    result += str(d.hour) + " hours, "
-    result += str(d.minute) + " minutes and "
-    result += str(d.second) + " seconds"
-    return result
 
 def jobs_from_accounting_file(accounting_file):
     jobs = []
@@ -128,17 +107,18 @@ def run_historical_jobs(accounting_file):
     print("\n## SIMULATION INFORMATION ##\n")
     print("simulation start: " + sim_start + "\n")
     print("simulation end: " + sim_end + "\n")
-    print("simulation dur: " + sim_length + "\n")
+    print("simulation dur (dd:hh:mm:ss): " + sim_length + "\n")
 
     # print job info
     print("\n## JOB INFORMATION ##\n")
-    print("arrival_time\tstart_time\tcompletion_time\trun_time (seconds)\tnode")
+    print("arrival_time\tstart_time\tcompletion_time\twait_time (dd:hh:mm:ss)\t" +
+            "run_time (dd:hh:mm:ss)\tnode")
     print("------------\t----------\t---------------\t------------------\t----")
     print(scheduler.generate_job_report())
 
     # print header for node data
     print("\n\n## NODE INFORMATION ##\n")
-    print("name\ttotal_compute_time (sec)\ttotal_idle_time (sec)\t" +
+    print("name\ttotal_compute_time (dd:hh:mm:ss)\ttotal_idle_time (dd:hh:mm:ss)\t" +
             "total_energy_consumption (kWh)")
     print("----\t------------------------\t---------------------\t" +
             "------------------------------")

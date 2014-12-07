@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from src.util import date_string_from_duration_in_seconds, date_string_from_epoch_timestamp
 
 class ComputeNode:
 
@@ -68,11 +69,12 @@ class ComputeNode:
         return total_compute_time
 
     def generate_report(self):
-        # name\ttotal_compute_time (sec)\ttotal_idle_time (sec)\t
+        # name\ttotal_compute_time\ttotal_idle_time\t
         #        total_energy_consumption (kWh)
         energy_cost = (self.compute_time * self.running_watts / 3600) / 1000
-        data = [self.name, str(self.compute_time), str(self.idle_time),
-                str(energy_cost)]
+        compute_time = date_string_from_duration_in_seconds(self.compute_time)
+        idle_time = date_string_from_duration_in_seconds(self.idle_time)
+        data = [self.name, compute_time, idle_time, str(energy_cost)]
         return "\t".join(data) + "\n"
 
     def add_job(self, job):
