@@ -71,7 +71,9 @@ class ComputeNode:
     def generate_report(self):
         # name\ttotal_compute_time\ttotal_idle_time\t
         #        total_energy_consumption (kWh)
-        energy_cost = (self.compute_time * self.running_watts / 3600) / 1000
+        running_cost = (self.compute_time * self.running_watts / 3600) / 1000
+        idle_cost = (self.idle_time * self.idle_watts / 3600) / 1000
+        energy_cost = running_cost + idle_cost
         compute_time = date_string_from_duration_in_seconds(self.compute_time)
         idle_time = date_string_from_duration_in_seconds(self.idle_time)
         data = [self.name, compute_time, idle_time, str(energy_cost)]
