@@ -51,7 +51,6 @@ def jobs_from_accounting_file(accounting_file):
             end_time = int(fields[10])
             run_time = int(end_time) - int(start_time)
             cpus = int(fields[34])
-            print("NUMBER OF CPUS = " + str(cpus))
 
             if not start_time: # job never ran
                 continue

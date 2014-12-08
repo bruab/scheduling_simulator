@@ -3,8 +3,12 @@
 from src.util import date_string_from_duration_in_seconds, date_string_from_epoch_timestamp
 
 def calculate_compute_time(job, node):
+    """Given a Job and ComputeNode, determine how long the job will compute.
+
+    Use DISCOVAR benchmark data.
+    """
     # TODO
-    return 1
+    return job.historical_end_time - job.historical_start_time
 
 class ComputeNode:
 
@@ -87,5 +91,12 @@ class ComputeNode:
         self.current_jobs.append(job)
 
     def find_job_start_time(self, job):
+        """Given a job, find the earliest start time available.
+
+        Consider the cpus requested for the job in question as well as
+          any running and scheduled jobs.
+
+        Return the time in epoch seconds.
+        """
         # TODO
-        return self.current_time + 1
+        return job.arrival_time

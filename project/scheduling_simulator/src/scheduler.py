@@ -37,7 +37,7 @@ class Scheduler:
             if job.arrival_time <= newtime:
                 to_schedule.append(job)
         for job in to_schedule:
-            self.assign_job(job) 
+            self.assign_job(job, newtime) 
             self.scheduled_jobs.append(job) 
         # remove the jobs we just scheduled from the 'pending' list
         # (note doing it this way means at each tick all arrived jobs must be
@@ -113,7 +113,7 @@ class Scheduler:
         job.node_name = target_node.name
         target_node.add_job(job)
 
-    def assign_job_to_fast(self, job):
+    def assign_job_to_fast(self, job, newtime):
         target_node = self.nodes["fast"]
         if not target_node:
             sys.stderr.write("unable to find fast node. Skipping job.\n")
@@ -128,11 +128,11 @@ class Scheduler:
         job.node_name = target_node.name
         target_node.add_job(job)
 
-    def assign_job(self, job):
+    def assign_job(self, job, newtime):
         # for now just use historical data to do this
         if self.algorithm == "historical":
             self.assign_job_from_historical_data(job)
         elif self.algorithm == "allfast":
-            self.assign_job_to_fast(job)
+            self.assign_job_to_fast(job, newtime)
 
 
