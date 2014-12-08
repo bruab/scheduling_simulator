@@ -2,6 +2,10 @@
 
 from src.util import date_string_from_duration_in_seconds, date_string_from_epoch_timestamp
 
+def calculate_compute_time(job, node):
+    # TODO
+    return 1
+
 class ComputeNode:
 
     def __init__(self, name, running_watts, idle_watts, speed_factor=1.0):
@@ -81,3 +85,7 @@ class ComputeNode:
 
     def add_job(self, job):
         self.current_jobs.append(job)
+
+    def find_job_start_time(self, job):
+        # TODO
+        return self.current_time + 1

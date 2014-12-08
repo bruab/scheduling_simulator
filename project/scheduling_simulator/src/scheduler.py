@@ -2,6 +2,7 @@
 
 import sys
 from src.util import date_string_from_epoch_timestamp, date_string_from_duration_in_seconds
+from src.compute_node import calculate_compute_time
 
 class Scheduler:
 
@@ -113,16 +114,19 @@ class Scheduler:
         target_node.add_job(job)
 
     def assign_job_to_fast(self, job):
-        # TODO this is just a copy of historical so stuff will run ...
-        target_node = self.get_node_from_historical_node_name(job.historical_node)
+        target_node = self.nodes["fast"]
         if not target_node:
-            sys.stderr.write("unable to find corresponding node: " +
-                             job.historical_node + ". Skipping ...\n")
-        job.start_time = job.historical_start_time
-        job.end_time = job.historical_end_time
+            sys.stderr.write("unable to find fast node. Skipping job.\n")
+            return
+        job.compute_time = calculate_compute_time(job, target_node)
+        start_time = target_node.find_job_start_time(job)
+        if not start_time:
+            sys.stderr.write("unable to schedule job on fast node. Skipping.\n")
+            return
+        job.start_time = start_time
+        job.end_time = start_time + job.compute_time
         job.node_name = target_node.name
         target_node.add_job(job)
-
 
     def assign_job(self, job):
         # for now just use historical data to do this

@@ -44,18 +44,20 @@ def jobs_from_accounting_file(accounting_file):
                 sys.stderr.write("couldn't figure out how to parse this line, skipped it: " + line)
                 continue
 
-            # get run time, target node
+            # get run time, target node, cpus
             target_node = fields[1]
             arrival_time = int(fields[8])
             start_time = int(fields[9])
             end_time = int(fields[10])
             run_time = int(end_time) - int(start_time)
+            cpus = int(fields[34])
+            print("NUMBER OF CPUS = " + str(cpus))
 
             if not start_time: # job never ran
                 continue
 
             # create Job and add it to list
-            job = Job(arrival_time, start_time, end_time, target_node)
+            job = Job(cpus, arrival_time, start_time, end_time, target_node)
             jobs.append(job)
     return jobs
 
