@@ -5,7 +5,8 @@ from src.util import date_string_from_epoch_timestamp, date_string_from_duration
 
 class Scheduler:
 
-    def __init__(self, nodes, jobs):
+    def __init__(self, algorithm, nodes, jobs):
+        self.algorithm = algorithm
         self.nodes = {}
         for node in nodes:
             self.nodes[node.name] = node
@@ -106,7 +107,17 @@ class Scheduler:
         if not target_node:
             sys.stderr.write("unable to find corresponding node: " +
                              job.historical_node + ". Skipping ...\n")
-            # TODO now what.
+        job.start_time = job.historical_start_time
+        job.end_time = job.historical_end_time
+        job.node_name = target_node.name
+        target_node.add_job(job)
+
+    def assign_job_to_fast(self, job):
+        # TODO this is just a copy of historical so stuff will run ...
+        target_node = self.get_node_from_historical_node_name(job.historical_node)
+        if not target_node:
+            sys.stderr.write("unable to find corresponding node: " +
+                             job.historical_node + ". Skipping ...\n")
         job.start_time = job.historical_start_time
         job.end_time = job.historical_end_time
         job.node_name = target_node.name
@@ -115,6 +126,9 @@ class Scheduler:
 
     def assign_job(self, job):
         # for now just use historical data to do this
-        self.assign_job_from_historical_data(job)
+        if self.algorithm == "historical":
+            self.assign_job_from_historical_data(job)
+        elif self.algorithm == "allfast":
+            self.assign_job_to_fast(job)
 
 

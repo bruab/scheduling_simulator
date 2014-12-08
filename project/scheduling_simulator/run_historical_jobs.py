@@ -3,7 +3,8 @@ import sys
 from src.compute_node import ComputeNode
 from src.job import Job
 from src.scheduler import Scheduler
-from src.util import date_string_from_epoch_timestamp, date_string_from_duration_in_seconds
+from src.util import date_string_from_epoch_timestamp,\
+        date_string_from_duration_in_seconds, jobs_from_accounting_file
 
 SLOW_NODE_1_RUNNING_WATTS = 375.8
 SLOW_NODE_1_IDLE_WATTS = 360.5
@@ -12,43 +13,8 @@ SLOW_NODE_2_IDLE_WATTS = 254
 FAST_NODE_RUNNING_WATTS = 254.095
 FAST_NODE_IDLE_WATTS = 147
 
-def jobs_from_accounting_file(accounting_file):
-    jobs = []
-    with open(accounting_file, 'r') as accfile:
-        for line in accfile:
-            # sample line:
-            # all.q:compute-0-1.local:users:sgeib:assembly.qsub:2:sge:0:1395639825:1395639831:1395639831:0:0:0:0.107983:0.217966:2700.000000:0:0:0:0:26527:0:0:8.000000:24:0:0:0:226:157:NONE:defaultdepartment:orte:32:0:0.325949:0.000000:0.000000:-pe orte 32:0.000000:NONE:0.000000:0:0
-            if line.startswith("#"):
-                # header or comment
-                continue
 
-            if not ":" in line:
-                # header or blank or error or something
-                continue
-
-            fields = line.strip().split(":")
-            if len(fields) < 10:
-                # something is wrong
-                sys.stderr.write("couldn't figure out how to parse this line, skipped it: " + line)
-                continue
-
-            # get run time, target node
-            target_node = fields[1]
-            arrival_time = int(fields[8])
-            start_time = int(fields[9])
-            end_time = int(fields[10])
-            run_time = int(end_time) - int(start_time)
-
-            if not start_time: # job never ran
-                continue
-
-            # create Job and add it to list
-            job = Job(arrival_time, start_time, end_time, target_node)
-            jobs.append(job)
-    return jobs
-
-
-def run_historical_jobs(accounting_file):
+def run_historical_jobs(scheduling_algorithm, accounting_file):
     ## Create Nodes
     sys.stderr.write("Creating nodes ...\n")
     slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
@@ -79,7 +45,7 @@ def run_historical_jobs(accounting_file):
 
     ## Create Scheduler
     sys.stderr.write("Creating scheduler ...\n")
-    scheduler = Scheduler(nodes, jobs)
+    scheduler = Scheduler(scheduling_algorithm, nodes, jobs)
 
     ## Run simulation
     sys.stderr.write("Initializing scheduler ...\n")
@@ -127,11 +93,12 @@ def run_historical_jobs(accounting_file):
 
 def main():
 
-    if len(sys.argv) < 2:
-        sys.stderr.write("usage: run_historical_jobs.py <accounting file>\n")
+    if len(sys.argv) < 3 or sys.argv[1] not in ["historical", "allfast"]:
+        sys.stderr.write("usage: run_historical_jobs.py <scheduling algorithm> <accounting file>\n")
+        sys.stderr.write(" where <scheduling algorithm> is either 'historical' or 'allfast'\n")
         sys.exit()
 
-    run_historical_jobs(sys.argv[1])
+    run_historical_jobs(sys.argv[1], sys.argv[2])
 
 
 ###########################################
