@@ -105,9 +105,9 @@ def run_historical_jobs(accounting_file):
     sim_end = date_string_from_epoch_timestamp(period_of_study_end)
     sim_length = date_string_from_duration_in_seconds(period_of_study_duration)
     print("\n## SIMULATION INFORMATION ##\n")
-    print("simulation start: " + sim_start + "\n")
-    print("simulation end: " + sim_end + "\n")
-    print("simulation dur (dd:hh:mm:ss): " + sim_length + "\n")
+    print("simulation start: " + sim_start)
+    print("simulation end: " + sim_end)
+    print("simulation duration (dd:hh:mm:ss): " + sim_length + "\n")
 
     # print job info
     print("\n## JOB INFORMATION ##\n")
@@ -117,7 +117,7 @@ def run_historical_jobs(accounting_file):
     print(scheduler.generate_job_report())
 
     # print header for node data
-    print("\n\n## NODE INFORMATION ##\n")
+    print("\n## NODE INFORMATION ##\n")
     print("name\ttotal_compute_time (dd:hh:mm:ss)\ttotal_idle_time (dd:hh:mm:ss)\t" +
             "total_energy_consumption (kWh)")
     print("----\t------------------------\t---------------------\t" +
