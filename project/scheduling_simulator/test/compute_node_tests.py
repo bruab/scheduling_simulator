@@ -24,11 +24,10 @@ class TestComputeNode(unittest.TestCase):
 
     def test_find_job_start_time(self):
         # node has 36 cpus
-        # current time is 100
+        # newjob arrives at time 100
         # job1 runs from 90 to 110, takes 6 cores
         # job2 runs from 80 to 120, takes 6 cores
         # newjob wants 30 cores, so can't run at 100
-        # (note that it can't run at 80 b/c would preempt job1)
         # but at time 111, when job1 is complete, can start
     #def __init__(self, cpus, arrival_time, historical_start_time, historical_end_time, historical_node):
     #    self.cpus_requested = cpus
@@ -43,6 +42,7 @@ class TestComputeNode(unittest.TestCase):
         job2.end_time = 120
         self.node1.current_jobs = [job1, job2]
         newjob = Mock()
+        newjob.arrival_time = 100
         newjob.cpus_requested = 30
         newjob.compute_time = 200
         expected = 111

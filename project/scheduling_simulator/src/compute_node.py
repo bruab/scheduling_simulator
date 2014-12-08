@@ -112,8 +112,7 @@ class ComputeNode:
 
         Return the time in epoch seconds.
         """
-        # begin looking for start times with the earliest job start time
-        time = min([j.start_time for j in self.current_jobs])
+        time = job.arrival_time
         job_start_time = None
         while not job_start_time:
             cpus_available = self.cpus - self.cpus_in_use(time)
