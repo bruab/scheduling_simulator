@@ -8,21 +8,27 @@ from src.util import date_string_from_epoch_timestamp,\
 
 SLOW_NODE_1_RUNNING_WATTS = 375.8
 SLOW_NODE_1_IDLE_WATTS = 360.5
+SLOW_NODE_1_CPUS = 48
 SLOW_NODE_2_RUNNING_WATTS = 303
 SLOW_NODE_2_IDLE_WATTS = 254
+SLOW_NODE_2_CPUS = 48
 FAST_NODE_RUNNING_WATTS = 254.095
 FAST_NODE_IDLE_WATTS = 147
+FAST_NODE_CPUS = 36
 
 
 def run_historical_jobs(scheduling_algorithm, accounting_file):
     ## Create Nodes
     sys.stderr.write("Creating nodes ...\n")
     slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
-                        idle_watts=SLOW_NODE_1_IDLE_WATTS)
+                        idle_watts=SLOW_NODE_1_IDLE_WATTS,
+                        cpus=SLOW_NODE_1_CPUS)
     slow2 = ComputeNode(name='slow2', running_watts=SLOW_NODE_2_RUNNING_WATTS,
-                        idle_watts=SLOW_NODE_2_IDLE_WATTS)
+                        idle_watts=SLOW_NODE_2_IDLE_WATTS,
+                        cpus=SLOW_NODE_2_CPUS)
     fast = ComputeNode(name='fast', running_watts=FAST_NODE_RUNNING_WATTS,
-                        idle_watts=FAST_NODE_IDLE_WATTS)
+                        idle_watts=FAST_NODE_IDLE_WATTS,
+                        cpus=FAST_NODE_CPUS)
     nodes = [slow1, slow2, fast]
 
     ## Read submission data into a list

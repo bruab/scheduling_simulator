@@ -12,11 +12,11 @@ def calculate_compute_time(job, node):
 
 class ComputeNode:
 
-    def __init__(self, name, running_watts, idle_watts, speed_factor=1.0):
+    def __init__(self, name, running_watts, idle_watts, cpus):
         self.name = name
         self.running_watts = running_watts
         self.idle_watts = idle_watts
-        self.speed_factor = speed_factor
+        self.cpus = cpus
         self.compute_times = []
         self.idle_times = []
         self.current_jobs = []
@@ -29,6 +29,20 @@ class ComputeNode:
             if job.start_time <= time and job.end_time >= time:
                 return True
         return False
+
+    def cpus_in_use(self, time):
+        count = 0
+        for job in self.current_jobs:
+            if job.start_time <= time and job.end_time >= time:
+                count += job.cpus_requested
+        return count
+
+    def x_cpus_available_for_y_seconds(self, cpus_requested, seconds, start_time):
+        for time in range(start_time, start_time+seconds+1):
+            cpus_available = self.cpus - self.cpus_in_use(time)
+            if cpus_available < cpus_requested:
+                return False
+        return True
 
     def initialize(self, time):
         self.current_time = time
@@ -98,5 +112,12 @@ class ComputeNode:
 
         Return the time in epoch seconds.
         """
-        # TODO
-        return job.arrival_time
+        # begin looking for start times with the earliest job start time
+        time = min([j.start_time for j in self.current_jobs])
+        job_start_time = None
+        while not job_start_time:
+            cpus_available = self.cpus - self.cpus_in_use(time)
+            if cpus_available >= job.cpus_requested:
+                if self.x_cpus_available_for_y_seconds(job.cpus_requested, job.compute_time, time):
+                    return time
+            time += 1
