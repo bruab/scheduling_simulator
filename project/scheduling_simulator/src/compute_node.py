@@ -53,16 +53,16 @@ class ComputeNode:
         Also increments self.compute_time or self.idle_time.
         """
         completed_jobs = []
-        for moment in range(self.current_time, newtime):
-            for job in self.current_jobs:
-                if job.end_time <= moment:
-                    completed_jobs.append(job)
-                    # remove this job from self.current_jobs
-                    self.current_jobs = [j for j in self.current_jobs if j not in completed_jobs]
-            if self.was_running(moment):
-                self.compute_time += 1
-            else:
-                self.idle_time += 1
+        for job in self.current_jobs:
+            if job.end_time < newtime:
+                completed_jobs.append(job)
+                # remove this job from self.current_jobs
+                self.current_jobs = [j for j in self.current_jobs if j not in completed_jobs]
+        # increment running/idle time
+        if self.was_running(newtime-1):
+            self.compute_time += 1
+        else:
+            self.idle_time += 1
         self.current_time = newtime
         return completed_jobs
 
