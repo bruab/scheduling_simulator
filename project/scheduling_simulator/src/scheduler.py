@@ -6,9 +6,10 @@ from src.compute_node import calculate_compute_time
 
 class Scheduler:
 
-    def __init__(self, algorithm, nodes, jobs):
+    def __init__(self, algorithm, nodes, jobs, verbose=False):
         self.algorithm = algorithm
         self.nodes = {}
+        self.verbose = verbose
         for node in nodes:
             self.nodes[node.name] = node
         self.pending_jobs = []
@@ -27,10 +28,12 @@ class Scheduler:
             node.initialize(init_time)
 
     def update(self, newtime):
-        print("sched.update here, updating at newtime " + str(newtime))
+        if self.verbose:
+            sys.stderr.write("sched.update here, updating at newtime " + str(newtime) + "\n")
         for node in self.nodes.values():
             completed_jobs = node.update(newtime)
-            print("node just returned these completed jobs: " + str(completed_jobs))
+            if self.verbose:
+                sys.stderr.write("node just returned these completed jobs: " + str(completed_jobs) + "\n")
             self.completed_jobs += completed_jobs
             self.scheduled_jobs = [j for j in self.scheduled_jobs if j not in completed_jobs]
         # find pending jobs that have arrived or old unscheduled jobs,
@@ -43,26 +46,35 @@ class Scheduler:
         for job in to_schedule:
             job_assigned_successfully = self.assign_job(job, newtime) 
             if job_assigned_successfully:
-                print("FOOOOO")
+                if self.verbose:
+                    sys.stderr.write("job assigned successfully\n")
                 self.scheduled_jobs.append(job) 
                 scheduled.append(job)
             else:
-                print("failed to assign job " + str(job))
-                print("giving up on scheduling the rest of pending jobs for now.")
+                if self.verbose:
+                    sys.stderr.write("failed to assign job " + str(job) + "\n")
+                    sys.stderr.write("giving up on scheduling the rest of pending jobs for now." + "\n")
                 break
         # remove the jobs we just scheduled from the 'pending' list
-        print("pending jobs before and after:")
-        print("scheduled: " + str(scheduled))
-        print(len(self.pending_jobs))
+        if self.verbose:
+            sys.stderr.write("pending jobs before and after:" + "\n")
+            sys.stderr.write("scheduled: " + str(scheduled) + "\n")
+            sys.stderr.write(str(len(self.pending_jobs)) + "\n")
+            sys.stderr.write(str(len(self.pending_jobs)) + "\n")
+            sys.stderr.write(">>\n")
         self.pending_jobs = [j for j in self.pending_jobs if j not in scheduled]
-        print(len(self.pending_jobs))
-        print(">>\n")
         # update time
         self.current_time = newtime
 
+    def has_jobs_remaining(self):
+        if self.pending_jobs or self.scheduled_jobs:
+            return True
+        else:
+            return False
+
     def get_next_job_arrival_time(self):
         if not self.pending_jobs:
-            print("******************** NO PENDING JOBS\n\n")
+            sys.stderr.write("******************** NO PENDING JOBS\n\n")
             return None
         else:
             return self.pending_jobs[0].arrival_time
@@ -88,7 +100,8 @@ class Scheduler:
                 len(self.completed_jobs)
         report += "\nnumber of jobs: " + str(njobs) + "\n"
         report += "wait time in seconds (completed jobs only):\n"
-        print("completed jbos: " + str(self.completed_jobs))
+        if self.verbose:
+            sys.stderr.write("completed jobs: " + str(self.completed_jobs) + "\n")
         wait_times = [j.start_time - j.arrival_time for j in self.completed_jobs]
         avg_wait = sum(wait_times) / len(wait_times)
         report += "\taverage: " + str(avg_wait) + "\n"
@@ -123,8 +136,9 @@ class Scheduler:
         target_node = self.get_node_from_historical_node_name(job.historical_node)
         if not target_node:
             # TODO shouldn't this return false or something?
-            sys.stderr.write("unable to find corresponding node: " +
-                             job.historical_node + ". Skipping ...\n")
+            if self.verbose:
+                sys.stderr.write("unable to find corresponding node: " +
+                                 job.historical_node + ". Skipping ...\n")
         job.start_time = job.historical_start_time
         job.end_time = job.historical_end_time
         job.node_name = target_node.name
@@ -134,7 +148,8 @@ class Scheduler:
     def assign_job_to_fast(self, job, newtime):
         target_node = self.nodes["fast"]
         if not target_node:
-            sys.stderr.write("unable to find fast node. Skipping job.\n")
+            if self.verbose:
+                sys.stderr.write("unable to find fast node. Skipping job.\n")
             return False
         job.compute_time = calculate_compute_time(job, target_node)
         # can't ask for 48 cores on fast node

@@ -42,22 +42,12 @@ def simulate(scheduling_algorithm, accounting_file, verbose=False):
         sys.exit()
     sys.stderr.write("Got " + str(len(jobs)) + " jobs.\n")
 
-    ## Get start and end times for simulation
-    if verbose:
-        sys.stderr.write("Finding start and end times for period of study ...\n")
     period_of_study_begin = jobs[0].arrival_time
-    period_of_study_end = jobs[-1].historical_end_time
-    if not (period_of_study_begin and period_of_study_end):
-        sys.stderr.write("Failed to find period of study; exiting.\n")
-        sys.exit()
-    # TODO is the following correct?
-    # NO IT'S NOT, FIGURE THIS OUT AFTER SIM IS DONE YOU DUMBASS
-    period_of_study_duration = period_of_study_end - period_of_study_begin + 1
 
     ## Create Scheduler
     if verbose:
         sys.stderr.write("Creating scheduler ...\n")
-    scheduler = Scheduler(scheduling_algorithm, nodes, jobs)
+    scheduler = Scheduler(scheduling_algorithm, nodes, jobs, verbose)
 
     ## Run simulation
     if verbose:
@@ -65,24 +55,16 @@ def simulate(scheduling_algorithm, accounting_file, verbose=False):
     scheduler.initialize(period_of_study_begin)
     if verbose:
         sys.stderr.write("Beginning simulation ...\n")
-    count = 1
-    next_job_arrival_time = scheduler.get_next_job_arrival_time()
-    for second in range(period_of_study_begin, period_of_study_end+2):
-        if verbose:
-            sys.stderr.write("\n\n***now simming second " + str(second) + "\n")
-        if verbose and count % 3600 == 0:
-            hours_to_go = int((period_of_study_end - second) / 3600)
-            sys.stderr.write(str(hours_to_go) + " hours remaining ...\n")
-        # fast forward if no jobs are arriving for a while
-        if second >= next_job_arrival_time:
-            scheduler.update(second)
-        if not next_job_arrival_time:
-            # have to run to completion
-            scheduler.update(second)
-        count += 1
-        next_job_arrival_time = scheduler.get_next_job_arrival_time()
-        if verbose:
-            sys.stderr.write("just got next job arrival time " + str(next_job_arrival_time))
+    current_second = period_of_study_begin
+    while scheduler.has_jobs_remaining():
+        if verbose and current_second % 3600 == 0:
+            hours_elapsed = int((current_second - period_of_study_begin) / 3600)
+            sys.stderr.write(str(hours_elapsed) + " sim hours elapsed ...\n")
+        scheduler.update(current_second)
+        current_second += 1
+
+    period_of_study_end = current_second
+    period_of_study_duration = period_of_study_end - period_of_study_begin
 
     ## Report results
     # print simulation info
