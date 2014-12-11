@@ -17,7 +17,7 @@ FAST_NODE_IDLE_WATTS = 147
 FAST_NODE_CPUS = 36
 
 
-def run_historical_jobs(scheduling_algorithm, accounting_file):
+def simulate(scheduling_algorithm, accounting_file):
     ## Create Nodes
     sys.stderr.write("Creating nodes ...\n")
     slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
@@ -104,11 +104,11 @@ def run_historical_jobs(scheduling_algorithm, accounting_file):
 def main():
 
     if len(sys.argv) < 3 or sys.argv[1] not in ["historical", "allfast"]:
-        sys.stderr.write("usage: run_historical_jobs.py <scheduling algorithm> <accounting file>\n")
+        sys.stderr.write("usage: simulate.py <scheduling algorithm> <accounting file>\n")
         sys.stderr.write(" where <scheduling algorithm> is either 'historical' or 'allfast'\n")
         sys.exit()
 
-    run_historical_jobs(sys.argv[1], sys.argv[2])
+    simulate(sys.argv[1], sys.argv[2])
 
 
 ###########################################
