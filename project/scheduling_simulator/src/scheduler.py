@@ -51,15 +51,14 @@ class Scheduler:
             self.unscheduled_jobs.append(self.future_jobs.pop(0))
 
         # try to schedule jobs
-        can_schedule_more_jobs = True
-        while self.unscheduled_jobs and can_schedule_more_jobs:
+        while self.unscheduled_jobs:
             if self.assign_job(self.unscheduled_jobs[0], newtime):
                 if self.verbose:
                     sys.stderr.write("just assigned job " + 
                             str(self.unscheduled_jobs[0]) + "\n")
                 self.scheduled_jobs.append(self.unscheduled_jobs.pop(0))
             else:
-                can_schedule_more_jobs = False
+                break
 
         # update time
         self.current_time = newtime
