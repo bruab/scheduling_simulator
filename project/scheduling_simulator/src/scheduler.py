@@ -27,27 +27,42 @@ class Scheduler:
             node.initialize(init_time)
 
     def update(self, newtime):
+        print("sched.update here, updating at newtime " + str(newtime))
         for node in self.nodes.values():
             completed_jobs = node.update(newtime)
+            print("node just returned these completed jobs: " + str(completed_jobs))
             self.completed_jobs += completed_jobs
             self.scheduled_jobs = [j for j in self.scheduled_jobs if j not in completed_jobs]
-        # find pending jobs that have arrived, assign and move them to scheduled jobs
+        # find pending jobs that have arrived or old unscheduled jobs,
+        # assign and move them to scheduled jobs
         to_schedule = []
+        scheduled = []
         for job in self.pending_jobs:
             if job.arrival_time <= newtime:
                 to_schedule.append(job)
         for job in to_schedule:
-            self.assign_job(job, newtime) 
-            self.scheduled_jobs.append(job) 
+            job_assigned_successfully = self.assign_job(job, newtime) 
+            if job_assigned_successfully:
+                print("FOOOOO")
+                self.scheduled_jobs.append(job) 
+                scheduled.append(job)
+            else:
+                print("failed to assign job " + str(job))
+                print("giving up on scheduling the rest of pending jobs for now.")
+                break
         # remove the jobs we just scheduled from the 'pending' list
-        # (note doing it this way means at each tick all arrived jobs must be
-        #  scheduled. iow no carrying them over and scheduling them in a few seconds)
-        self.pending_jobs = [j for j in self.pending_jobs if j.arrival_time > newtime]
+        print("pending jobs before and after:")
+        print("scheduled: " + str(scheduled))
+        print(len(self.pending_jobs))
+        self.pending_jobs = [j for j in self.pending_jobs if j not in scheduled]
+        print(len(self.pending_jobs))
+        print(">>\n")
         # update time
         self.current_time = newtime
 
     def get_next_job_arrival_time(self):
         if not self.pending_jobs:
+            print("******************** NO PENDING JOBS\n\n")
             return None
         else:
             return self.pending_jobs[0].arrival_time
@@ -73,6 +88,7 @@ class Scheduler:
                 len(self.completed_jobs)
         report += "\nnumber of jobs: " + str(njobs) + "\n"
         report += "wait time in seconds (completed jobs only):\n"
+        print("completed jbos: " + str(self.completed_jobs))
         wait_times = [j.start_time - j.arrival_time for j in self.completed_jobs]
         avg_wait = sum(wait_times) / len(wait_times)
         report += "\taverage: " + str(avg_wait) + "\n"
@@ -106,33 +122,41 @@ class Scheduler:
     def assign_job_from_historical_data(self, job):
         target_node = self.get_node_from_historical_node_name(job.historical_node)
         if not target_node:
+            # TODO shouldn't this return false or something?
             sys.stderr.write("unable to find corresponding node: " +
                              job.historical_node + ". Skipping ...\n")
         job.start_time = job.historical_start_time
         job.end_time = job.historical_end_time
         job.node_name = target_node.name
         target_node.add_job(job)
+        return True
 
     def assign_job_to_fast(self, job, newtime):
         target_node = self.nodes["fast"]
         if not target_node:
             sys.stderr.write("unable to find fast node. Skipping job.\n")
-            return
+            return False
         job.compute_time = calculate_compute_time(job, target_node)
+        # can't ask for 48 cores on fast node
+        if job.cpus_requested > target_node.cpus:
+            # TODO <hack>
+            job.cpus_requested = target_node.cpus
         start_time = target_node.find_job_start_time(job)
-        if not start_time:
-            sys.stderr.write("unable to schedule job on fast node. Skipping.\n")
-            return
-        job.start_time = start_time
-        job.end_time = start_time + job.compute_time
-        job.node_name = target_node.name
-        target_node.add_job(job)
+        if start_time:
+            job.start_time = start_time
+            job.end_time = start_time + job.compute_time
+            job.node_name = target_node.name
+            target_node.add_job(job)
+            return True
+        else:
+            #sys.stderr.write("unable to schedule job on fast node. Will try again later.\n")
+            return False
 
     def assign_job(self, job, newtime):
-        # for now just use historical data to do this
+        """Assigns job according to self.algorithm, returns True on success."""
         if self.algorithm == "historical":
-            self.assign_job_from_historical_data(job)
+            return self.assign_job_from_historical_data(job)
         elif self.algorithm == "allfast":
-            self.assign_job_to_fast(job, newtime)
+            return self.assign_job_to_fast(job, newtime)
 
 

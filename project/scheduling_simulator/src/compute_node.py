@@ -112,11 +112,20 @@ class ComputeNode:
 
         Return the time in epoch seconds.
         """
-        time = job.arrival_time
+        TIME_LIMIT = 1000 # only check for 1000 sec after job arrival
+        time = self.current_time
         job_start_time = None
+        print("find_job_start_time here, looking for a time to start job " + str(job))
+        print("currently have " + str(len(self.current_jobs)) + " jobs...")
+        print("and using " + str(self.cpus_in_use(time)) + " at time " + str(time))
         while not job_start_time:
+            if time % 10 == 0:
+                print("\tnow checking time " + str(time))
+            if time == job.arrival_time + TIME_LIMIT:
+                return None
             cpus_available = self.cpus - self.cpus_in_use(time)
             if cpus_available >= job.cpus_requested:
                 if self.x_cpus_available_for_y_seconds(job.cpus_requested, job.compute_time, time):
+                    print("\tfound it! the job can run at time " + str(time) + "\n\n")
                     return time
             time += 1

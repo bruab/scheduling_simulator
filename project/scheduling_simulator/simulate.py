@@ -47,6 +47,7 @@ def run_historical_jobs(scheduling_algorithm, accounting_file):
     if not (period_of_study_begin and period_of_study_end):
         sys.stderr.write("Failed to find period of study; exiting.\n")
         sys.exit()
+    # TODO is the following correct?
     period_of_study_duration = period_of_study_end - period_of_study_begin + 1
 
     ## Create Scheduler
@@ -60,16 +61,19 @@ def run_historical_jobs(scheduling_algorithm, accounting_file):
     count = 1
     next_job_arrival_time = scheduler.get_next_job_arrival_time()
     for second in range(period_of_study_begin, period_of_study_end+2):
+        print("\n\n***now simming second " + str(second) + "\n")
         if count % 3600 == 0:
             hours_to_go = int((period_of_study_end - second) / 3600)
             sys.stderr.write(str(hours_to_go) + " hours remaining ...\n")
-        if second == next_job_arrival_time:
+        # fast forward if no jobs are arriving for a while
+        if second >= next_job_arrival_time:
             scheduler.update(second)
         if not next_job_arrival_time:
             # have to run to completion
             scheduler.update(second)
         count += 1
         next_job_arrival_time = scheduler.get_next_job_arrival_time()
+        print("just got next job arrival time " + str(next_job_arrival_time))
 
     ## Report results
     # print simulation info
