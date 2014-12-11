@@ -17,9 +17,10 @@ FAST_NODE_IDLE_WATTS = 147
 FAST_NODE_CPUS = 36
 
 
-def simulate(scheduling_algorithm, accounting_file):
+def simulate(scheduling_algorithm, accounting_file, verbose=False):
     ## Create Nodes
-    sys.stderr.write("Creating nodes ...\n")
+    if verbose:
+        sys.stderr.write("Creating nodes ...\n")
     slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
                         idle_watts=SLOW_NODE_1_IDLE_WATTS,
                         cpus=SLOW_NODE_1_CPUS)
@@ -32,7 +33,8 @@ def simulate(scheduling_algorithm, accounting_file):
     nodes = [slow1, slow2, fast]
 
     ## Read submission data into a list
-    sys.stderr.write("Reading job submission data into memory ...\n")
+    if verbose:
+        sys.stderr.write("Reading job submission data into memory ...\n")
     jobs = jobs_from_accounting_file(accounting_file)
     if not jobs:
         sys.stderr.write("Failed to read accounting file " + accounting_file +\
@@ -41,28 +43,34 @@ def simulate(scheduling_algorithm, accounting_file):
     sys.stderr.write("Got " + str(len(jobs)) + " jobs.\n")
 
     ## Get start and end times for simulation
-    sys.stderr.write("Finding start and end times for period of study ...\n")
+    if verbose:
+        sys.stderr.write("Finding start and end times for period of study ...\n")
     period_of_study_begin = jobs[0].arrival_time
     period_of_study_end = jobs[-1].historical_end_time
     if not (period_of_study_begin and period_of_study_end):
         sys.stderr.write("Failed to find period of study; exiting.\n")
         sys.exit()
     # TODO is the following correct?
+    # NO IT'S NOT, FIGURE THIS OUT AFTER SIM IS DONE YOU DUMBASS
     period_of_study_duration = period_of_study_end - period_of_study_begin + 1
 
     ## Create Scheduler
-    sys.stderr.write("Creating scheduler ...\n")
+    if verbose:
+        sys.stderr.write("Creating scheduler ...\n")
     scheduler = Scheduler(scheduling_algorithm, nodes, jobs)
 
     ## Run simulation
-    sys.stderr.write("Initializing scheduler ...\n")
+    if verbose:
+        sys.stderr.write("Initializing scheduler ...\n")
     scheduler.initialize(period_of_study_begin)
-    sys.stderr.write("Beginning simulation ...\n")
+    if verbose:
+        sys.stderr.write("Beginning simulation ...\n")
     count = 1
     next_job_arrival_time = scheduler.get_next_job_arrival_time()
     for second in range(period_of_study_begin, period_of_study_end+2):
-        print("\n\n***now simming second " + str(second) + "\n")
-        if count % 3600 == 0:
+        if verbose:
+            sys.stderr.write("\n\n***now simming second " + str(second) + "\n")
+        if verbose and count % 3600 == 0:
             hours_to_go = int((period_of_study_end - second) / 3600)
             sys.stderr.write(str(hours_to_go) + " hours remaining ...\n")
         # fast forward if no jobs are arriving for a while
@@ -73,7 +81,8 @@ def simulate(scheduling_algorithm, accounting_file):
             scheduler.update(second)
         count += 1
         next_job_arrival_time = scheduler.get_next_job_arrival_time()
-        print("just got next job arrival time " + str(next_job_arrival_time))
+        if verbose:
+            sys.stderr.write("just got next job arrival time " + str(next_job_arrival_time))
 
     ## Report results
     # print simulation info
@@ -104,11 +113,16 @@ def simulate(scheduling_algorithm, accounting_file):
 def main():
 
     if len(sys.argv) < 3 or sys.argv[1] not in ["historical", "allfast"]:
-        sys.stderr.write("usage: simulate.py <scheduling algorithm> <accounting file>\n")
+        sys.stderr.write("usage: simulate.py <scheduling algorithm> <accounting file> [-v]\n")
         sys.stderr.write(" where <scheduling algorithm> is either 'historical' or 'allfast'\n")
+        sys.stderr.write(" -v flag gives verbose output\n")
         sys.exit()
 
-    simulate(sys.argv[1], sys.argv[2])
+    verbose = False
+    if "-v" in sys.argv:
+        verbose = True
+
+    simulate(sys.argv[1], sys.argv[2], verbose)
 
 
 ###########################################
