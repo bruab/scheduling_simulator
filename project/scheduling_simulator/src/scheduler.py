@@ -12,13 +12,14 @@ class Scheduler:
         self.verbose = verbose
         for node in nodes:
             self.nodes[node.name] = node
-        self.pending_jobs = []
+        self.future_jobs = []
         for job in jobs:
             # skip jobs that ran on nodes we don't know about
             if not self.get_node_from_historical_node_name(job.historical_node):
                 continue
-            self.pending_jobs.append(job)
+            self.future_jobs.append(job)
         self.current_time = None
+        self.unscheduled_jobs = []
         self.scheduled_jobs = []
         self.completed_jobs = []
 
@@ -29,55 +30,52 @@ class Scheduler:
 
     def update(self, newtime):
         if self.verbose:
-            sys.stderr.write("sched.update here, updating at newtime " + str(newtime) + "\n")
+            sys.stderr.write("\tsched.update() here, updating at newtime " + str(newtime) + "\n")
+        # get completed jobs from nodes
         for node in self.nodes.values():
             completed_jobs = node.update(newtime)
             if self.verbose:
-                sys.stderr.write("node just returned these completed jobs: " + str(completed_jobs) + "\n")
-            self.completed_jobs += completed_jobs
-            self.scheduled_jobs = [j for j in self.scheduled_jobs if j not in completed_jobs]
-        # find pending jobs that have arrived or old unscheduled jobs,
-        # assign and move them to scheduled jobs
-        to_schedule = []
-        scheduled = []
-        for job in self.pending_jobs:
-            if job.arrival_time <= newtime:
-                to_schedule.append(job)
-        for job in to_schedule:
-            job_assigned_successfully = self.assign_job(job, newtime) 
-            if job_assigned_successfully:
+                if completed_jobs:
+                    sys.stderr.write("\tnode " + str(node) + "just returned these completed jobs: " 
+                            + str(completed_jobs) + "\n")
+                else:
+                    sys.stderr.write("\tno completed jobs from node " + str(node) + "\n")
+            if completed_jobs:
+                self.completed_jobs += completed_jobs
+                self.scheduled_jobs = [j for j in self.scheduled_jobs if j not in completed_jobs]
+        # if any future jobs arrive this second add them to unscheduled_jobs list
+        while self.future_jobs and self.future_jobs[0].arrival_time <= newtime:
+            if self.verbose:
+                sys.stderr.write("About to move job " + str(self.future_jobs[0]) +
+                                 " from future_jobs to unscheduled_jobs\n")
+            self.unscheduled_jobs.append(self.future_jobs.pop(0))
+
+        # try to schedule jobs
+        can_schedule_more_jobs = True
+        while self.unscheduled_jobs and can_schedule_more_jobs:
+            if self.assign_job(self.unscheduled_jobs[0], newtime):
                 if self.verbose:
-                    sys.stderr.write("job assigned successfully\n")
-                self.scheduled_jobs.append(job) 
-                scheduled.append(job)
+                    sys.stderr.write("just assigned job " + 
+                            str(self.unscheduled_jobs[0]) + "\n")
+                self.scheduled_jobs.append(self.unscheduled_jobs.pop(0))
             else:
-                if self.verbose:
-                    sys.stderr.write("failed to assign job " + str(job) + "\n")
-                    sys.stderr.write("giving up on scheduling the rest of pending jobs for now." + "\n")
-                break
-        # remove the jobs we just scheduled from the 'pending' list
-        if self.verbose:
-            sys.stderr.write("pending jobs before and after:" + "\n")
-            sys.stderr.write("scheduled: " + str(scheduled) + "\n")
-            sys.stderr.write(str(len(self.pending_jobs)) + "\n")
-            sys.stderr.write(str(len(self.pending_jobs)) + "\n")
-            sys.stderr.write(">>\n")
-        self.pending_jobs = [j for j in self.pending_jobs if j not in scheduled]
+                can_schedule_more_jobs = False
+
         # update time
         self.current_time = newtime
 
     def has_jobs_remaining(self):
-        if self.pending_jobs or self.scheduled_jobs:
+        if self.future_jobs or self.scheduled_jobs:
             return True
         else:
             return False
 
     def get_next_job_arrival_time(self):
-        if not self.pending_jobs:
+        if not self.future_jobs:
             sys.stderr.write("******************** NO PENDING JOBS\n\n")
             return None
         else:
-            return self.pending_jobs[0].arrival_time
+            return self.future_jobs[0].arrival_time
 
     def generate_job_report(self):
         # arrival_time\tstart_time\tcompletion_time\twait_time\trun_time\tnode
@@ -90,13 +88,13 @@ class Scheduler:
             stats.append(job.node_name)
             report += "\t".join(stats) + "\n"
 
-        if self.pending_jobs or self.scheduled_jobs:
+        if self.future_jobs or self.scheduled_jobs:
             report += "## WARNING: the following jobs are still pending:\n"
-            report += str([str(j) for j in self.pending_jobs])
+            report += str([str(j) for j in self.future_jobs])
             report += str([str(j) for j in self.scheduled_jobs])
 
         # summarize all that junk
-        njobs = len(self.pending_jobs) + len(self.scheduled_jobs) +\
+        njobs = len(self.future_jobs) + len(self.scheduled_jobs) +\
                 len(self.completed_jobs)
         report += "\nnumber of jobs: " + str(njobs) + "\n"
         report += "wait time in seconds (completed jobs only):\n"
