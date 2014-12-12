@@ -101,15 +101,17 @@ class Scheduler:
         report += "wait time in seconds (completed jobs only):\n"
         if self.verbose:
             sys.stderr.write("completed jobs: " + str(self.completed_jobs) + "\n")
-        wait_times = [j.start_time - j.arrival_time for j in self.completed_jobs]
-        avg_wait = sum(wait_times) / len(wait_times)
-        report += "\taverage: " + str(avg_wait) + "\n"
-        report += "\tmax: " + str(max(wait_times)) + "\n"
+        wait_times = [j.start_time - j.arrival_time + 1 for j in self.completed_jobs]
+        avg_wait = date_string_from_duration_in_seconds(sum(wait_times) / len(wait_times))
+        max_wait = date_string_from_duration_in_seconds(max(wait_times))
+        report += "\taverage: " + avg_wait + "\n"
+        report += "\tmax: " + max_wait + "\n"
         report += "compute time in seconds (completed jobs only): \n"
-        compute_times = [j.end_time - j.start_time for j in self.completed_jobs]
-        avg_compute = sum(compute_times) / len(compute_times)
-        report += "\taverage: " + str(avg_compute) + "\n"
-        report += "\tmax: " + str(max(compute_times)) + "\n"
+        compute_times = [j.end_time - j.start_time + 1 for j in self.completed_jobs]
+        avg_compute = date_string_from_duration_in_seconds(sum(compute_times) / len(compute_times))
+        max_compute = date_string_from_duration_in_seconds(max(compute_times))
+        report += "\taverage: " + avg_compute + "\n"
+        report += "\tmax: " + max_compute + "\n"
 
         return report
 
