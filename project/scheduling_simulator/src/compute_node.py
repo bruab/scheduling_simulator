@@ -9,14 +9,13 @@ def calculate_compute_time(job, node):
     """
     # TODO
     return job.historical_end_time - job.historical_start_time
-
-class ComputeNode:
-
-    def __init__(self, name, running_watts, idle_watts, cpus):
+class ComputeNode: 
+    def __init__(self, name, running_watts, idle_watts, cpus, verbose=False):
         self.name = name
         self.running_watts = running_watts
         self.idle_watts = idle_watts
         self.cpus = cpus
+        self.verbose = verbose
         self.compute_times = []
         self.idle_times = []
         self.current_jobs = []
@@ -36,6 +35,10 @@ class ComputeNode:
             if job.start_time <= time and job.end_time >= time:
                 count += job.cpus_requested
         return count
+
+    def cpus_available(self, time):
+        in_use = self.cpus_in_use(time)
+        return self.cpus - in_use
 
     def x_cpus_available_for_y_seconds(self, cpus_requested, seconds, start_time):
         for time in range(start_time, start_time+seconds+1):
@@ -115,17 +118,19 @@ class ComputeNode:
         TIME_LIMIT = 1000 # only check for 1000 sec after job arrival
         time = self.current_time
         job_start_time = None
-        print("find_job_start_time here, looking for a time to start job " + str(job))
-        print("currently have " + str(len(self.current_jobs)) + " jobs...")
-        print("and using " + str(self.cpus_in_use(time)) + " at time " + str(time))
+        if self.verbose:
+            sys.stderr.write("find_job_start_time here, looking for a time to start job " + str(job))
+            sys.stderr.write("currently have " + str(len(self.current_jobs)) + " jobs...")
+            sys.stderr.write("and using " + str(self.cpus_in_use(time)) + " at time " + str(time))
         while not job_start_time:
-            if time % 10 == 0:
-                print("\tnow checking time " + str(time))
+            if self.verbose and time % 10 == 0:
+                sys.stderr.write("\tnow checking time " + str(time))
             if time == job.arrival_time + TIME_LIMIT:
                 return None
             cpus_available = self.cpus - self.cpus_in_use(time)
             if cpus_available >= job.cpus_requested:
                 if self.x_cpus_available_for_y_seconds(job.cpus_requested, job.compute_time, time):
-                    print("\tfound it! the job can run at time " + str(time) + "\n\n")
+                    if self.verbose:
+                        sys.stderr.write("\tfound it! the job can run at time " + str(time) + "\n\n")
                     return time
             time += 1

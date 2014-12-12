@@ -23,13 +23,13 @@ def simulate(scheduling_algorithm, accounting_file, verbose=False):
         sys.stderr.write("Creating nodes ...\n")
     slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
                         idle_watts=SLOW_NODE_1_IDLE_WATTS,
-                        cpus=SLOW_NODE_1_CPUS)
+                        cpus=SLOW_NODE_1_CPUS, verbose=verbose)
     slow2 = ComputeNode(name='slow2', running_watts=SLOW_NODE_2_RUNNING_WATTS,
                         idle_watts=SLOW_NODE_2_IDLE_WATTS,
-                        cpus=SLOW_NODE_2_CPUS)
+                        cpus=SLOW_NODE_2_CPUS, verbose=verbose)
     fast = ComputeNode(name='fast', running_watts=FAST_NODE_RUNNING_WATTS,
                         idle_watts=FAST_NODE_IDLE_WATTS,
-                        cpus=FAST_NODE_CPUS)
+                        cpus=FAST_NODE_CPUS, verbose=verbose)
     nodes = [slow1, slow2, fast]
 
     ## Read submission data into a list
@@ -56,10 +56,13 @@ def simulate(scheduling_algorithm, accounting_file, verbose=False):
     if verbose:
         sys.stderr.write("Beginning simulation ...\n")
     current_second = period_of_study_begin
-    while scheduler.has_jobs_remaining():
+
+    while scheduler.jobs_remaining():
         if verbose and current_second % 3600 == 0:
             hours_elapsed = int((current_second - period_of_study_begin) / 3600)
             sys.stderr.write(str(hours_elapsed) + " sim hours elapsed ...\n")
+            sys.stderr.write("scheduler has " + str(scheduler.jobs_remaining()) +
+                            " jobs remaining\n")
         scheduler.update(current_second)
         current_second += 1
 

@@ -63,11 +63,13 @@ class Scheduler:
         # update time
         self.current_time = newtime
 
-    def has_jobs_remaining(self):
-        if self.future_jobs or self.scheduled_jobs:
-            return True
-        else:
-            return False
+    def jobs_remaining(self):
+        count = 0
+        if self.future_jobs:
+            count += len(self.future_jobs)
+        if self.scheduled_jobs:
+            count += len(self.scheduled_jobs)
+        return count
 
     def get_next_job_arrival_time(self):
         if not self.future_jobs:
@@ -153,15 +155,15 @@ class Scheduler:
         if job.cpus_requested > target_node.cpus:
             # TODO <hack>
             job.cpus_requested = target_node.cpus
-        start_time = target_node.find_job_start_time(job)
-        if start_time:
-            job.start_time = start_time
-            job.end_time = start_time + job.compute_time
+        if target_node.cpus_available(newtime) >= job.cpus_requested:
+            job.start_time = newtime
+            job.end_time = newtime + job.compute_time
             job.node_name = target_node.name
             target_node.add_job(job)
             return True
         else:
-            #sys.stderr.write("unable to schedule job on fast node. Will try again later.\n")
+            if self.verbose:
+                sys.stderr.write("unable to schedule job on fast node. Will try again later.\n")
             return False
 
     def assign_job(self, job, newtime):
