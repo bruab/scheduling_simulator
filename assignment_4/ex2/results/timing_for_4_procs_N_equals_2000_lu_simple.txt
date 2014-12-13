@@ -1,2 +1,0 @@
-Wall clock time: 1.574
-Percent idle time is 2.728175

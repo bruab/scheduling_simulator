@@ -1,8 +1,0 @@
-1 processes:
-***********************
-4 processes:
-***********************
-8 processes:
-Wall clock time: 798.870
-Percent idle time is 5950.215024
-***********************

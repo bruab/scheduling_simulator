@@ -1,6 +1,0 @@
-#!/bin/bash
-cc -Wall -g exercise2.c -o ex2
-cc -Wall -g barxercise1.c -o bar
-./ex2 > ex2out
-./bar > barout
-head *out
