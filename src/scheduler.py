@@ -98,7 +98,7 @@ class Scheduler:
         njobs = len(self.future_jobs) + len(self.scheduled_jobs) +\
                 len(self.completed_jobs)
         report += "\nnumber of jobs: " + str(njobs) + "\n"
-        report += "wait time in seconds (completed jobs only):\n"
+        report += "wait time (completed jobs only):\n"
         if self.verbose:
             sys.stderr.write("completed jobs: " + str(self.completed_jobs) + "\n")
         wait_times = [j.start_time - j.arrival_time + 1 for j in self.completed_jobs]
@@ -106,7 +106,7 @@ class Scheduler:
         max_wait = date_string_from_duration_in_seconds(max(wait_times))
         report += "\taverage: " + avg_wait + "\n"
         report += "\tmax: " + max_wait + "\n"
-        report += "compute time in seconds (completed jobs only): \n"
+        report += "compute time (completed jobs only): \n"
         compute_times = [j.end_time - j.start_time + 1 for j in self.completed_jobs]
         avg_compute = date_string_from_duration_in_seconds(sum(compute_times) / len(compute_times))
         max_compute = date_string_from_duration_in_seconds(max(compute_times))
