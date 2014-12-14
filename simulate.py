@@ -6,6 +6,7 @@ from src.scheduler import Scheduler
 from src.util import date_string_from_epoch_timestamp,\
         date_string_from_duration_in_seconds, jobs_from_accounting_file
 
+
 SLOW_NODE_1_RUNNING_WATTS = 375.8
 SLOW_NODE_1_IDLE_WATTS = 360.5
 SLOW_NODE_1_CPUS = 48
@@ -15,6 +16,7 @@ SLOW_NODE_2_CPUS = 48
 FAST_NODE_RUNNING_WATTS = 254.095
 FAST_NODE_IDLE_WATTS = 147
 FAST_NODE_CPUS = 36
+DOLLARS_PER_KILOWATT_HOUR = 0.326671
 
 
 def simulate(scheduling_algorithm, accounting_file, verbose=False):
@@ -23,13 +25,16 @@ def simulate(scheduling_algorithm, accounting_file, verbose=False):
         sys.stderr.write("Creating nodes ...\n")
     slow1 = ComputeNode(name='slow1', running_watts=SLOW_NODE_1_RUNNING_WATTS,
                         idle_watts=SLOW_NODE_1_IDLE_WATTS,
-                        cpus=SLOW_NODE_1_CPUS, verbose=verbose)
+                        cpus=SLOW_NODE_1_CPUS, cost_per_kwh=DOLLARS_PER_KILOWATT_HOUR,
+                        verbose=verbose)
     slow2 = ComputeNode(name='slow2', running_watts=SLOW_NODE_2_RUNNING_WATTS,
                         idle_watts=SLOW_NODE_2_IDLE_WATTS,
-                        cpus=SLOW_NODE_2_CPUS, verbose=verbose)
+                        cpus=SLOW_NODE_2_CPUS, cost_per_kwh=DOLLARS_PER_KILOWATT_HOUR,
+                        verbose=verbose)
     fast = ComputeNode(name='fast', running_watts=FAST_NODE_RUNNING_WATTS,
                         idle_watts=FAST_NODE_IDLE_WATTS,
-                        cpus=FAST_NODE_CPUS, verbose=verbose)
+                        cpus=FAST_NODE_CPUS, cost_per_kwh=DOLLARS_PER_KILOWATT_HOUR,
+                        verbose=verbose)
     nodes = [slow1, slow2, fast]
 
     ## Read submission data into a list
@@ -89,7 +94,7 @@ def simulate(scheduling_algorithm, accounting_file, verbose=False):
     # print header for node data
     print("\n## NODE INFORMATION ##\n")
     print("name\ttotal_compute_time (dd:hh:mm:ss)\ttotal_idle_time (dd:hh:mm:ss)\t" +
-            "total_energy_consumption (kWh)")
+            "total_energy_consumption (kWh)\ttotal_energy_cost")
     print("----\t------------------------\t---------------------\t" +
             "------------------------------")
     print(scheduler.generate_node_report())
@@ -97,7 +102,8 @@ def simulate(scheduling_algorithm, accounting_file, verbose=False):
 
 def main():
 
-    if len(sys.argv) < 3 or sys.argv[1] not in ["historical", "allfast"]:
+    if len(sys.argv) < 3 or sys.argv[1] not in ["historical", "allfast", 
+                                                "greenfirst2nodes", "greenfirst3nodes"]:
         sys.stderr.write("usage: simulate.py <scheduling algorithm> <accounting file> [-v]\n")
         sys.stderr.write(" where <scheduling algorithm> is either 'historical' or 'allfast'\n")
         sys.stderr.write(" -v flag gives verbose output\n")

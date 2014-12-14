@@ -9,7 +9,6 @@ class Scheduler:
     def __init__(self, algorithm, nodes, jobs, verbose=False):
         self.algorithm = algorithm
         self.nodes = {}
-        self.verbose = verbose
         for node in nodes:
             self.nodes[node.name] = node
         self.future_jobs = []
@@ -18,6 +17,7 @@ class Scheduler:
             if not self.get_node_from_historical_node_name(job.historical_node):
                 continue
             self.future_jobs.append(job)
+        self.verbose = verbose
         self.current_time = None
         self.unscheduled_jobs = []
         self.scheduled_jobs = []
@@ -168,11 +168,88 @@ class Scheduler:
                 sys.stderr.write("unable to schedule job on fast node. Will try again later.\n")
             return False
 
+    def assign_job_green_first_2_nodes(self, job, newtime):
+        fast = self.nodes["fast"]
+        slow = self.nodes["slow2"]
+        compute_time = calculate_compute_time(job, fast)
+        # can't ask for 48 cores on fast node
+        if job.cpus_requested > fast.cpus:
+            # TODO <hack>
+            cpus_requested = fast.cpus
+        else:
+            cpus_requested = job.cpus_requested
+        if fast.cpus_available(newtime) >= cpus_requested:
+            sys.stderr.write("\t\tassigning job " + str(job) + " to fast...\n")
+            job.cpus_requested = cpus_requested
+            job.start_time = newtime
+            job.compute_time = compute_time
+            job.end_time = newtime + job.compute_time
+            job.node_name = fast.name
+            fast.add_job(job)
+            return True
+        elif slow.cpus_available(newtime) >= job.cpus_requested:
+            sys.stderr.write("\t\tassigning job " + str(job) + " to slow...\n")
+            job.start_time = newtime
+            job.compute_time = compute_time
+            job.end_time = newtime + job.compute_time
+            job.node_name = fast.name
+            slow.add_job(job)
+            return True
+        else:
+            if self.verbose:
+                sys.stderr.write("unable to schedule job on fast or slow node. Will try again later.\n")
+            return False
+
+    def assign_job_green_first_3_nodes(self, job, newtime):
+        fast = self.nodes["fast"]
+        slow2 = self.nodes["slow2"]
+        slow1 = self.nodes["slow1"]
+        compute_time = calculate_compute_time(job, fast)
+        # can't ask for 48 cores on fast node
+        if job.cpus_requested > fast.cpus:
+            # TODO <hack>
+            cpus_requested = fast.cpus
+        else:
+            cpus_requested = job.cpus_requested
+        if fast.cpus_available(newtime) >= cpus_requested:
+            sys.stderr.write("\t\tassigning job " + str(job) + " to fast...\n")
+            job.cpus_requested = cpus_requested
+            job.start_time = newtime
+            job.compute_time = compute_time
+            job.end_time = newtime + job.compute_time
+            job.node_name = fast.name
+            fast.add_job(job)
+            return True
+        elif slow2.cpus_available(newtime) >= job.cpus_requested:
+            sys.stderr.write("\t\tassigning job " + str(job) + " to slow2...\n")
+            job.start_time = newtime
+            job.compute_time = compute_time
+            job.end_time = newtime + job.compute_time
+            job.node_name = fast.name
+            slow2.add_job(job)
+            return True
+        elif slow1.cpus_available(newtime) >= job.cpus_requested:
+            sys.stderr.write("\t\tassigning job " + str(job) + " to slow1...\n")
+            job.start_time = newtime
+            job.compute_time = compute_time
+            job.end_time = newtime + job.compute_time
+            job.node_name = fast.name
+            slow1.add_job(job)
+            return True
+        else:
+            if self.verbose:
+                sys.stderr.write("unable to schedule job on fast or slow node. Will try again later.\n")
+            return False
+
     def assign_job(self, job, newtime):
         """Assigns job according to self.algorithm, returns True on success."""
         if self.algorithm == "historical":
             return self.assign_job_from_historical_data(job)
         elif self.algorithm == "allfast":
             return self.assign_job_to_fast(job, newtime)
+        elif self.algorithm == "greenfirst2nodes":
+            return self.assign_job_green_first_2_nodes(job, newtime)
+        elif self.algorithm == "greenfirst3nodes":
+            return self.assign_job_green_first_3_nodes(job, newtime)
 
 

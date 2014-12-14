@@ -10,11 +10,12 @@ def calculate_compute_time(job, node):
     # TODO
     return job.historical_end_time - job.historical_start_time
 class ComputeNode: 
-    def __init__(self, name, running_watts, idle_watts, cpus, verbose=False):
+    def __init__(self, name, running_watts, idle_watts, cpus, cost_per_kwh, verbose=False):
         self.name = name
         self.running_watts = running_watts
         self.idle_watts = idle_watts
         self.cpus = cpus
+        self.cost_per_kwh = cost_per_kwh
         self.verbose = verbose
         self.compute_times = []
         self.idle_times = []
@@ -95,13 +96,14 @@ class ComputeNode:
 
     def generate_report(self):
         # name\ttotal_compute_time\ttotal_idle_time\t
-        #        total_energy_consumption (kWh)
-        running_cost = (self.compute_time * self.running_watts / 3600) / 1000
-        idle_cost = (self.idle_time * self.idle_watts / 3600) / 1000
-        energy_cost = running_cost + idle_cost
+        #        total_energy_consumption (kWh)\tenergy_cost
+        running_kwh = (self.compute_time * self.running_watts / 3600) / 1000
+        idle_kwh = (self.idle_time * self.idle_watts / 3600) / 1000
+        total_kwh = running_kwh + idle_kwh
         compute_time = date_string_from_duration_in_seconds(self.compute_time)
         idle_time = date_string_from_duration_in_seconds(self.idle_time)
-        data = [self.name, compute_time, idle_time, str(energy_cost)]
+        energy_cost = "$" + str(total_kwh * self.cost_per_kwh)
+        data = [self.name, compute_time, idle_time, str(total_kwh), energy_cost]
         return "\t".join(data) + "\n"
 
     def add_job(self, job):
